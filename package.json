@@ -5,7 +5,8 @@
   "main": "",
   "scripts": {
     "sass:build": "sass --no-source-map scss:css",
-    "sass:watch": "sass --no-source-map --watch scss:css"
+    "sass:watch": "sass --no-source-map --watch scss:css",
+    "sass:build-for-dotnet": "sass --no-source-map scss:src/Dustech.App.Web/wwwroot/styles --style compressed"    
   },
   "author": "Stefano Cerruti",
   "license": "MIT",
