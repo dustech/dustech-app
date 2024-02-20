@@ -7,6 +7,16 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 
+if (builder.Environment.IsDevelopment())
+{
+    builder.Services.AddWebOptimizer(minifyJavaScript:false,minifyCss:false);
+}
+else
+{
+    builder.Services.AddWebOptimizer();
+}
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -18,6 +28,8 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseWebOptimizer();
 app.UseStaticFiles();
 
 app.UseRouting();
