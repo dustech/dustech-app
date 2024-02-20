@@ -4,8 +4,8 @@
   "description": "Dustech.io App",
   "main": "",
   "scripts": {
-    "sass:build": "sass --no-source-map scss:css",
-    "sass:watch": "sass --no-source-map --watch scss:css",
+    "sass:build": "sass --no-source-map scss:src/Dustech.App.Web/wwwroot/styles",
+    "sass:watch": "sass --no-source-map --watch scss:src/Dustech.App.Web/wwwroot/styles",
     "sass:build-for-dotnet": "sass --no-source-map scss:src/Dustech.App.Web/wwwroot/styles --style compressed"    
   },
   "author": "Stefano Cerruti",
