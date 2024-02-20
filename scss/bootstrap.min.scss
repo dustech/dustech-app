@@ -1,7 +1,20 @@
 
 
+$theme-colors: (
+        "primary": crimson,
+        "secondary": lightcoral,
+        "success": lightgreen,
+        "info": teal,
+        "warning": yellow,
+        "danger": red,
+        "light": cornsilk,
+        "dark": lightslategrey
+);
+
 
 $font-family-sans-serif: 'Poppins', sans-serif;
+
+$body-bg-dark: black;
 
 
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
