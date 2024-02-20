@@ -1,4 +1,14 @@
 {
+  "name": "dustech-app",
+  "version": "1.0.0",
+  "description": "Dustech.io App",
+  "main": "",
+  "scripts": {
+    "sass:build": "sass --no-source-map scss:css",
+    "sass:watch": "sass --no-source-map --watch scss:css"
+  },
+  "author": "Stefano Cerruti",
+  "license": "MIT",
   "dependencies": {
     "bootstrap": "^5.3.2",
     "sass": "^1.71.0"
