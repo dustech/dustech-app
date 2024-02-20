@@ -1,0 +1,11 @@
+# ide
+.idea
+.vscode
+
+# build
+[Oo]bj
+[Bb]in
+
+# npm
+
+node_modules
