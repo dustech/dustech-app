@@ -4,9 +4,9 @@
   "description": "Dustech.io App",
   "main": "",
   "scripts": {
-    "sass:build": "sass --no-source-map scss:src/Dustech.App.Web/wwwroot/styles --style compressed",
-    "sass:watch": "sass --no-source-map --watch scss:src/Dustech.App.Web/wwwroot/styles --style compressed",
-    "sass:build-for-dotnet": "sass --no-source-map scss:src/Dustech.App.Web/wwwroot/styles --style compressed"    
+    "sass:build": "sass scss:src/Dustech.App.Web/wwwroot/styles",
+    "sass:watch": "sass --watch scss:src/Dustech.App.Web/wwwroot/styles",
+    "sass:build-prod": "sass --no-source-map scss:src/Dustech.App.Web/wwwroot/styles --style compressed"    
   },
   "author": "Stefano Cerruti",
   "license": "MIT",
