@@ -6,7 +6,7 @@
 
 <div class="text-center">
     <h1 class="display-4 hero">
-        <p class="text-primary">Dustech</p>
+        <p class="text-white">Welcome to Dustech.io</p>
     </h1>
     
     
@@ -15,7 +15,7 @@
     var margin = 5.0;
     var hexy = new HexViewComponentModel()
     {
-        Content = "0,0",
+        Content = "House",
         Icon = "house",
         ColorContext = "primary"
     };
@@ -41,7 +41,7 @@
     var responsiveModel = new HexGridResponsiveViewComponentModel(gridModel);
 }
     
-    <div class="container">
+    <div class="container border p-4">
     @await Component.InvokeAsync("HexGridResponsive", responsiveModel)
     </div>
     

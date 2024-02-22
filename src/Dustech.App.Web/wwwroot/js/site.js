@@ -1,4 +1,16 @@
-﻿// Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿
+function userScroll() {
+    const navbar = document.querySelector('.brand-bar');
 
-// Write your JavaScript code.
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            navbar.classList.remove('bg-transparent');
+            navbar.classList.add('brand-bar-sticky');
+        } else {
+            navbar.classList.add('bg-transparent');
+            navbar.classList.remove('brand-bar-sticky');
+        }
+    });
+}
+
+document.addEventListener('DOMContentLoaded', userScroll);

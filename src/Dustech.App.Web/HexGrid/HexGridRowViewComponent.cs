@@ -18,7 +18,7 @@ public class HexGridRowViewComponent : ViewComponent
                     LeftOffSet = (model.Inverted? model.RowLeftOffSetInverted: model.RowLeftOffSet) +
                                  model.LeftCellOffSet * index,
                     TopOffSet = model.TopCellOffSet * (model.RowNumber),
-                    Content = $"{model.RowNumber},{index}"
+                    Content = $"{e.Content} {model.RowNumber},{index}"
                 });
 
         var rowModel = model with { Elements = rowModelElements };

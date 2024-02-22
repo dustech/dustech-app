@@ -1,16 +1,32 @@
-﻿.brand-bar, .footer, .hero {
+﻿body {
+  background: radial-gradient(89.59% 89.59% at 50.00% 0.00%,rgba(255,224,255,0.29) 0%,rgba(37,124,255,0.01) 47.40%,rgba(13,16,23,0.00) 100%),#0D1017;
+  background-size: 100% 50%;
+  background-repeat: no-repeat;
+}
+
+.brand-bar, .footer, .hero {
   font-family: "Anta", sans-serif;
 }
 
+.footer {
+  background-color: #1f1f1f;
+}
+
+
+.brand-bar {  
+  transition: all 0.5s ease-in-out;
+}
+
+.brand-bar-sticky {
+  background-color: #0d1017;
+  opacity: 0.8;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
 
 .social {
   font-size: 1rem;
 }
 
-.footer, .brand-bar {
-
-  background-color: #1f1f1f;
-}
 
 @media (min-width: 576px) {
 
