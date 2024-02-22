@@ -1,11 +1,10 @@
 ﻿@model HexGridViewComponentModel
 
-<div class="container py-4  @Model.ContainerClass" >
-    <div style="height: @(Model.ContainerHeight)px;">
+<div class="container px-0 @Model.ContainerClass"  style="height: @(Model.ContainerHeight)px; width:@(Model.ContainerWidth)px " >
+    
         
         @foreach (var row in Model.Rows)
         {
             @await Component.InvokeAsync("HexGridRow", row)
         }
-    </div>
 </div>

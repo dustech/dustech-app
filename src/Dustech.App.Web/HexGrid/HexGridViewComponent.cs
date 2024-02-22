@@ -82,6 +82,7 @@ public record HexGridViewComponentModel
 
     public IEnumerable<HexViewComponentModel> Elements { get; init; }
     public double CellHeight => HexHeight + Margin;
+    public double CellWidth => HexWidth + Margin;
     public int RowCount => Rows.Count;
 
     public double ContainerHeight =>
@@ -90,6 +91,7 @@ public record HexGridViewComponentModel
         // Other rows times vertical offset CellHeight 
         (RowCount - 1) * CellHeight * 0.75;
 
+    public double ContainerWidth => CellWidth * MaxRowLength;
 
     public ICollection<HexGridRowViewComponentModel>
         Rows { get; init; } =
@@ -98,6 +100,8 @@ public record HexGridViewComponentModel
     public int MaxRowLength { get; init; }
     public double Margin { get; init; }
     public double HexHeight { get; init; }
+    private double HexWidth => HexViewComponentModel.HexWidth(HexHeight);
+    
     public string ContainerClass { get; init; } = "";
 
     public bool Inverted { get; init; }
