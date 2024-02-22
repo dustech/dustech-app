@@ -1,0 +1,15 @@
+﻿@model HexGridResponsiveViewComponentModel
+
+
+@{
+    var gridModel = Model.HexGridModel with{ContainerClass = "d-none d-xl-block"};
+    
+}
+
+@await Component.InvokeAsync("HexGrid", gridModel)
+
+@await Component.InvokeAsync("HexGrid", gridModel with{HexHeight = gridModel.HexHeight * 0.9, Margin = 3.0,ContainerClass = "d-none d-lg-block d-xl-none"})
+@await Component.InvokeAsync("HexGrid", gridModel with{HexHeight = gridModel.HexHeight * 0.75, Margin = 3.0,ContainerClass = "d-none d-md-block d-lg-none"})
+@await Component.InvokeAsync("HexGrid", gridModel with{HexHeight = gridModel.HexHeight * 0.60, Margin = 3.0,ContainerClass = "d-none d-sm-block d-md-none"})
+@await Component.InvokeAsync("HexGrid", gridModel with{HexHeight = gridModel.HexHeight * 0.45, Margin = 3.0,ContainerClass = " d-sm-none"})
+
