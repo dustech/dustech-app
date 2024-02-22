@@ -11,3 +11,6 @@ styles
 
 node_modules
 bootstrap.bundle.min.js
+
+**/fonts/*
+
