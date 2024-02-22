@@ -12,13 +12,16 @@
         <link rel="stylesheet" href="~/styles/bootstrap.css"/>
         <link rel="stylesheet" href="~/styles/bootstrap-icons.css"/>
         <link rel="stylesheet" href="~/styles/styles.css" asp-append-version="true"/>
+        <link rel="stylesheet" href="~/styles/hex.css" asp-append-version="true"/>
     </environment>
 </head>
 <body>
-<header>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow mb-3">
+<header class="header">
+    <nav class=" brand-bar navbar navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow  pt-3 ">
         <div class="container">
-            <a class="navbar-brand" asp-area="" asp-page="/Index"><strong class="lead text-primary">Dustech</strong></a>
+            <a class="navbar-brand" asp-area="" asp-page="/Index">
+                <strong class="lead text-primary">Dustech</strong>
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -37,11 +40,14 @@
         </div>
     </nav>
 </header>
-<div class="container">
-    <main role="main" class="pb-3">
-        @RenderBody()
-    </main>
+<div class="main-area-mask">
 </div>
+    <div class="container mt-5 ">
+        <main class="main" role="main" class="">
+            @RenderBody()
+        </main>
+    </div>
+
 
 <partial name="_Footer"/>
 

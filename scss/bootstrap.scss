@@ -1,12 +1,12 @@
 
 
 $theme-colors: (
-        "primary": crimson,
+        "primary": #FF3A20,
         "secondary": lightcoral,
         "success": lightgreen,
-        "info": teal,
-        "warning": yellow,
-        "danger": red,
+        "info": #1B998B,
+        "warning": #FFFD82,
+        "danger": #FBAF00,
         "light": cornsilk,
         "dark": lightslategrey
 );
@@ -27,8 +27,8 @@ $spacers: (
 
 $font-family-sans-serif: 'Poppins', sans-serif;
 
+//$body-bg-dark: #2F2F2F;
 $body-bg-dark: black;
-
 
 
 @import "../node_modules/bootstrap/scss/bootstrap.scss";

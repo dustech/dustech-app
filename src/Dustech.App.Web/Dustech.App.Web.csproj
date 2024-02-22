@@ -12,6 +12,7 @@
     </PropertyGroup>
     
     <ItemGroup>
+      <Folder Include="Pages\Shared\Components\" />
       <Folder Include="wwwroot\styles\fonts\" />
     </ItemGroup>
     

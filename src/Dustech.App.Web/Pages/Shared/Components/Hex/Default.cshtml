@@ -1,0 +1,30 @@
+﻿@model HexViewComponentModel
+
+@{
+    //const double shadowOffset = 4.0;
+    // var shadowTop = Model.Top + shadowOffset;
+    // var shadowLeft = Model.Left + shadowOffset;
+}
+
+
+@* <div class="hexagon-card hexagon-card-shadow" style="width:@(width)px;height:@(height)px;position: absolute; margin-top:@(shadowTop)px ;margin-left:@(shadowLeft)px;"> *@
+@* </div> *@
+<div class="hexagon-card hexagon-card-btn px-0 btn btn-@(Model.ColorContext) 
+d-flex justify-content-center align-items-center "
+     style="width:@(Model.Width)px;height:@(Model.Height)px;position: absolute; margin-top:@(Model.TopOffSet)px ;margin-left:@(Model.LeftOffSet)px;">
+
+    <div class="container m-0 p-0">
+        <div class="row mt-3 w-100 m-auto">
+            <div class="col-12">
+                <p class="h3 mb-0">
+                    <i class="bi-@(Model.Icon)"></i>
+                </p>
+            </div>
+            <div class="col-12 m-0 p-0">
+                <p class="text-truncate">
+                    @(Model.Content)
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

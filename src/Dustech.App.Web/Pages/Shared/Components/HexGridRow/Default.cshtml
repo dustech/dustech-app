@@ -1,0 +1,7 @@
+@model HexGridRowViewComponentModel
+
+
+@foreach (var hex in Model.Elements)
+{
+    @await Component.InvokeAsync("Hex", hex)
+}
