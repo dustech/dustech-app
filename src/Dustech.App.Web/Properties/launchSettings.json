@@ -18,6 +18,15 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
+    "http-everywhere": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "launchBrowser": false,
+      "applicationUrl": "http://*:5193",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },    
     "https": {
       "commandName": "Project",
       "dotnetRunMessages": true,
@@ -26,6 +35,6 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
-    }
+    }    
   }
 }
