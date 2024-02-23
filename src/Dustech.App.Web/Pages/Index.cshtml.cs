@@ -9,7 +9,5 @@ public class IndexModel() : LayoutModel("Home page")
 {
     public void OnGet()
     {
-        // return new LayoutModel<IndexModel>(this, "Home page");
-        //return Page(new LayoutModel<IndexModel>(this, "Home page"));
     }
 }

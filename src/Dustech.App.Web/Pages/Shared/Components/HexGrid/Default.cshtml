@@ -1,6 +1,12 @@
-﻿@model HexGridViewComponentModel
+﻿@using Dustech.App.Model
+@model HexGridViewComponentModel
 
-<div class="container px-0 @Model.ContainerClass" style="height: @(Model.ContainerHeight)px; width:@(Model.ContainerWidth)px ">
+@{
+    var containerHeight = Infrastructure.Invariant(Model.ContainerHeight);
+    var containerWidth = Infrastructure.Invariant(Model.ContainerWidth);
+}
+
+<div class="container px-0 @Model.ContainerClass" style="height: @(containerHeight)px; width:@(containerWidth)px ">
 
 
     @foreach (var row in Model.Rows)

@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dustech.App.Web", "Dustech.App.Web\Dustech.App.Web.csproj", "{00185206-FD49-4A86-A987-18A8A945C4BC}"
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Dustech.App.Model", "Dustech.App.Model\Dustech.App.Model.fsproj", "{74F0BC1A-7BD0-4943-8B53-922885DEEB95}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{00185206-FD49-4A86-A987-18A8A945C4BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{00185206-FD49-4A86-A987-18A8A945C4BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{00185206-FD49-4A86-A987-18A8A945C4BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74F0BC1A-7BD0-4943-8B53-922885DEEB95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74F0BC1A-7BD0-4943-8B53-922885DEEB95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74F0BC1A-7BD0-4943-8B53-922885DEEB95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74F0BC1A-7BD0-4943-8B53-922885DEEB95}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
