@@ -1,44 +1,15 @@
-﻿@using System.Globalization
-@using Microsoft.AspNetCore.Builder
-@using Microsoft.AspNetCore.Mvc.TagHelpers
-@using Microsoft.Extensions.Options
+﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
 @model LayoutModel
-@inject IOptions<RequestLocalizationOptions> LocalizationOptions
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="dark">
 <partial name="_Head" model="@Model.Title"/>
 <body>
-<partial name="_Header"/>
+<partial name="_Header" model="@Model.RequestCultureFeature"/>
 
 
-@{
-    var requestCultureInfo = Model.RequestCultureFeature;
-    
-    foreach (var culture in LocalizationOptions.Value.SupportedCultures!)
-    {
-        <span class="badge rounded-pill 
-              @(culture.ToString() 
-                 == requestCultureInfo?.RequestCulture.Culture.ToString()
-              ? "bg-primary" : "bg-info text-black") 
-              ">
-            @culture 
-        </span>
-    }
-}
-
-<div class="alert alert-info col-12 position-absolute top-50" role="alert">
-    Current culture: @CultureInfo.CurrentCulture
-    <br>
-    Current UI culture: @CultureInfo.CurrentUICulture
-    <br>
-    Request Current culture: @requestCultureInfo?.RequestCulture.Culture
-    <br>
-    Request Current UI culture: @requestCultureInfo?.RequestCulture.UICulture
-    <br>
-</div>
 
 <main class="main container mt-6 " role="main">
-    @RenderBody()
+@RenderBody()
 </main>
 
 

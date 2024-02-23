@@ -1,0 +1,24 @@
+@using Microsoft.AspNetCore.Builder
+@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Localization
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using Microsoft.Extensions.Options
+@model IRequestCultureFeature
+@inject IOptions<RequestLocalizationOptions> LocalizationOptions
+
+
+<div class="dropdown mt-1">
+    <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" id="language-toggler" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="bi bi-translate"></i> <small class="text-uppercase">@Model.RequestCulture.Culture.ToString()</small> 
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="language-toggler">
+        @foreach (var culture in LocalizationOptions.Value.SupportedCultures!)
+        {
+            <li>
+                <a asp-page-handler="SetCulture" asp-route-cultureName="@culture" class="dropdown-item">
+                    <small class="text-uppercase">@culture</small>
+                </a>
+            </li>
+        }
+    </ul>
+</div>
