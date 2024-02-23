@@ -21,8 +21,9 @@ public class ErrorModel : LayoutModel
         _logger = logger;
     }
 
-    public void OnGet()
+    public override void OnGet()
     {
+        base.OnGet();
         RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier;
     }
 }

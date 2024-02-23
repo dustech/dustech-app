@@ -5,9 +5,4 @@ using Microsoft.Extensions.Logging;
 
 namespace Dustech.App.Web.Pages;
 
-public class IndexModel() : LayoutModel("Home page")
-{
-    public void OnGet()
-    {
-    }
-}
+public class IndexModel() : LayoutModel("Home page");
