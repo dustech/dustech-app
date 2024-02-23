@@ -8,7 +8,7 @@ namespace Dustech.App.Web.Pages;
 [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None,
     NoStore = true)]
 [IgnoreAntiforgeryToken]
-public class ErrorModel : PageModel
+public class ErrorModel : LayoutModel
 {
     public string? RequestId { get; set; }
 
@@ -16,7 +16,7 @@ public class ErrorModel : PageModel
 
     private readonly ILogger<ErrorModel> _logger;
 
-    public ErrorModel(ILogger<ErrorModel> logger)
+    public ErrorModel(ILogger<ErrorModel> logger):base("Error")
     {
         _logger = logger;
     }

@@ -2,7 +2,7 @@
 
 namespace Dustech.App.Web.Pages;
 
-public class Colors : PageModel
+public class Colors() : LayoutModel("Colors")
 {
     public void OnGet()
     {
