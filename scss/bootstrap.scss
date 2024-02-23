@@ -1,14 +1,22 @@
+$primary: #FF3A20;
+$secondary: coral;
+$success: lightgreen;
+$info: #1B998B;
+$warning: #FFFD82;
+$danger: #FBAF00;
+$light: cornsilk;
+$dark: lightslategrey;
 
 
 $theme-colors: (
-        "primary": #FF3A20,
-        "secondary": lightcoral,
-        "success": lightgreen,
-        "info": #1B998B,
-        "warning": #FFFD82,
-        "danger": #FBAF00,
-        "light": cornsilk,
-        "dark": lightslategrey
+        "primary": $primary,
+        "secondary": $secondary,
+        "success": $success,
+        "info": $info,
+        "warning": $warning,
+        "danger": $danger,
+        "light": $light,
+        "dark": $dark
 );
 
 // Spacing
