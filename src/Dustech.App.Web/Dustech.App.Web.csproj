@@ -9,6 +9,7 @@
         <AssemblyName>Dustech.App.Web</AssemblyName>
         <InvariantGlobalization>false</InvariantGlobalization>
         <AnalysisMode>AllEnabledByDefault</AnalysisMode>
+        <NeutralLanguage>en</NeutralLanguage>
     </PropertyGroup>
          
     <ItemGroup>
@@ -17,6 +18,30 @@
          
     <ItemGroup>
       <ProjectReference Include="..\Dustech.App.Model\Dustech.App.Model.fsproj" />
+    </ItemGroup>
+         
+    <ItemGroup>
+      <EmbeddedResource Update="Resources\Pages.IndexModel.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>Pages.IndexModel.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\Pages.IndexModel.it.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>Pages.IndexModel.it.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+    </ItemGroup>
+         
+    <ItemGroup>
+      <Compile Update="Resources\Pages.IndexModel.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>Pages.IndexModel.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Resources\Pages.IndexModel.it.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>Pages.IndexModel.it.resx</DependentUpon>
+      </Compile>
     </ItemGroup>
 
 </Project>

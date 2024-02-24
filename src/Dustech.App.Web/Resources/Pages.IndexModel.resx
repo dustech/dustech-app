@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+            
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <data name="LetMeIntroduceMyself" xml:space="preserve">
+        <value>Let me introduce myself</value>
+    </data>
+    <data name="WelcomeTo" xml:space="preserve">
+        <value>Welcome to</value>
+    </data>
+    <data name="AboutMe" xml:space="preserve">
+        <value>About Me</value>
+    </data>
+    <data name="WhoAmI" xml:space="preserve">
+        <value>I am a software architect and backend developer from Turin, Italy</value>
+    </data>
+    <data name="MyResume" xml:space="preserve">
+        <value>I am passionate about technology and programming. &lt;br&gt;
+                    I started coding when I was 16 years old and after graduating,
+                    I began working as a web programmer. &lt;br&gt;
+                    I started with &lt;lead class="text-info"&gt;PHP&lt;/lead&gt; and &lt;lead class="text-info"&gt;Java&lt;/lead&gt;,
+                    but for the last years, I have mainly worked in &lt;lead class="text-info"&gt;.NET&lt;/lead&gt; in both Windows and Linux environments. &lt;br&gt;
+                    Jobs are in &lt;lead class="text-secondary"&gt;C#&lt;/lead&gt; object-oriented programming, but in my free time I play with functional programming with &lt;lead class="text-secondary"&gt;F#&lt;/lead&gt;
+                    and &lt;a href="https://www.haskell.org/" target="_blank"&gt; &lt;lead class="text-secondary"&gt;Haskell&lt;/lead&gt;&lt;/a&gt; . &lt;br&gt; I have worked for small and medium-sized companies up to enterprise contexts.
+                    &lt;br&gt;&lt;br&gt; &lt;hr class="h-25"&gt; Welcome to my web space, feel free to explore as you please.
+                </value>
+    </data>
+</root>

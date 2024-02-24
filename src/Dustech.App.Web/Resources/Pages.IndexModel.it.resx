@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+            
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <data name="LetMeIntroduceMyself" xml:space="preserve">
+        <value>Lascia che mi presenti</value>
+    </data>
+    <data name="WelcomeTo" xml:space="preserve">
+        <value>Benvenuto su</value>
+    </data>
+    <data name="AboutMe" xml:space="preserve">
+        <value>Qualcosa su di me</value>
+    </data>
+    <data name="WhoAmI" xml:space="preserve">
+        <value>Sono un architetto software e sviluppatore backend di Torino, Italia</value>
+    </data>
+    <data name="MyResume" xml:space="preserve">
+        <value>Sono appassionato di tecnologia e programmazione. &lt;br&gt;
+Ho iniziato a programmare all'età di 16 anni e dopo la laurea,
+ho iniziato a lavorare come programmatore web. &lt;br&gt;
+Ho iniziato con &lt;lead class="text-info"&gt;PHP&lt;/lead&gt; e &lt;lead class="text-info"&gt;Java&lt;/lead&gt;,
+ma negli ultimi anni ho lavorato principalmente con &lt;lead class="text-info"&gt;.NET&lt;/lead&gt; sia in ambienti Windows che Linux. &lt;br&gt;
+I lavori sono in programmazione orientata agli oggetti &lt;lead class="text-secondary"&gt;C#&lt;/lead&gt;, ma nel mio tempo libero gioco con la programmazione funzionale con &lt;lead class="text-secondary"&gt;F#&lt;/lead&gt;
+e &lt;a href="https://www.haskell.org/" target="_blank"&gt; &lt;lead class="text-secondary"&gt;Haskell&lt;/lead&gt;&lt;/a&gt;. &lt;br&gt; Ho lavorato per aziende di piccole e medie dimensioni fino a contesti aziendali.
+&lt;br&gt;&lt;br&gt; &lt;hr class="h-25"&gt; Benvenuto nel mio spazio web, sentiti libero di esplorare come preferisci.</value>
+    </data>
+</root>

@@ -15,9 +15,13 @@ builder.Services.Configure<RequestLocalizationOptions>(options =>
         .SetDefaultCulture("en");
 });
 
+builder.Services.AddLocalization(options =>
+    options.ResourcesPath = "Resources"
+);
+
 if (builder.Environment.IsDevelopment())
 {
-    builder.Services.AddWebOptimizer(minifyJavaScript:false,minifyCss:false);
+    builder.Services.AddWebOptimizer(minifyJavaScript: false, minifyCss: false);
 }
 else
 {

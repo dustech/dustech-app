@@ -1,10 +1,16 @@
 ﻿@page
+@using Microsoft.Extensions.Localization
 @model IndexModel
+
+@inject IStringLocalizer<IndexModel> Localizer
+
 
 <div class="text-center">
     <h1 class="display-4 hero">
         <span class="text-white">
-            <blockquote class="small blockquote"><i class="bi-activity"></i> Welcome to <i class="bi-activity"></i></blockquote>
+            <blockquote class="small blockquote">
+                <i class="bi-activity"></i> @(Localizer["WelcomeTo"]) <i class="bi-activity"></i>
+            </blockquote>
             <text class="display-3">Dustech</text><small class="text-dark">.</small><text class="text-dark small">io</text>
 
         </span>
@@ -50,30 +56,25 @@
     <section id="about" class="about py-5 px-3">
         <div class="container">
             <div class="text-center">
-                <h4 class="text-uppercase fw-bold text-primary anta">About Me</h4>
+                <h4 class="text-uppercase fw-bold text-primary anta">@(Localizer["AboutMe"]) </h4>
                 <hr class="w-25 mx-auto"/>
-                <h2 class="mb-4">Let me introduce myself.</h2>
+                <h2 class="mb-4">@(Localizer["LetMeIntroduceMyself"]).</h2>
             </div>
             <div class="about-content d-flex gap-3 gap-md-5 align-items-center h-100">
                 <img
                     src="https://avatars.githubusercontent.com/u/12004370?v=4"
                     alt=""
                     class="about-img img-fluid rounded-circle glow-border glow-effect"/>
-                <p class="lead ">
-                    I am a software architect and backend developer from Turin, Italy. <br>
-                   
+                <p class="lead">
+                    @Localizer["WhoAmI"]. <br>
+
                 </p>
             </div>
             <div class="container">
-                <p class="text-muted"> I am passionate about technology and programming. <br>
-                    I started coding when I was 16 years old and after graduating,
-                    I began working as a web programmer. <br>
-                    I started with <lead class="text-info">PHP</lead> and <lead class="text-info">Java</lead>,
-                    but for the last 15 years, I have mainly worked in <lead class="text-info">.NET</lead> in both Windows and Linux environments. <br>
-                    Jobs are in <lead class="text-secondary">C#</lead> object-oriented programming, but in my free time I play with functional programming with <lead class="text-secondary">F#</lead> 
-                    and <lead class="text-secondary">Haskell</lead> . <br> I have worked for small and medium-sized companies up to enterprise contexts.
-                    <br><br> <hr class="h-25"> Welcome to my web space, feel free to explore as you please.</p>
-                </div>
+                <p class="text-muted mt-5 mt-md-1 mt-xl-0">
+                   @Html.Raw(@Localizer["MyResume"])
+                </p>
+            </div>
         </div>
     </section>
 
