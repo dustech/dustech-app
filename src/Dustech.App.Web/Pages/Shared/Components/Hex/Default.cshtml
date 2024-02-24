@@ -12,7 +12,7 @@
 <div class="hexagon-card hexagon-card-btn px-0 btn btn-@(Model.ColorContext) 
 d-flex justify-content-center align-items-center "
      style="width:@(width)px;height:@(height)px;position: absolute; margin-top:@(topOffSet)px ;margin-left:@(leftOffSet)px;">
-
+    
     <div class="container m-0 p-0">
         <div class="row mt-3 w-100 m-auto">
             <div class="col-12">
@@ -26,5 +26,7 @@ d-flex justify-content-center align-items-center "
                 </p>
             </div>
         </div>
+        <a asp-page="@Model.Href" class="text-decoration-none stretched-link"></a>
     </div>
+    
 </div>

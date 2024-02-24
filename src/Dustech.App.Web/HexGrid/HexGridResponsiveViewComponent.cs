@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace Dustech.App.Web.HexGrid;
 
@@ -11,16 +10,4 @@ public class HexGridResponsiveViewComponent : ViewComponent
     {
         return View(model);
     } 
-}
-
-
-public record HexGridResponsiveViewComponentModel
-{
-    public HexGridResponsiveViewComponentModel(HexGridViewComponentModel hexGridModel)
-    {
-        ArgumentNullException.ThrowIfNull(hexGridModel);
-        HexGridModel = hexGridModel;
-
-    }
-    public HexGridViewComponentModel HexGridModel { get; init; }
 }
