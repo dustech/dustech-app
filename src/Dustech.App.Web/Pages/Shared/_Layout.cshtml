@@ -7,15 +7,15 @@
 <partial name="_Header" model="@Model.RequestCultureFeature"/>
 
 
-
 <main class="main container mt-6 " role="main">
-@RenderBody()
+    @RenderBody()
 </main>
 
 
 <partial name="_Footer"/>
 
 <script src="~/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/brand-bar-events.js" asp-append-version="true"></script>
 <script src="~/js/site.js" asp-append-version="true"></script>
 
 @await RenderSectionAsync("Scripts", required: false)
