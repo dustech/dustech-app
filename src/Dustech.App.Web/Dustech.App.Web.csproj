@@ -14,6 +14,7 @@
          
     <ItemGroup>
       <PackageReference Include="LigerShark.WebOptimizer.Core" Version="3.0.405" />
+        <PackageReference Include="FSharp.Core" Version="8.0.101" />
     </ItemGroup>
          
     <ItemGroup>
