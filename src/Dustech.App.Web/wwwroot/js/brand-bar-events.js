@@ -1,7 +1,6 @@
 (function() {
 
     const brandBarCollapsible = document.getElementById('brand-bar-collapsible');
-    //const bsCollapse = new bootstrap.Collapse('#brand-bar-collapsible', {});
     const brandBar = document.querySelector('.brand-bar');
     const dsSmBreakpoint = 576;
     const maxScrollForNavbarTransparency = 50;  
