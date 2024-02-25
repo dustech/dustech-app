@@ -32,19 +32,25 @@
     </data>
     <data name="MyResume" xml:space="preserve">
         <value>I am passionate about technology and programming. &lt;br&gt;
-                    I started coding when I was 16 years old and after graduating,
-                    I began working as a web programmer. &lt;br&gt;
-                    I started with &lt;lead class="text-info"&gt;PHP&lt;/lead&gt; and &lt;lead class="text-info"&gt;Java&lt;/lead&gt;,
-                    but for the last years, I have mainly worked in &lt;lead class="text-info"&gt;.NET&lt;/lead&gt; in both Windows and Linux environments. &lt;br&gt;
-                    I work with &lt;lead class="text-secondary"&gt;C#&lt;/lead&gt; object-oriented programming, but in my free time I play with functional programming with &lt;lead class="text-secondary"&gt;F#&lt;/lead&gt;
-                    and &lt;a href="https://www.haskell.org/" target="_blank"&gt; &lt;lead class="text-secondary"&gt;Haskell&lt;/lead&gt;&lt;/a&gt; . &lt;br&gt; I have worked for small and medium-sized companies up to enterprise contexts.
-                    &lt;br&gt;&lt;br&gt; &lt;hr class="h-25"&gt; Welcome to my web space, feel free to explore as you please.
-                </value>
+I started coding when I was 16 years old and after graduating,
+I began working as a web programmer. &lt;br&gt;
+I started with &lt;lead class="text-primary"&gt;PHP&lt;/lead&gt; and &lt;lead class="text-primary"&gt;Java&lt;/lead&gt;,
+but for the last years, I have mainly worked in &lt;lead class="text-primary"&gt;.NET&lt;/lead&gt; in both Windows and Linux environments. &lt;br&gt;
+I work with &lt;lead class="text-primary"&gt;C#&lt;/lead&gt; object-oriented programming, but in my free time I play with functional programming with 
+&lt;a href="https://fsharp.org/" target="_blank" class="text-decoration-none"&gt;
+F# &lt;i class="bi bi-box-arrow-up-right"&gt;&lt;/i&gt;
+&lt;/a&gt;
+and 
+&lt;a href="https://www.haskell.org/" target="_blank" class="text-decoration-none"&gt;Haskell &lt;i class="bi bi-box-arrow-up-right"&gt;&lt;/i&gt;
+&lt;/a&gt; . &lt;br&gt; I have worked for small and medium-sized companies up to enterprise contexts.</value>
     </data>
     <data name="MoreAboutMe" xml:space="preserve">
         <value>More About Me</value>
     </data>
     <data name="BackToTheTop" xml:space="preserve">
         <value>Back To The Top</value>
+    </data>
+    <data name="WelcomeToMyWebSpace" xml:space="preserve">
+        <value>Welcome to my web space, feel free to explore as you please.</value>
     </data>
 </root>

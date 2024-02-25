@@ -33,18 +33,23 @@
     </data>
     <data name="MyResume" xml:space="preserve">
         <value>Sono appassionato di tecnologia e programmazione. &lt;br&gt;
-Ho iniziato a programmare all'età di 16 anni e dopo la laurea,
-ho iniziato a lavorare come programmatore web. &lt;br&gt;
-Ho iniziato con &lt;lead class="text-info"&gt;PHP&lt;/lead&gt; e &lt;lead class="text-info"&gt;Java&lt;/lead&gt;,
-ma negli ultimi anni ho lavorato principalmente con &lt;lead class="text-info"&gt;.NET&lt;/lead&gt; sia in ambienti Windows che Linux. &lt;br&gt;
-Ora lavoro in programmazione orientata agli oggetti con &lt;lead class="text-secondary"&gt;C#&lt;/lead&gt;, ma nel mio tempo libero gioco con la programmazione funzionale con &lt;lead class="text-secondary"&gt;F#&lt;/lead&gt;
-e &lt;a href="https://www.haskell.org/" target="_blank"&gt; &lt;lead class="text-secondary"&gt;Haskell&lt;/lead&gt;&lt;/a&gt;. &lt;br&gt; Ho lavorato per aziende di piccole e medie dimensioni fino a contesti aziendali.
-&lt;br&gt;&lt;br&gt; &lt;hr class="h-25"&gt; Benvenuto nel mio spazio web, sentiti libero di esplorare come preferisci.</value>
+Ho iniziato a programmare quando avevo 16 anni e dopo la laurea, ho iniziato a lavorare come programmatore web. &lt;br&gt;
+Ho iniziato con &lt;lead class="text-primary"&gt;PHP&lt;/lead&gt; e &lt;lead class="text-primary"&gt;Java&lt;/lead&gt;, ma negli ultimi anni ho lavorato principalmente con &lt;lead class="text-primary"&gt;.NET&lt;/lead&gt; sia in ambienti Windows che Linux. &lt;br&gt;
+Lavoro con la programmazione orientata agli oggetti &lt;lead class="text-primary"&gt;C#&lt;/lead&gt;, ma nel mio tempo libero gioco con la programmazione funzionale con
+&lt;a href="https://fsharp.org/" target="_blank" class="text-decoration-none"&gt;
+F# &lt;i class="bi bi-box-arrow-up-right"&gt;&lt;/i&gt;
+&lt;/a&gt;
+e
+&lt;a href="https://www.haskell.org/" target="_blank" class="text-decoration-none"&gt;Haskell &lt;i class="bi bi-box-arrow-up-right"&gt;&lt;/i&gt;
+&lt;/a&gt;. &lt;br&gt; Ho lavorato per piccole e medie imprese fino a contesti aziendali di grandi dimensioni.</value>
     </data>
     <data name="MoreAboutMe" xml:space="preserve">
         <value>A Mio Proposito</value>
     </data>
     <data name="BackToTheTop" xml:space="preserve">
         <value>Torna Su</value>
+    </data>
+    <data name="WelcomeToMyWebSpace" xml:space="preserve">
+        <value>Benvenuto nel mio spazio web, sentiti libero di esplorare come desideri.</value>
     </data>
 </root>

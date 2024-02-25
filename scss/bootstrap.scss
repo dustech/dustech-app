@@ -7,6 +7,14 @@ $danger: #FBAF00;
 $light: cornsilk;
 $dark: lightslategrey;
 
+$primary: #FF3A20; //(come già definito)
+$secondary: #5D3A9B; //(viola scuro)
+$success: #4C9A2A; //(verde scuro vivace)
+$info: #31708E; //(azzurro scuro)
+$warning: #C27D0E; //(giallo ocra)
+$danger: #D93211; // (rosso scuro)
+$light: #afafaf; //(grigio molto scuro)
+$dark: #121212; //(nero profondo)
 
 $theme-colors: (
         "primary": $primary,
@@ -54,7 +62,6 @@ $btn-padding-x-lg: $button-padding-x;
 $btn-padding-x-sm: $button-padding-x;
 
 $navbar-toggler-border-radius: 5px;
-
 
 
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
