@@ -22,27 +22,37 @@
     </ItemGroup>
          
     <ItemGroup>
-      <EmbeddedResource Update="Resources\Pages.IndexModel.resx">
+      <EmbeddedResource Update="Resources\Pages.Index.IndexModel.resx">
         <Generator>ResXFileCodeGenerator</Generator>
-        <LastGenOutput>Pages.IndexModel.Designer.cs</LastGenOutput>
+        <LastGenOutput>Pages.Index.IndexModel.Designer.cs</LastGenOutput>
       </EmbeddedResource>
-      <EmbeddedResource Update="Resources\Pages.IndexModel.it.resx">
+      <EmbeddedResource Update="Resources\Pages.Index.IndexModel.it.resx">
         <Generator>ResXFileCodeGenerator</Generator>
-        <LastGenOutput>Pages.IndexModel.it.Designer.cs</LastGenOutput>
+        <LastGenOutput>Pages.Index.IndexModel.it.Designer.cs</LastGenOutput>
       </EmbeddedResource>
     </ItemGroup>
          
     <ItemGroup>
-      <Compile Update="Resources\Pages.IndexModel.Designer.cs">
+      <Compile Update="Resources\Pages.Index.IndexModel.Designer.cs">
         <DesignTime>True</DesignTime>
         <AutoGen>True</AutoGen>
-        <DependentUpon>Pages.IndexModel.resx</DependentUpon>
+        <DependentUpon>Pages.Index.IndexModel.resx</DependentUpon>
       </Compile>
-      <Compile Update="Resources\Pages.IndexModel.it.Designer.cs">
+      <Compile Update="Resources\Pages.Index.IndexModel.it.Designer.cs">
         <DesignTime>True</DesignTime>
         <AutoGen>True</AutoGen>
-        <DependentUpon>Pages.IndexModel.it.resx</DependentUpon>
+        <DependentUpon>Pages.Index.IndexModel.it.resx</DependentUpon>
       </Compile>
+    </ItemGroup>
+         
+    <ItemGroup>
+      <Folder Include="wwwroot\media\" />
+    </ItemGroup>
+         
+    <ItemGroup>
+      <Content Update="wwwroot\media\background.mp4">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
     </ItemGroup>
 
 </Project>

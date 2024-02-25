@@ -18,6 +18,7 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
+
     <data name="LetMeIntroduceMyself" xml:space="preserve">
         <value>Lascia che mi presenti</value>
     </data>
@@ -39,5 +40,11 @@ ma negli ultimi anni ho lavorato principalmente con &lt;lead class="text-info"&g
 Ora lavoro in programmazione orientata agli oggetti con &lt;lead class="text-secondary"&gt;C#&lt;/lead&gt;, ma nel mio tempo libero gioco con la programmazione funzionale con &lt;lead class="text-secondary"&gt;F#&lt;/lead&gt;
 e &lt;a href="https://www.haskell.org/" target="_blank"&gt; &lt;lead class="text-secondary"&gt;Haskell&lt;/lead&gt;&lt;/a&gt;. &lt;br&gt; Ho lavorato per aziende di piccole e medie dimensioni fino a contesti aziendali.
 &lt;br&gt;&lt;br&gt; &lt;hr class="h-25"&gt; Benvenuto nel mio spazio web, sentiti libero di esplorare come preferisci.</value>
+    </data>
+    <data name="MoreAboutMe" xml:space="preserve">
+        <value>A Mio Proposito</value>
+    </data>
+    <data name="BackToTheTop" xml:space="preserve">
+        <value>Torna Su</value>
     </data>
 </root>

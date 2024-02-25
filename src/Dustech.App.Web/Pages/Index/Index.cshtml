@@ -1,0 +1,121 @@
+﻿@page
+@using Microsoft.Extensions.Localization
+@using Microsoft.AspNetCore.Mvc.Localization
+@model IndexModel
+
+@inject IStringLocalizer<IndexModel> Localizer
+@inject IHtmlLocalizer<IndexModel> HtmlLocalizer
+
+@section BeforeMain
+{
+    <!-- Video -->
+    <div class="video-background-container pt-5 pb-4 vh-100" id="video-background-container">
+        <div class="video-container">
+            <video id="background-video" playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop" playbackRate="0.5">
+                <source src="/media/background.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="hexagon-menu text-center">
+
+
+            <h1 class="display-4 hero">
+                <span class="text-white">
+                    <blockquote class="small blockquote">
+                        <i class="bi-activity"></i>@(Localizer["WelcomeTo"]) <i class="bi-activity"></i>
+                    </blockquote>
+                    <text class="display-3">Dustech</text><small class="text-dark">.</small><text class="text-dark small">io</text>
+
+                </span>
+            </h1>
+
+
+            @{
+                var hexHeight = 150.0;
+                var margin = 5.0;
+                var hexy = new HexViewComponentModel()
+                {
+                    Content = "House",
+                    Icon = "house",
+                    ColorContext = "primary"
+                };
+                var elements = new List<HexViewComponentModel>
+                {
+                    hexy,
+                    hexy,
+                    hexy,
+                    hexy,
+                    hexy,
+                    hexy,
+                    hexy,
+                };
+
+                var gridModel = new HexGridViewComponentModel(elements)
+                {
+                    HexHeight = hexHeight,
+                    Margin = margin,
+                    MaxRowLength = 3,
+                    Inverted = true
+                };
+
+                var responsiveModel = new HexGridResponsiveViewComponentModel(gridModel);
+            }
+
+            <div class="container p-4 mb-3 ">
+                @await Component.InvokeAsync("HexGridResponsive", responsiveModel)
+            </div>
+        </div>
+
+        <div class="container text-center">
+            <a href="#about" class="btn btn-outline-light btn-lg mt-3">
+                <div class="d-flex">
+                    <div class="me-3">
+                        <i class="bi-chevron-down"></i>
+                    </div>
+                    <div class="text-start">
+                        <span>@(Localizer["MoreAboutMe"])</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+}
+
+<!-- About -->
+<section id="about" class="about pt-3 pb-3 bg-light-subtle">
+    <div class="container mt-3 pt-5 px-3 text-center">
+        <div>
+            <h4 class="text-uppercase fw-bold text-primary anta">@(Localizer["AboutMe"]) </h4>
+            <hr class="w-25 mx-auto"/>
+            <h2 class="mb-4">@(Localizer["LetMeIntroduceMyself"]).</h2>
+        </div>
+        <div class="about-content d-flex gap-3 gap-md-5 align-items-center h-100">
+            <img id="dustech-image"
+                 src="https://avatars.githubusercontent.com/u/12004370?v=4"
+                 alt=""
+                 class="about-img img-fluid rounded-circle glow-border glow-effect"/>
+            <p class="lead">
+                @Localizer["WhoAmI"]. <br>
+
+            </p>
+        </div>
+        <div class="container">
+            <p class="text-muted mt-5 mt-md-1 mt-xl-0 w-75 m-auto fw-light lh-sm">
+                @HtmlLocalizer["MyResume"]
+            </p>
+        </div>
+        
+        <div class="container text-center">
+            <a href="#" class="btn btn-outline-primary btn-lg mt-3">
+                <div class="d-flex">
+                    <div class="me-3">
+                        <i class="bi-chevron-up"></i>
+                    </div>
+                    <div class="text-start">
+                        <span>@Localizer["BackToTheTop"]</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>

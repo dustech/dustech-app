@@ -6,8 +6,9 @@
 <body>
 <partial name="_Header" model="@Model.RequestCultureFeature"/>
 
+@await RenderSectionAsync("BeforeMain", required: false)
 
-<main class="main container mt-6 " role="main">
+<main class="main" role="main">
     @RenderBody()
 </main>
 

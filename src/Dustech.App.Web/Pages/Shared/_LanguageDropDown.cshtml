@@ -6,16 +6,20 @@
 @model IRequestCultureFeature
 @inject IOptions<RequestLocalizationOptions> LocalizationOptions
 
+@{
+    var currentCulture = @Model.RequestCulture.Culture.ToString();
+}
 
-<div class="dropdown mt-1">
+<div class="dropdown-center mt-1">
     <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" id="language-toggler" data-bs-toggle="dropdown" aria-expanded="false">
-        <i class="bi bi-translate"></i> <small class="text-uppercase">@Model.RequestCulture.Culture.ToString()</small> 
+        <i class="bi bi-translate pe-2"></i> <small class="text-uppercase">@currentCulture</small> 
     </button>
-    <ul class="dropdown-menu" aria-labelledby="language-toggler">
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="language-toggler">
         @foreach (var culture in LocalizationOptions.Value.SupportedCultures!)
         {
+            var active = currentCulture == culture.ToString() ? "active" : "";
             <li>
-                <a asp-page-handler="SetCulture" asp-route-cultureName="@culture" class="dropdown-item">
+                <a asp-page-handler="SetCulture" asp-route-cultureName="@culture" class="dropdown-item @active">
                     <small class="text-uppercase">@culture</small>
                 </a>
             </li>
