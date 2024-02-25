@@ -80,5 +80,11 @@ namespace Dustech.App.Web.Resources {
                 return ResourceManager.GetString("MoreAboutMe", resourceCulture);
             }
         }
+        
+        internal static string BackToTheTop {
+            get {
+                return ResourceManager.GetString("BackToTheTop", resourceCulture);
+            }
+        }
     }
 }

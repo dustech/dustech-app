@@ -1,10 +1,13 @@
 ﻿<section class="footer">
-    <footer class="border-top text-muted p-3 d-flex align-items-center carbon">
-        <div class="container">
-            &copy; @(DateTime.Today.Year) - Dustech
+    <footer class="container-fluid border-top p-3 carbon text-center">
+        <div class="row justify-content-around align-items-center">
+            <div class="col-6">
+                &copy; @(DateTime.Today.Year) - Dustech
+            </div>
+            <diV class="col-6">
+                <partial name="_Social"/>
+            </diV>
         </div>
-        <diV class="container">
-            <partial name="_Social"/>
-        </diV>
+
     </footer>
 </section>

@@ -44,4 +44,7 @@
     <data name="MoreAboutMe" xml:space="preserve">
         <value>More About Me</value>
     </data>
+    <data name="BackToTheTop" xml:space="preserve">
+        <value>Back To The Top</value>
+    </data>
 </root>

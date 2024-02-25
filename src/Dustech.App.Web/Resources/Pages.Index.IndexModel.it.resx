@@ -44,4 +44,7 @@ e &lt;a href="https://www.haskell.org/" target="_blank"&gt; &lt;lead class="text
     <data name="MoreAboutMe" xml:space="preserve">
         <value>A Mio Proposito</value>
     </data>
+    <data name="BackToTheTop" xml:space="preserve">
+        <value>Torna Su</value>
+    </data>
 </root>
