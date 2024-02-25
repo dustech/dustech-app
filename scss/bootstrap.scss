@@ -38,6 +38,23 @@ $font-family-sans-serif: 'Poppins', sans-serif;
 //$body-bg-dark: #2F2F2F;
 $body-bg-dark: #0d1017;
 
+// Buttons
+$button-radius: 0;
+$button-padding-x: 20px;
+$button-padding-y: 10px;
+
+$btn-border-radius: $button-radius;
+$btn-border-radius-sm: $button-radius;
+$btn-border-radius-lg: $button-radius;
+$btn-padding-y: $button-padding-y;
+$btn-padding-y-lg: $button-padding-y;
+$btn-padding-y-sm: $button-padding-y;
+$btn-padding-x: $button-padding-x;
+$btn-padding-x-lg: $button-padding-x;
+$btn-padding-x-sm: $button-padding-x;
+
+$navbar-toggler-border-radius: 5px;
+
 
 
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
