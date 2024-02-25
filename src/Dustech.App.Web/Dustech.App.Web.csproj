@@ -44,5 +44,15 @@
         <DependentUpon>Pages.IndexModel.it.resx</DependentUpon>
       </Compile>
     </ItemGroup>
+         
+    <ItemGroup>
+      <Folder Include="wwwroot\media\" />
+    </ItemGroup>
+         
+    <ItemGroup>
+      <Content Update="wwwroot\media\background.mp4">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+    </ItemGroup>
 
 </Project>
