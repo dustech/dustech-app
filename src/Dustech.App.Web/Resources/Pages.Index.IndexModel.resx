@@ -41,4 +41,7 @@
                     &lt;br&gt;&lt;br&gt; &lt;hr class="h-25"&gt; Welcome to my web space, feel free to explore as you please.
                 </value>
     </data>
+    <data name="MoreAboutMe" xml:space="preserve">
+        <value>More About Me</value>
+    </data>
 </root>

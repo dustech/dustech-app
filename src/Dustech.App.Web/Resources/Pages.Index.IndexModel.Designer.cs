@@ -74,5 +74,11 @@ namespace Dustech.App.Web.Resources {
                 return ResourceManager.GetString("MyResume", resourceCulture);
             }
         }
+        
+        internal static string MoreAboutMe {
+            get {
+                return ResourceManager.GetString("MoreAboutMe", resourceCulture);
+            }
+        }
     }
 }

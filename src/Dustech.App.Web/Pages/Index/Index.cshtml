@@ -21,7 +21,7 @@
             <h1 class="display-4 hero">
                 <span class="text-white">
                     <blockquote class="small blockquote">
-                        <i class="bi-activity"></i> @(Localizer["WelcomeTo"]) <i class="bi-activity"></i>
+                        <i class="bi-activity"></i>@(Localizer["WelcomeTo"]) <i class="bi-activity"></i>
                     </blockquote>
                     <text class="display-3">Dustech</text><small class="text-dark">.</small><text class="text-dark small">io</text>
 
@@ -65,47 +65,44 @@
             </div>
         </div>
 
-        <a href="#about" class="btn btn-outline-light btn-lg mt-3">
-            <div class="d-flex">
-                <div class="me-3">
-                    <i class="fas fa-chevron-down"></i>
+        <div class="container text-center">
+            <a href="#about" class="btn btn-outline-light btn-lg mt-3">
+                <div class="d-flex">
+                    <div class="me-3">
+                        <i class="bi-chevron-down"></i>
+                    </div>
+                    <div class="text-start">
+                        <span>@(Localizer["MoreAboutMe"])</span>
+                    </div>
                 </div>
-                <div class="text-start">
-                    <span>More About Me</span>
-                </div>
-            </div>
-        </a>
+            </a>
+        </div>
     </div>
 
 }
 
-<div class="text-center">
-
-    <!-- About -->
-    <section id="about" class="about pt-5 px-3">
-        <div class="container">
-            <div class="text-center">
-                <h4 class="text-uppercase fw-bold text-primary anta">@(Localizer["AboutMe"]) </h4>
-                <hr class="w-25 mx-auto"/>
-                <h2 class="mb-4">@(Localizer["LetMeIntroduceMyself"]).</h2>
-            </div>
-            <div class="about-content d-flex gap-3 gap-md-5 align-items-center h-100">
-                <img id="dustech-image"
-                     src="https://avatars.githubusercontent.com/u/12004370?v=4"
-                     alt=""
-                     class="about-img img-fluid rounded-circle glow-border glow-effect"/>
-                <p class="lead">
-                    @Localizer["WhoAmI"]. <br>
-
-                </p>
-            </div>
-            <div class="container">
-                <p class="text-muted mt-5 mt-md-1 mt-xl-0">
-                    @HtmlLocalizer["MyResume"]
-                </p>
-            </div>
+<!-- About -->
+<section id="about" class="about vh-100 pt-3 bg-light-subtle">
+    <div class="container mt-3 pt-5 px-3 text-center">
+        <div>
+            <h4 class="text-uppercase fw-bold text-primary anta">@(Localizer["AboutMe"]) </h4>
+            <hr class="w-25 mx-auto"/>
+            <h2 class="mb-4">@(Localizer["LetMeIntroduceMyself"]).</h2>
         </div>
-    </section>
+        <div class="about-content d-flex gap-3 gap-md-5 align-items-center h-100">
+            <img id="dustech-image"
+                 src="https://avatars.githubusercontent.com/u/12004370?v=4"
+                 alt=""
+                 class="about-img img-fluid rounded-circle glow-border glow-effect"/>
+            <p class="lead">
+                @Localizer["WhoAmI"]. <br>
 
-
-</div>
+            </p>
+        </div>
+        <div class="container">
+            <p class="text-muted mt-5 mt-md-1 mt-xl-0">
+                @HtmlLocalizer["MyResume"]
+            </p>
+        </div>
+    </div>
+</section>
