@@ -6,7 +6,10 @@ var supportedCultures = new[] { "en", "it" };
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddRazorPages().AddViewLocalization();
+builder.Services.AddRazorPages(options =>
+{
+    options.Conventions.AddPageRoute("/Index/Index", "/");
+}).AddViewLocalization();
 
 builder.Services.Configure<RequestLocalizationOptions>(options =>
 {
