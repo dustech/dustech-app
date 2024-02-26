@@ -33,12 +33,12 @@ public static class Config
                 {
                     IdentityServerConstants.StandardScopes.OpenId,
                     IdentityServerConstants.StandardScopes.Profile
-                }
-                ,
+                },
                 ClientSecrets =
                 {
                     new Secret(Configs.razorPagesWebClient.HashedClientSecret)
-                }
+                },
+                RequireConsent = true
             }
         };
 }

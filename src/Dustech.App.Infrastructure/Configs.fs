@@ -58,7 +58,7 @@ module Configs =
     let razorPagesWebClient =
         { defaultClient with
             Authority = "https://localhost:5001/"
-            ClientName = "Dustech App Web"
+            ClientName = "Dustech.Io"
             ClientId = "dustechappwebclient"
             ClientSecret = "secret"
             HashedClientSecret = Hashing.sha256 <| Some "secret"
