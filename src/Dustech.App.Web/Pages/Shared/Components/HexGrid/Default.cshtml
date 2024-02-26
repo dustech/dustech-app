@@ -2,8 +2,8 @@
 @model HexGridViewComponentModel
 
 @{
-    var containerHeight = Infrastructure.Invariant(Model.ContainerHeight);
-    var containerWidth = Infrastructure.Invariant(Model.ContainerWidth);
+    var containerHeight = Infrastructure.toInvariant(Model.ContainerHeight);
+    var containerWidth = Infrastructure.toInvariant(Model.ContainerWidth);
 }
 
 <div class="container px-0 @Model.ContainerClass" style="height: @(containerHeight)px; width:@(containerWidth)px ">

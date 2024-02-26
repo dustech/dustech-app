@@ -11,44 +11,46 @@
         <AnalysisMode>AllEnabledByDefault</AnalysisMode>
         <NeutralLanguage>en</NeutralLanguage>
     </PropertyGroup>
-         
+
     <ItemGroup>
-      <PackageReference Include="LigerShark.WebOptimizer.Core" Version="3.0.405" />
-        <PackageReference Include="FSharp.Core" Version="8.0.101" />
+        <PackageReference Include="LigerShark.WebOptimizer.Core" Version="3.0.405"/>
+        <PackageReference Include="FSharp.Core" Version="8.0.101"/>
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="8.0.2" />
     </ItemGroup>
-         
+
     <ItemGroup>
-      <ProjectReference Include="..\Dustech.App.Model\Dustech.App.Model.fsproj" />
+        <ProjectReference Include="..\Dustech.App.Model\Dustech.App.Model.fsproj"/>
+        <ProjectReference Include="..\Dustech.App.Infrastructure\Dustech.App.Infrastructure.fsproj" />
     </ItemGroup>
-         
+
     <ItemGroup>
-      <EmbeddedResource Update="Resources\Pages.Home.IndexModel.resx">
-        <Generator>ResXFileCodeGenerator</Generator>
-        <LastGenOutput>Pages.Index.IndexModel.Designer.cs</LastGenOutput>
-      </EmbeddedResource>
-      <EmbeddedResource Update="Resources\Pages.Home.IndexModel.it.resx">
-        <Generator>ResXFileCodeGenerator</Generator>
-        <LastGenOutput>Pages.Index.IndexModel.it.Designer.cs</LastGenOutput>
-      </EmbeddedResource>
+        <EmbeddedResource Update="Resources\Pages.Home.IndexModel.resx">
+            <Generator>ResXFileCodeGenerator</Generator>
+            <LastGenOutput>Pages.Index.IndexModel.Designer.cs</LastGenOutput>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Resources\Pages.Home.IndexModel.it.resx">
+            <Generator>ResXFileCodeGenerator</Generator>
+            <LastGenOutput>Pages.Index.IndexModel.it.Designer.cs</LastGenOutput>
+        </EmbeddedResource>
     </ItemGroup>
-         
+
     <ItemGroup>
-      <Compile Update="Resources\Pages.Home.IndexModel.Designer.cs">
-        <DesignTime>True</DesignTime>
-        <AutoGen>True</AutoGen>
-        <DependentUpon>Pages.Home.IndexModel.resx</DependentUpon>
-      </Compile>
-      <Compile Update="Resources\Pages.Home.IndexModel.it.Designer.cs">
-        <DesignTime>True</DesignTime>
-        <AutoGen>True</AutoGen>
-        <DependentUpon>Pages.Home.IndexModel.it.resx</DependentUpon>
-      </Compile>
+        <Compile Update="Resources\Pages.Home.IndexModel.Designer.cs">
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>Pages.Home.IndexModel.resx</DependentUpon>
+        </Compile>
+        <Compile Update="Resources\Pages.Home.IndexModel.it.Designer.cs">
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>Pages.Home.IndexModel.it.resx</DependentUpon>
+        </Compile>
     </ItemGroup>
-         
+
     <ItemGroup>
-      <Content Update="wwwroot\media\background.mp4">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </Content>
+        <Content Update="wwwroot\media\background.mp4">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
     </ItemGroup>
 
 </Project>

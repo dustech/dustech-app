@@ -8,7 +8,11 @@
 
     <ItemGroup>
         <PackageReference Include="Duende.IdentityServer" Version="7.0.0"/>
-
+        <PackageReference Include="FSharp.Core" Version="8.0.101"/>
         <PackageReference Include="Serilog.AspNetCore" Version="8.0.0"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Dustech.App.Infrastructure\Dustech.App.Infrastructure.fsproj" />
     </ItemGroup>
 </Project>

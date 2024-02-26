@@ -1,3 +1,4 @@
+using Dustech.App.Web;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -31,6 +32,7 @@ else
     builder.Services.AddWebOptimizer();
 }
 
+builder.Services.AddOpenIdConnectServices();
 
 var app = builder.Build();
 
@@ -49,6 +51,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.UseRequestLocalization();

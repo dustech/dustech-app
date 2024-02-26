@@ -9,6 +9,8 @@ Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Dustech.App.Model", "Dustec
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dustech.IDP", "Dustech.IDP\Dustech.IDP.csproj", "{90F21A88-897C-455C-B23C-A8782C9CF1ED}"
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Dustech.App.Infrastructure", "Dustech.App.Infrastructure\Dustech.App.Infrastructure.fsproj", "{A039302A-88B7-4D44-983C-2312BD06DDE0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{90F21A88-897C-455C-B23C-A8782C9CF1ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{90F21A88-897C-455C-B23C-A8782C9CF1ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{90F21A88-897C-455C-B23C-A8782C9CF1ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A039302A-88B7-4D44-983C-2312BD06DDE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A039302A-88B7-4D44-983C-2312BD06DDE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A039302A-88B7-4D44-983C-2312BD06DDE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A039302A-88B7-4D44-983C-2312BD06DDE0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

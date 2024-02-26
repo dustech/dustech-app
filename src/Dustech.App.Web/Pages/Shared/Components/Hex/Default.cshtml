@@ -3,10 +3,10 @@
 
 
 @{
-    var width = Infrastructure.Invariant(Model.Width);
-    var height = Infrastructure.Invariant(Model.Height);
-    var topOffSet = Infrastructure.Invariant(Model.TopOffSet);
-    var leftOffSet = Infrastructure.Invariant(Model.LeftOffSet);
+    var width = Infrastructure.toInvariant(Model.Width);
+    var height = Infrastructure.toInvariant(Model.Height);
+    var topOffSet = Infrastructure.toInvariant(Model.TopOffSet);
+    var leftOffSet = Infrastructure.toInvariant(Model.LeftOffSet);
 }
 
 <div class="hexagon-card hexagon-card-btn px-0 btn btn-@(Model.ColorContext) 

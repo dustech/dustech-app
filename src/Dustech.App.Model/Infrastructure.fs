@@ -3,7 +3,7 @@
 open System.Globalization
 
 module Infrastructure =        
-    let Invariant<'T> (value:'T) =
+    let toInvariant<'T> (value:'T) =
         match box value with
         | :? double as doubleValue ->
             doubleValue.ToString("N2", CultureInfo.InvariantCulture)
