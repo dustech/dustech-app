@@ -7,7 +7,7 @@
             <a class="navbar-brand" asp-area="" asp-page="/Home/Index">
                 <strong class="lead text-primary">Dustech</strong>
             </a>
-            <button class="navbar-toggler"  type="button" data-bs-toggle="collapse" data-bs-target="#brand-bar-collapsible" aria-controls="navbarSupportedContent"
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#brand-bar-collapsible" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -20,12 +20,21 @@
                     <li class="nav-item pt-1">
                         <a class="nav-link " asp-area="" asp-page="/Colors">Colors</a>
                     </li>
+                    @* Logout *@
+                    @{
+                        if (User.Identity?.IsAuthenticated ?? false)
+                        {
+                            <li class="nav-item pt-1">
+                                <partial name="_Logout" model="@("nav-link")"/>
+                            </li>
+                        }
+                    }
                     <li class="nav-item py-2 py-lg-1 col-12 col-sm-auto">
-                                <div class="vr d-none d-sm-flex h-100 mx-sm-2 text-white"></div>
-                                <hr class="d-sm-none my-2 text-white-50">
-                              </li>
+                        <div class="vr d-none d-sm-flex h-100 mx-sm-2 text-white"></div>
+                        <hr class="d-sm-none my-2 text-white-50">
+                    </li>
                     <li class="nav-item">
-                        <partial name="_LanguageDropDown" model="@Model" />
+                        <partial name="_LanguageDropDown" model="@Model"/>
                     </li>
                 </ul>
             </div>

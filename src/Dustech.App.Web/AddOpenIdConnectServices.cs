@@ -32,7 +32,8 @@ public static class OpenIdConnectServicesExtensions
                     options.ClientId = Configs.razorPagesWebClient.ClientId;
                     options.ClientSecret =
                         Configs.razorPagesWebClient.ClientSecret;
-                    options.ResponseType = Configs.razorPagesWebClient.ResponseType;
+                    options.ResponseType =
+                        Configs.razorPagesWebClient.ResponseType;
                     Configs.razorPagesWebClient.Scopes
                         .ForEach(options.Scope.Add);
                     options.CallbackPath =
