@@ -28,48 +28,7 @@
                 </span>
             </h1>
 
-
-            @{
-                var hexHeight = 150.0;
-                var margin = 5.0;
-                var hexy = new HexViewComponentModel()
-                {
-                    Content = "House",
-                    Icon = "house",
-                    ColorContext = "primary"
-                };
-                var topSecret = new HexViewComponentModel()
-                {
-                    Content = "Classified",
-                    Icon = "lock-fill",
-                    ColorContext = "primary",
-                    //Href = "/classified"
-                };
-                var elements = new List<HexViewComponentModel>
-                {
-                    topSecret,
-                    hexy,
-                    hexy,
-                    hexy,
-                    hexy,
-                    hexy,
-                    hexy,
-                };
-
-                var gridModel = new HexGridViewComponentModel(elements)
-                {
-                    HexHeight = hexHeight,
-                    Margin = margin,
-                    MaxRowLength = 3,
-                    Inverted = true
-                };
-
-                var responsiveModel = new HexGridResponsiveViewComponentModel(gridModel);
-            }
-
-            <div class="container p-4 mb-3 ">
-                @await Component.InvokeAsync("HexGridResponsive", responsiveModel)
-            </div>
+            <partial name="_HexMenu"/>
         </div>
 
         <div class="container text-center">

@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages(options =>
 {
-    options.Conventions.AddPageRoute("/Index/Index", "/");
+    options.Conventions.AddPageRoute("/Home/Index", "/");
 }).AddViewLocalization();
 
 builder.Services.Configure<RequestLocalizationOptions>(options =>
