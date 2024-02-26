@@ -9,7 +9,7 @@
 @section BeforeMain
 {
     <!-- Video -->
-    <div class="video-background-container pt-5 pb-4 vh-100" id="video-background-container">
+    <div class="video-background-container pt-5 pb-4 vh-100 d-flex flex-column justify-content-center align-items-center" id="video-background-container">
         <div class="video-container">
             <video id="background-video" playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop" playbackRate="0.5">
                 <source src="/media/background.mp4" type="video/mp4">
@@ -20,10 +20,10 @@
 
             <h1 class="display-4 hero">
                 <span class="text-white">
-                    <blockquote class="small blockquote">
-                        <i class="bi-activity"></i>@(Localizer["WelcomeTo"]) <i class="bi-activity"></i>
+                    <blockquote class="fw-bold blockquote text-secondary">
+                        <i class="bi-activity"> </i>@(Localizer["WelcomeTo"]) <i class="bi-activity"></i>
                     </blockquote>
-                    <text class="display-3">Dustech</text><small class="text-dark">.</small><text class="text-dark small">io</text>
+                    <text class="display-3">Dustech</text><small class="text-secondary">.</small><text class="text-secondary small">io</text>
 
                 </span>
             </h1>
@@ -38,9 +38,16 @@
                     Icon = "house",
                     ColorContext = "primary"
                 };
+                var topSecret = new HexViewComponentModel()
+                {
+                    Content = "Classified",
+                    Icon = "lock-fill",
+                    ColorContext = "primary",
+                    //Href = "/classified"
+                };
                 var elements = new List<HexViewComponentModel>
                 {
-                    hexy,
+                    topSecret,
                     hexy,
                     hexy,
                     hexy,
@@ -82,38 +89,57 @@
 }
 
 <!-- About -->
-<section id="about" class="about pt-3 pb-3 bg-light-subtle">
-    <div class="container mt-3 pt-5 px-3 text-center">
-        <div>
-            <h4 class="text-uppercase fw-bold text-primary anta">@(Localizer["AboutMe"]) </h4>
-            <hr class="w-25 mx-auto"/>
-            <h2 class="mb-4">@(Localizer["LetMeIntroduceMyself"]).</h2>
-        </div>
-        <div class="about-content d-flex gap-3 gap-md-5 align-items-center h-100">
-            <img id="dustech-image"
-                 src="https://avatars.githubusercontent.com/u/12004370?v=4"
-                 alt=""
-                 class="about-img img-fluid rounded-circle glow-border glow-effect"/>
-            <p class="lead">
-                @Localizer["WhoAmI"]. <br>
+<section class="hex-background">
+    <div class="hex-background-penetrator">
+        <div id="about" class="about pt-3 pb-3">
+            <div class="container mt-3 pt-5 px-3 text-center">
+                <div>
+                    <h4 class="text-uppercase fw-bold text-primary anta">@(Localizer["AboutMe"]) </h4>
+                    <hr class="w-25 mx-auto"/>
+                    <h2 class="mb-4">@(Localizer["LetMeIntroduceMyself"]).</h2>
+                </div>
+                <div class="about-content d-flex gap-3 gap-md-5 justify-content-evenly align-items-center h-100">
+                    <img id="dustech-image"
+                         src="https://avatars.githubusercontent.com/u/12004370?v=4"
+                         alt=""
+                         class="about-img img-fluid rounded-circle glow-border glow-effect"/>
+                    <p class="lead w-50">
+                        @Localizer["WhoAmI"]. <br>
 
-            </p>
+                    </p>
+                </div>
+            </div>
         </div>
-        <div class="container">
-            <p class="text-muted mt-5 mt-md-1 mt-xl-0 w-75 m-auto fw-light lh-sm">
-                @HtmlLocalizer["MyResume"]
-            </p>
+        <div class="position-relative">
+            <!-- RESUME -->
+            <div class="container text-start mt-4 mt-md-0 px-5 px-sm-1 px-md-0 px-xxl-5 ">
+                <div class="position-relative  mx-lg-7 mx-xl-8 ">
+                    <img
+                        src="./media/vertical-decoration-left.svg"
+                        alt=""
+                        class="vertical-decoration position-absolute d-none d-md-block"/>
+                    <p class="text-muted ps-md-5 ps-lg-5 ps-xxl-5 ">
+                        @HtmlLocalizer["MyResume"]
+                    </p>
+                </div>
+            </div>
+            <div class="container text-center pb-6 pt-5">
+                <hr class="w-50 mx-auto"> @Localizer["WelcomeToMyWebSpace"]
+            </div>
+
+
         </div>
-        
+
+        <!-- BACK TO THE TOP BUTTON -->
         <div class="container text-center">
-            <a href="#" class="btn btn-outline-primary btn-lg mt-3">
+            <a href="#" class="btn btn-outline-primary btn-lg mt-3 mb-6">
                 <div class="d-flex">
                     <div class="me-3">
                         <i class="bi-chevron-up"></i>
                     </div>
-                    <div class="text-start">
-                        <span>@Localizer["BackToTheTop"]</span>
-                    </div>
+
+                    <span>@Localizer["BackToTheTop"]</span>
+
                 </div>
             </a>
         </div>

@@ -5,6 +5,8 @@
           rgba(13, 16, 23, 0.00) 100%), #0D1017;
   background-size: 100% 50%;
   background-repeat: no-repeat;
+  position: relative;
+  z-index: 0;
 }
 
 
@@ -36,11 +38,11 @@
 
 .glow-border {
   //border: 1px solid #FF3A20; 
-  border: 0.3rem solid #eecdcd; 
+  border: 0.3rem solid #eecdcd;
 }
 
 .glow-effect {
-  box-shadow: 0 0 18px 2px rgb(238, 205, 205); 
+  box-shadow: 0 0 18px 2px rgb(238, 205, 205);
 }
 
 .glass-effect {
@@ -55,10 +57,9 @@
 }
 
 
-
 .video-background-container {
   position: relative;
-  top:0;
+  top: 0;
   height: 100%;
   width: 100%;
   overflow: hidden;
@@ -77,8 +78,6 @@
 }
 
 
-
-
 .video-container::after {
   content: "";
   position: absolute;
@@ -86,15 +85,50 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.45); 
-  z-index: -1; 
+  background: rgba(0, 0, 0, 0.65);
+  z-index: -1;
 }
 
 .hexagon-menu {
   position: relative;
-  z-index: 1; 
+  z-index: 1;
 }
 
+.vertical-decoration {
+  top: 0;
+  left: 0;
+  width: 24px;
+}
+
+.hex-background {
+  position: relative;
+  background: linear-gradient(
+                  to bottom right,
+                  rgba(93, 58, 155,0.9),
+                  rgba(0, 0, 0, 0.8)
+  ),
+  url('/media/hexes-background.jpg') center center no-repeat;
+  background-size: cover;
+  z-index: 0;
+  
+}
+
+.hex-background::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.hex-background-penetrator {
+  position: relative;
+  z-index: 1;
+}
 
 //Extra small 	None 	<576px
 //Small 	        sm 	    ≥576px
@@ -106,7 +140,7 @@
 @media (max-width: 576px) {
   .about-img {
     width: 100px;
-  }  
+  }
 }
 
 @media (min-width: 576px) {
@@ -133,4 +167,8 @@
   .social {
     font-size: 2rem;
   }
+}
+
+.ruler {
+  display: block;
 }
