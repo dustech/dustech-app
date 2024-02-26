@@ -28,7 +28,7 @@ public static class OpenIdConnectServicesExtensions
                 {
                     options.SignInScheme = CookieAuthenticationDefaults
                         .AuthenticationScheme;
-                    options.Authority = "https://localhost:5001/";
+                    options.Authority = Configs.razorPagesWebClient.Authority;
                     options.ClientId = Configs.razorPagesWebClient.ClientId;
                     options.ClientSecret =
                         Configs.razorPagesWebClient.ClientSecret;

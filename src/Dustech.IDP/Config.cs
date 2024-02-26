@@ -37,7 +37,7 @@ public static class Config
                 ,
                 ClientSecrets =
                 {
-                    new Secret(Configs.razorPagesWebClient.ClientSecret)
+                    new Secret(Configs.razorPagesWebClient.HashedClientSecret)
                 }
             }
         };

@@ -1,5 +1,7 @@
 ﻿namespace Dustech.App.Infrastructure
 
+open System.Runtime.Serialization
+
 
 module StandardScopes =
 
@@ -26,33 +28,38 @@ module Configs =
     let private empty = ""
 
     type Client =
-        { ClientName: string
+        { Authority: string
+          ClientName: string
           ClientId: string
           ClientSecret: string
+          HashedClientSecret : string
           RedirectUri: string
           ResponseType: string
-          CallBackPath : string
+          CallBackPath: string
           Scopes: string seq }
 
-    let private authorizationCode = "authorization_code"
-    let private callBackPath = "signin-oidc";
+    let private authorizationCode = "code"
+    let private callBackPath = "/signin-oidc"
+
     let private defaultClient =
-        { ClientName = empty
+        { Authority = empty
+          ClientName = empty
           ClientId = empty
           ClientSecret = empty
+          HashedClientSecret = empty
           RedirectUri = empty
           ResponseType = authorizationCode
-          CallBackPath = callBackPath          
+          CallBackPath = callBackPath
           Scopes =
             [ StandardScopes.Profile
               StandardScopes.OpenId ] }
 
 
-    let private razorPagesWebClientSecret = Hashing.sha256 <| Some "secret"
-
     let razorPagesWebClient =
         { defaultClient with
+            Authority = "https://localhost:5001/"
             ClientName = "Dustech App Web"
             ClientId = "dustechappwebclient"
-            ClientSecret = razorPagesWebClientSecret
-            RedirectUri = "https://localhost:7273/" + callBackPath }
+            ClientSecret = "secret"
+            HashedClientSecret = Hashing.sha256 <| Some "secret"
+            RedirectUri = "https://localhost:7273" + callBackPath }
