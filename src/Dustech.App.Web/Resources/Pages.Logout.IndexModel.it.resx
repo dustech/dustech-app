@@ -18,4 +18,16 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
+    <data name="DontLeave" xml:space="preserve">
+        <value>Non mi lasciare! &lt;i class="bi bi-emoji-frown"&gt;&lt;/i&gt;</value>
+    </data>
+    <data name="AreYouSure" xml:space="preserve">
+        <value>Sei sicuro di voler effettuare il logout?</value>
+    </data>
+    <data name="ComeBackSoon" xml:space="preserve">
+        <value>Torna presto!</value>
+    </data>
+    <data name="Cancel" xml:space="preserve">
+        <value>Annulla</value>
+    </data>
 </root>

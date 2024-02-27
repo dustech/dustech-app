@@ -19,7 +19,7 @@ public class LayoutModel(string title, bool redirectToHome = false) : PageModel
             CookieRequestCultureProvider.DefaultCookieName,
             CookieRequestCultureProvider.MakeCookieValue(culture));
 
-        return RedirectToPage("Index");
+        return RedirectToPage();
     }
 
     public string Title { get; } = title;

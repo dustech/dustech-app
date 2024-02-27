@@ -4,6 +4,7 @@
 <html lang="en" data-bs-theme="dark">
 <partial name="_Head" model="@Model.HeadModel"/>
 <body>
+<div id="flex-container">
 <partial name="_Header" model="@Model.RequestCultureFeature"/>
 
 @await RenderSectionAsync("BeforeMain", required: false)
@@ -22,5 +23,6 @@
 <partial name="_Ruler"/>
 
 @await RenderSectionAsync("Scripts", required: false)
+</div>
 </body>
 </html>

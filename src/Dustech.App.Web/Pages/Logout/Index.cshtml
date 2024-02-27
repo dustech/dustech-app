@@ -1,27 +1,31 @@
 ﻿@page
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using Microsoft.Extensions.Localization
 @model Dustech.App.Web.Pages.Logout.IndexModel
+@inject IStringLocalizer<IndexModel> Localizer
+@inject IHtmlLocalizer<IndexModel> HtmlLocalizer
+
+<section class="logout container my-9">
 
 
-<h2>Conferma Logout</h2>
-<p>Sei sicuro di voler effettuare il logout?</p>
-
-
-
-<div class="container mt-5">
-    <div class="row">
-        <div class="col-md-6 offset-md-3">
-            <div class="card">
-                <div class="card-header">
-                    <h2>Conferma Logout</h2>
-                </div>
-                <div class="card-body">
-                    <p>Sei sicuro di voler effettuare il logout?</p>
-                    <form method="post" class="d-flex justify-content-between">
-                        <button type="submit" class="btn btn-danger" name="action" value="logout">Logout</button>
-                        <a class="btn btn-secondary" asp-page="/Home/Index">Annulla</a>
-                    </form>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="card">
+                    <div class="card-header text-center">
+                        <h2>@HtmlLocalizer["DontLeave"]</h2>
+                        <p class="text-warning">@Localizer["AreYouSure"]</p>
+                    </div>
+                    <div class="card-body">
+                        <p>@Localizer["ComeBackSoon"]</p>
+                        <form method="post" class="d-flex justify-content-between">
+                            <button type="submit" class="btn btn-danger" name="action" value="logout">Logout</button>
+                            <a class="btn btn-secondary" asp-page="/Home/Index">@Localizer["Cancel"]</a>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</section>

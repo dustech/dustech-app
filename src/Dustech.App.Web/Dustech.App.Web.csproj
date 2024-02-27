@@ -32,6 +32,22 @@
             <Generator>ResXFileCodeGenerator</Generator>
             <LastGenOutput>Pages.Index.IndexModel.it.Designer.cs</LastGenOutput>
         </EmbeddedResource>
+        <EmbeddedResource Update="Resources\Pages.Logout.IndexModel.resx">
+          <Generator>ResXFileCodeGenerator</Generator>
+          <LastGenOutput>Dustech.App.Web.Pages.Logout.IndexModel.Designer.cs</LastGenOutput>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Resources\Pages.Logout.IndexModel.it.resx">
+          <Generator>ResXFileCodeGenerator</Generator>
+          <LastGenOutput>Dustech.App.Web.Pages.Logout.IndexModel.it.Designer.cs</LastGenOutput>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Resources\Pages.Errors.AccessDeniedModel.resx">
+          <Generator>ResXFileCodeGenerator</Generator>
+          <LastGenOutput>Pages.Errors.AccessDeniedModel.Designer.cs</LastGenOutput>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Resources\Pages.Errors.AccessDeniedModel.it.resx">
+          <Generator>ResXFileCodeGenerator</Generator>
+          <LastGenOutput>Pages.Errors.AccessDeniedModel.it.Designer.cs</LastGenOutput>
+        </EmbeddedResource>
     </ItemGroup>
 
     <ItemGroup>
@@ -44,6 +60,26 @@
             <DesignTime>True</DesignTime>
             <AutoGen>True</AutoGen>
             <DependentUpon>Pages.Home.IndexModel.it.resx</DependentUpon>
+        </Compile>
+        <Compile Update="Resources\Pages.Logout.IndexModel.Designer.cs">
+          <DesignTime>True</DesignTime>
+          <AutoGen>True</AutoGen>
+          <DependentUpon>Pages.Logout.IndexModel.resx</DependentUpon>
+        </Compile>
+        <Compile Update="Resources\Pages.Logout.IndexModel.it.Designer.cs">
+          <DesignTime>True</DesignTime>
+          <AutoGen>True</AutoGen>
+          <DependentUpon>Pages.Logout.IndexModel.it.resx</DependentUpon>
+        </Compile>
+        <Compile Update="Resources\Pages.Errors.AccessDeniedModel.Designer.cs">
+          <DesignTime>True</DesignTime>
+          <AutoGen>True</AutoGen>
+          <DependentUpon>Pages.Errors.AccessDeniedModel.resx</DependentUpon>
+        </Compile>
+        <Compile Update="Resources\Pages.Errors.AccessDeniedModel.it.Designer.cs">
+          <DesignTime>True</DesignTime>
+          <AutoGen>True</AutoGen>
+          <DependentUpon>Pages.Errors.AccessDeniedModel.it.resx</DependentUpon>
         </Compile>
     </ItemGroup>
 

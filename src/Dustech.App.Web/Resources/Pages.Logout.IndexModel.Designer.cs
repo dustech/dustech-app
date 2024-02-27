@@ -44,5 +44,29 @@ namespace Dustech.App.Web.Resources {
                 resourceCulture = value;
             }
         }
+        
+        internal static string DontLeave {
+            get {
+                return ResourceManager.GetString("DontLeave", resourceCulture);
+            }
+        }
+        
+        internal static string AreYouSure {
+            get {
+                return ResourceManager.GetString("AreYouSure", resourceCulture);
+            }
+        }
+        
+        internal static string ComeBackSoon {
+            get {
+                return ResourceManager.GetString("ComeBackSoon", resourceCulture);
+            }
+        }
+        
+        internal static string Cancel {
+            get {
+                return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
     }
 }

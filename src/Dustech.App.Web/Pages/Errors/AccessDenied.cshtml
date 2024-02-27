@@ -1,5 +1,23 @@
 @page
+@using Microsoft.Extensions.Localization
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.AspNetCore.Mvc.TagHelpers
 @model Dustech.App.Web.Pages.Errors.AccessDeniedModel
+@inject IStringLocalizer<AccessDeniedModel> Localizer
+@inject IHtmlLocalizer<AccessDeniedModel> HtmlLocalizer
 
 
-Access negato
+<section class="access-denied container my-9">
+    
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-sm-12 text-center">
+                    <h2 class="display-4 text-danger">@Localizer["AccessDenied"]</h2>
+                    <p class="lead mt-3">@Localizer["Sorry"]</p>
+                    <p>@Localizer["AboutToBeRedirected"]</p>
+                    <p>@HtmlLocalizer["IfProblemsClickHere"]</p>
+                </div>
+            </div>
+        </div>
+    
+</section>

@@ -14,21 +14,21 @@ namespace Dustech.App.Web.Resources {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Pages_Logout_IndexModel_it {
+    internal class Pages_Errors_AccessDeniedModel_it {
         
         private static System.Resources.ResourceManager resourceMan;
         
         private static System.Globalization.CultureInfo resourceCulture;
         
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Pages_Logout_IndexModel_it() {
+        internal Pages_Errors_AccessDeniedModel_it() {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         internal static System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.Equals(null, resourceMan)) {
-                    System.Resources.ResourceManager temp = new System.Resources.ResourceManager("Dustech.App.Web.Resources.Pages_Logout_IndexModel_it", typeof(Pages_Logout_IndexModel_it).Assembly);
+                    System.Resources.ResourceManager temp = new System.Resources.ResourceManager("Dustech.App.Web.Resources.Pages_Errors_AccessDeniedModel_it", typeof(Pages_Errors_AccessDeniedModel_it).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -45,27 +45,27 @@ namespace Dustech.App.Web.Resources {
             }
         }
         
-        internal static string DontLeave {
+        internal static string AccessDenied {
             get {
-                return ResourceManager.GetString("DontLeave", resourceCulture);
+                return ResourceManager.GetString("AccessDenied", resourceCulture);
             }
         }
         
-        internal static string AreYouSure {
+        internal static string Sorry {
             get {
-                return ResourceManager.GetString("AreYouSure", resourceCulture);
+                return ResourceManager.GetString("Sorry", resourceCulture);
             }
         }
         
-        internal static string ComeBackSoon {
+        internal static string AboutToBeRedirected {
             get {
-                return ResourceManager.GetString("ComeBackSoon", resourceCulture);
+                return ResourceManager.GetString("AboutToBeRedirected", resourceCulture);
             }
         }
         
-        internal static string Cancel {
+        internal static string IfProblemsClickHere {
             get {
-                return ResourceManager.GetString("Cancel", resourceCulture);
+                return ResourceManager.GetString("IfProblemsClickHere", resourceCulture);
             }
         }
     }

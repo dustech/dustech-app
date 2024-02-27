@@ -18,16 +18,16 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-    <data name="DontLeave" xml:space="preserve">
-        <value>Please don't leave! &lt;i class="bi bi-emoji-frown"&gt;&lt;/i&gt;</value>
+    <data name="AccessDenied" xml:space="preserve">
+        <value>Accesso  Negato</value>
     </data>
-    <data name="AreYouSure" xml:space="preserve">
-        <value>Are you sure to leave?</value>
+    <data name="Sorry" xml:space="preserve">
+        <value>Spiacente, non hai l'autorizzazione per accedere a questa risorsa.</value>
     </data>
-    <data name="ComeBackSoon" xml:space="preserve">
-        <value>Come back soon!</value>
+    <data name="AboutToBeRedirected" xml:space="preserve">
+        <value>Verrai reindirizzato alla homepage entro 3 secondi.</value>
     </data>
-    <data name="Cancel" xml:space="preserve">
-        <value>Cancel</value>
+    <data name="IfProblemsClickHere" xml:space="preserve">
+        <value>Se non vieni reindirizzato automaticamente, &lt;a href="/"&gt;clicca qui&lt;/a&gt; per tornare alla homepage.</value>
     </data>
 </root>
