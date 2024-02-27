@@ -10,6 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages(options =>
 {
     options.Conventions.AddPageRoute("/Home/Index", "/");
+    options.Conventions.AddPageRoute("/Errors/AccessDenied", "/AccessDenied");
 }).AddViewLocalization();
 
 builder.Services.Configure<RequestLocalizationOptions>(options =>

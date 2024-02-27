@@ -22,7 +22,7 @@ public static class OpenIdConnectServicesExtensions
                     OpenIdConnectDefaults.AuthenticationScheme;
             })
             .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme,
-                options => { options.AccessDeniedPath = "/Errros/AccessDenied"; })
+                options => { options.AccessDeniedPath = "/AccessDenied"; })
             .AddOpenIdConnect(OpenIdConnectDefaults.AuthenticationScheme,
                 options =>
                 {
@@ -39,7 +39,7 @@ public static class OpenIdConnectServicesExtensions
                     options.CallbackPath =
                         new PathString(Config.razorPagesWebClient
                             .CallBackPath);
-                    options.AccessDeniedPath = "/Errors/AccessDenied";
+                    options.AccessDeniedPath = "/AccessDenied";
                     options.SaveTokens = true;
                 });
         
