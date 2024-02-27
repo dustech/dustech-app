@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Dustech.App.Web.Pages.Logout;
 
 [Authorize]
-public class Index() : LayoutModel("Logout")
+public class IndexModel() : LayoutModel("Logout")
 {
     public async Task<IActionResult> OnPostAsync(string action)
     {

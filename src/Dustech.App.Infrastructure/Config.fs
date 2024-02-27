@@ -24,7 +24,7 @@ module StandardScopes =
     let OfflineAccess = "offline_access"
 
 
-module Configs =
+module Config =
     let private empty = ""
 
     type Client =
@@ -32,10 +32,11 @@ module Configs =
           ClientName: string
           ClientId: string
           ClientSecret: string
-          HashedClientSecret : string
+          HashedClientSecret: string
           RedirectUri: string
           ResponseType: string
           CallBackPath: string
+          SignedOutCallbackPath : string
           Scopes: string seq }
 
     let private authorizationCode = "code"
@@ -50,6 +51,7 @@ module Configs =
           RedirectUri = empty
           ResponseType = authorizationCode
           CallBackPath = callBackPath
+          SignedOutCallbackPath = empty
           Scopes =
             [ StandardScopes.Profile
               StandardScopes.OpenId ] }
@@ -62,4 +64,6 @@ module Configs =
             ClientId = "dustechappwebclient"
             ClientSecret = "secret"
             HashedClientSecret = Hashing.sha256 <| Some "secret"
-            RedirectUri = "https://localhost:7273" + callBackPath }
+            RedirectUri = "https://localhost:7273" + callBackPath
+            SignedOutCallbackPath = "https://localhost:7273/signout-callback-oidc"
+            }

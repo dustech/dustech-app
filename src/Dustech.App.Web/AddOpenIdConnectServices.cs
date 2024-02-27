@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using Dustech.App.Infrastructure;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
@@ -22,26 +21,28 @@ public static class OpenIdConnectServicesExtensions
                 options.DefaultChallengeScheme =
                     OpenIdConnectDefaults.AuthenticationScheme;
             })
-            .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme)
+            .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme,
+                options => { options.AccessDeniedPath = "/Errros/AccessDenied"; })
             .AddOpenIdConnect(OpenIdConnectDefaults.AuthenticationScheme,
                 options =>
                 {
                     options.SignInScheme = CookieAuthenticationDefaults
                         .AuthenticationScheme;
-                    options.Authority = Configs.razorPagesWebClient.Authority;
-                    options.ClientId = Configs.razorPagesWebClient.ClientId;
+                    options.Authority = Config.razorPagesWebClient.Authority;
+                    options.ClientId = Config.razorPagesWebClient.ClientId;
                     options.ClientSecret =
-                        Configs.razorPagesWebClient.ClientSecret;
+                        Config.razorPagesWebClient.ClientSecret;
                     options.ResponseType =
-                        Configs.razorPagesWebClient.ResponseType;
-                    Configs.razorPagesWebClient.Scopes
+                        Config.razorPagesWebClient.ResponseType;
+                    Config.razorPagesWebClient.Scopes
                         .ForEach(options.Scope.Add);
                     options.CallbackPath =
-                        new PathString(Configs.razorPagesWebClient
+                        new PathString(Config.razorPagesWebClient
                             .CallBackPath);
+                    options.AccessDeniedPath = "/Errors/AccessDenied";
                     options.SaveTokens = true;
                 });
-
+        
         return services;
     }
 }

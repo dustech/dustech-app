@@ -4,14 +4,8 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Dustech.App.Web.Pages;
 
-public class LayoutModel : PageModel
+public class LayoutModel(string title, bool redirectToHome = false) : PageModel
 {
-    public LayoutModel(string title)
-    {
-        Title = title;
-        
-    }
-    
     public virtual void OnGet()
     {
         RequestCultureFeature =
@@ -28,6 +22,7 @@ public class LayoutModel : PageModel
         return RedirectToPage("Index");
     }
 
-    public string Title { get; }
+    public string Title { get; } = title;
+    public bool RedirectToHome { get; } = redirectToHome;
     public IRequestCultureFeature? RequestCultureFeature { get; set; }
 }

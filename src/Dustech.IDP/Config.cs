@@ -1,6 +1,5 @@
 ﻿using Duende.IdentityServer;
 using Duende.IdentityServer.Models;
-using Dustech.App.Infrastructure;
 
 namespace Dustech.IDP;
 
@@ -22,12 +21,16 @@ public static class Config
         {
             new Client()
             {
-                ClientName = Configs.razorPagesWebClient.ClientName,
-                ClientId = Configs.razorPagesWebClient.ClientId,
+                ClientName = App.Infrastructure.Config.razorPagesWebClient.ClientName,
+                ClientId = App.Infrastructure.Config.razorPagesWebClient.ClientId,
                 AllowedGrantTypes = GrantTypes.Code,
                 RedirectUris =
                 {
-                    Configs.razorPagesWebClient.RedirectUri
+                    App.Infrastructure.Config.razorPagesWebClient.RedirectUri
+                },
+                PostLogoutRedirectUris =
+                {
+                    App.Infrastructure.Config.razorPagesWebClient.SignedOutCallbackPath
                 },
                 AllowedScopes =
                 {
@@ -36,7 +39,7 @@ public static class Config
                 },
                 ClientSecrets =
                 {
-                    new Secret(Configs.razorPagesWebClient.HashedClientSecret)
+                    new Secret(App.Infrastructure.Config.razorPagesWebClient.HashedClientSecret)
                 },
                 RequireConsent = true
             }

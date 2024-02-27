@@ -12,7 +12,7 @@
 
     <ItemGroup>
         <Compile Include="Hashing.fs" />
-        <Compile Include="Configs.fs" />        
+        <Compile Include="Config.fs" />        
     </ItemGroup>
 
 </Project>
