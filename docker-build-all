@@ -1,0 +1,3 @@
+#!/bin/bash
+
+./docker-build-nginx &&./docker-build-app-web && ./docker-build-idp

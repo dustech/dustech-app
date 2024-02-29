@@ -29,41 +29,84 @@ module Config =
 
     type Client =
         { Authority: string
+          InternalDuende: string
           ClientName: string
           ClientId: string
           ClientSecret: string
           HashedClientSecret: string
           RedirectUri: string
+          RedirectUri2: string
           ResponseType: string
           CallBackPath: string
-          SignedOutCallbackPath : string
+          SignedOutCallbackPath: string
           Scopes: string seq }
 
     let private authorizationCode = "code"
-    let private callBackPath = "/signin-oidc"
+    let private callBackPath = "signin-oidc"
 
     let private defaultClient =
         { Authority = empty
+          InternalDuende = empty
           ClientName = empty
           ClientId = empty
           ClientSecret = empty
           HashedClientSecret = empty
           RedirectUri = empty
+          RedirectUri2 = empty
           ResponseType = authorizationCode
-          CallBackPath = callBackPath
+          CallBackPath = empty
           SignedOutCallbackPath = empty
           Scopes =
             [ StandardScopes.Profile
               StandardScopes.OpenId ] }
 
-
+    let authD = "https://auth.dustech.io/"
+    let localD = "http://auth.dustech.io/"
     let razorPagesWebClient =
-        { defaultClient with
-            Authority = "https://localhost:5001/"
+        // { defaultClient with
+        //     Authority = "https://localhost:5001/"
+        //     ClientName = "Dustech.Io"
+        //     ClientId = "dustechappwebclient"
+        //     ClientSecret = "secret"
+        //     HashedClientSecret = Hashing.sha256 <| Some "secret"
+        //     RedirectUri = "https://localhost:7273" + callBackPath
+        //     SignedOutCallbackPath = "https://localhost:7273/signout-callback-oidc"
+        //     }
+
+        // locale
+         { defaultClient with
+            Authority = authD
+            InternalDuende = authD //"https://localhost:5001/"
             ClientName = "Dustech.Io"
             ClientId = "dustechappwebclient"
             ClientSecret = "secret"
+            CallBackPath = "/" + callBackPath 
             HashedClientSecret = Hashing.sha256 <| Some "secret"
-            RedirectUri = "https://localhost:7273" + callBackPath
-            SignedOutCallbackPath = "https://localhost:7273/signout-callback-oidc"
-            }
+            RedirectUri = "https://app.dustech.io/" + callBackPath
+            //RedirectUri2 = "https://localhost:5002/" + callBackPath
+            //SignedOutCallbackPath = "https://localhost:5002/signout-callback-oidc"
+            SignedOutCallbackPath = "https://app.dustech.io/signout-callback-oidc"
+        }
+        
+//         
+//         { defaultClient with
+//             // Authority = "https://auth.dustech.io"
+//             Authority = "http://localhost:5001"
+//             InternalDuende = "http://localhost:5001"
+//             ClientName = "Dustech.Io"
+//             ClientId = "dustechappwebclient"
+//             ClientSecret = "secret"
+//             HashedClientSecret = Hashing.sha256 <| Some "secret"
+//             // RedirectUri = "https://auth.dustech.io" + callBackPath
+//             RedirectUri = "http://localhost:5002" + callBackPath
+//             SignedOutCallbackPath = "https://app.localhost/signout-callback-oidc" }
+// //
+// { defaultClient with
+//     Authority = "http://host.docker.internal:5001/"
+//     ClientName = "Dustech.Io"
+//     ClientId = "dustechappwebclient"
+//     ClientSecret = "secret"
+//     HashedClientSecret = Hashing.sha256 <| Some "secret"
+//     RedirectUri = "http://host.docker.internal:5002" + callBackPath
+//     SignedOutCallbackPath = "http://host.docker.internal:5002/signout-callback-oidc"
+//     }

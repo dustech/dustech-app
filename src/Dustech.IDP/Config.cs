@@ -26,7 +26,8 @@ public static class Config
                 AllowedGrantTypes = GrantTypes.Code,
                 RedirectUris =
                 {
-                    App.Infrastructure.Config.razorPagesWebClient.RedirectUri
+                    App.Infrastructure.Config.razorPagesWebClient.RedirectUri,
+                    //App.Infrastructure.Config.razorPagesWebClient.RedirectUri2
                 },
                 PostLogoutRedirectUris =
                 {

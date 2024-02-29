@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  nginx:
+    image: dustech-nginx
+    ports:
+      - "443:443"
+    volumes:
+      - ${HOME}/.certs:/etc/nginx/ssl:ro
+#      - ./nginx.conf /etc/nginx/conf.d/
+    depends_on:
+      - idp
+      - webapp
+#    network_mode: host
+    networks: 
+      - dustech-network
+        
+  webapp:
+    image: dustech-app-web
+    expose:
+      - "5002" # Questa linea espone la porta 5002 all'interno della rete Docker
+#    ports:
+#      - "5002:5002" # Mappa la porta 5002 del host alla porta 443 del container
+#      - "5002:443" # Mappa la porta 5002 del host alla porta 443 del container
+    environment:
+#      ASPNETCORE_URLS: "https://+;"
+      # ASPNETCORE_URLS: "http://+;"
+      #ASPNETCORE_HTTPS_PORT: "5002" # Assicurati che corrisponda alla porta esposta
+      ASPNETCORE_HTTP_PORTS: "5002" # Assicurati che corrisponda alla porta esposta
+      ASPNETCORE_ENVIRONMENT: "Development"
+#      ASPNETCORE_Kestrel__Certificates__Default__Password: ""
+#      ASPNETCORE_Kestrel__Certificates__Default__Path: "/https/localhost.pfx"
+#    volumes:
+#      - ${HOME}/.certs:/https/ # Mappa la directory dei certificati al container
+#    network_mode: host
+    networks:
+      - dustech-network
+  
+  idp:
+    image: dustech-idp
+    expose:
+      - "5001"
+#    ports:
+#      - "5001:5001"
+    environment:
+      ASPNETCORE_HTTP_PORTS: "5001"
+      ASPNETCORE_FORWARDEDHEADERS_ENABLED: true
+    # network_mode: host
+    networks:
+      - dustech-network
+        
+networks:
+  dustech-network:
+    driver: bridge

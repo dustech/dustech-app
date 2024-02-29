@@ -6,7 +6,12 @@
 <body>
 <div id="flex-container">
 <partial name="_Header" model="@Model.RequestCultureFeature"/>
-
+<environment include="Production">
+    <div class="container text-center text-primary"> PRODUZIONE </div>
+</environment>
+<environment include="Development">
+    <div class="container text-center text-warning"> DEV </div>
+</environment>
 @await RenderSectionAsync("BeforeMain", required: false)
 
 <main class="main" role="main">
