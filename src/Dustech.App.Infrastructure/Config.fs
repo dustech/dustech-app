@@ -56,14 +56,15 @@ module Config =
             [ StandardScopes.Profile
               StandardScopes.OpenId ] }
 
-
+    let webAppHttpsUri = "https://localhost:5002"
+    let authHttpsUri ="https://localhost:5001/"
     let razorPagesWebClient =
         { defaultClient with
-            Authority = "https://localhost:5001/"
+            Authority = authHttpsUri
             ClientName = "Dustech.Io"
             ClientId = "dustechappwebclient"
             ClientSecret = "secret"
             HashedClientSecret = Hashing.sha256 <| Some "secret"
-            RedirectUri = "https://localhost:7273" + callBackPath
-            SignedOutCallbackPath = "https://localhost:7273/signout-callback-oidc"
+            RedirectUri = webAppHttpsUri + callBackPath
+            SignedOutCallbackPath = $"{webAppHttpsUri}/signout-callback-oidc"
             }
