@@ -17,21 +17,16 @@ public static class Config
             { };
 
     public static IEnumerable<Client> Clients =>
-        new Client[]
+        new []
         {
             new Client()
             {
                 ClientName = App.Infrastructure.Config.razorPagesWebClient.ClientName,
                 ClientId = App.Infrastructure.Config.razorPagesWebClient.ClientId,
                 AllowedGrantTypes = GrantTypes.Code,
-                RedirectUris =
-                {
-                    App.Infrastructure.Config.razorPagesWebClient.RedirectUri
-                },
+                RedirectUris = App.Infrastructure.Config.razorPagesWebClient.RedirectUris,
                 PostLogoutRedirectUris =
-                {
-                    App.Infrastructure.Config.razorPagesWebClient.SignedOutCallbackPath
-                },
+                    App.Infrastructure.Config.razorPagesWebClient.SignedOutCallbackPaths,
                 AllowedScopes =
                 {
                     IdentityServerConstants.StandardScopes.OpenId,

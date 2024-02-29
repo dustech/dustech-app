@@ -29,42 +29,53 @@ module Config =
 
     type Client =
         { Authority: string
+          CallBackPath: string
           ClientName: string
           ClientId: string
           ClientSecret: string
           HashedClientSecret: string
-          RedirectUri: string
+          RedirectUris: string []
           ResponseType: string
-          CallBackPath: string
-          SignedOutCallbackPath : string
+          SignOutCallBackPath: string
+          SignedOutCallbackPaths: string []
           Scopes: string seq }
 
     let private authorizationCode = "code"
-    let private callBackPath = "/signin-oidc"
+
 
     let private defaultClient =
         { Authority = empty
+          CallBackPath = empty
           ClientName = empty
           ClientId = empty
           ClientSecret = empty
           HashedClientSecret = empty
-          RedirectUri = empty
+          RedirectUris = Array.empty
           ResponseType = authorizationCode
-          CallBackPath = callBackPath
-          SignedOutCallbackPath = empty
+          SignOutCallBackPath = empty
+          SignedOutCallbackPaths = Array.empty
           Scopes =
             [ StandardScopes.Profile
               StandardScopes.OpenId ] }
 
+    let private callBackPath = "/signin-oidc"
+    let private signOutCallBackPath = "/signout-callback-oidc"
     let webAppHttpsUri = "https://localhost:5002"
-    let authHttpsUri ="https://localhost:5001/"
+    let authHttpsUri = "https://localhost:5001/"
+    let webAppHttpsExternalUri = "https://app.dustech.io"
+
     let razorPagesWebClient =
         { defaultClient with
             Authority = authHttpsUri
+            CallBackPath = callBackPath
             ClientName = "Dustech.Io"
             ClientId = "dustechappwebclient"
             ClientSecret = "secret"
             HashedClientSecret = Hashing.sha256 <| Some "secret"
-            RedirectUri = webAppHttpsUri + callBackPath
-            SignedOutCallbackPath = $"{webAppHttpsUri}/signout-callback-oidc"
-            }
+            RedirectUris =
+                [| $"{webAppHttpsUri}{callBackPath}"
+                   $"{webAppHttpsExternalUri}{callBackPath}" |]
+            SignOutCallBackPath = signOutCallBackPath
+            SignedOutCallbackPaths =
+                [| $"{webAppHttpsUri}{signOutCallBackPath}"
+                   $"{webAppHttpsExternalUri}{signOutCallBackPath}" |] }
