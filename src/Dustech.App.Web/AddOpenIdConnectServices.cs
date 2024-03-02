@@ -50,6 +50,7 @@ public static class OpenIdConnectServicesExtensions
                             .CallBackPath);
                     options.AccessDeniedPath = "/AccessDenied";
                     options.SaveTokens = true;
+                    options.RequireHttpsMetadata = false;
                 });
         
         return services;

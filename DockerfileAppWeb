@@ -1,0 +1,29 @@
+# https://hub.docker.com/_/microsoft-dotnet
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS base
+WORKDIR /app
+
+RUN apt-get update \
+    && apt-get install -y curl 
+
+
+
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+WORKDIR /source
+
+# copy csproj and restore as distinct layers
+COPY src/*.sln .
+# COPY src/Dustech.App.Web/*.csproj ./Dustech.App.Web/
+COPY src/. .
+RUN dotnet restore
+
+# copy everything else and build app
+#COPY src/. .
+WORKDIR /source/Dustech.App.Web
+RUN dotnet publish -c release -o /app --no-restore
+
+# final stage/image
+FROM mcr.microsoft.com/dotnet/aspnet:8.0
+FROM base as final
+WORKDIR /app
+COPY --from=build /app ./
+ENTRYPOINT ["dotnet", "Dustech.App.Web.dll"]

@@ -25,6 +25,11 @@ module StandardScopes =
     let OfflineAccess = "offline_access"
 
 module IdpConfigurationParser =
+    
+    let internal webAppInternalUri = "http://webapp:5002"
+    let internal authInternalUri = "http://idp:5001/"
+    let internal webAppHttpsExternalUri = "https://app.dustech.io"    
+    let internal authHttpsExternalUri = "https://auth.dustech.io"
     type IdpConfiguration = { Proxied: bool }
 
     let toBool (value: string) =
@@ -41,7 +46,16 @@ module IdpConfigurationParser =
 
 module Hijacker =
     open Microsoft.AspNetCore.Authentication.OpenIdConnect
-
+    let log message = 
+        printfn $"%s{message}" 
+    let replaceUri (uri:string) = 
+        log $"Try to substitute: {uri}"
+        let newUri = uri
+                        .Replace(IdpConfigurationParser.webAppInternalUri, IdpConfigurationParser.webAppHttpsExternalUri)
+                        .Replace(IdpConfigurationParser.authInternalUri, IdpConfigurationParser.authHttpsExternalUri )
+        log $"URI result: {newUri}"
+        newUri
+    
     let Hijack (context: RedirectContext) =
         async {
             let maybePostLogoutRedirectUri =
@@ -50,9 +64,7 @@ module Hijacker =
             match maybePostLogoutRedirectUri with
             | Some uri ->
                 context.ProtocolMessage.PostLogoutRedirectUri <-
-                    uri
-                        .Replace("https://joy:5002", "https://app.dustech.io")
-                        .Replace("https://joy:5001", "https://auth.dustech.io")
+                    replaceUri uri
             | _ -> ()
 
             let maybeIssuerAddress = Option.ofObj context.ProtocolMessage.IssuerAddress
@@ -60,9 +72,7 @@ module Hijacker =
             match maybeIssuerAddress with
             | Some address ->
                 context.ProtocolMessage.IssuerAddress <-
-                    address
-                        .Replace("https://joy:5002", "https://app.dustech.io")
-                        .Replace("https://joy:5001", "https://auth.dustech.io")
+                    replaceUri address
             | _ -> ()
 
             let maybeRedirectUri = Option.ofObj context.ProtocolMessage.RedirectUri
@@ -70,9 +80,7 @@ module Hijacker =
             match maybeRedirectUri with
             | Some redirectUri ->
                 context.ProtocolMessage.RedirectUri <-
-                    redirectUri
-                        .Replace("https://joy:5002", "https://app.dustech.io")
-                        .Replace("https://joy:5001", "https://auth.dustech.io")
+                    replaceUri redirectUri                        
             | _ -> ()
 
             return ()
@@ -115,22 +123,20 @@ module Config =
 
     let private callBackPath = "/signin-oidc"
     let private signOutCallBackPath = "/signout-callback-oidc"
-    let webAppHttpsUri = "https://joy:5002"
-    let authHttpsUri = "https://joy:5001/"
-    let webAppHttpsExternalUri = "https://app.dustech.io"
+   
 
     let razorPagesWebClient =
         { defaultClient with
-            Authority = authHttpsUri
+            Authority = IdpConfigurationParser.authInternalUri
             CallBackPath = callBackPath
             ClientName = "Dustech.Io"
             ClientId = "dustechappwebclient"
             ClientSecret = "secret"
             HashedClientSecret = Hashing.sha256 <| Some "secret"
             RedirectUris =
-                [| $"{webAppHttpsUri}{callBackPath}"
-                   $"{webAppHttpsExternalUri}{callBackPath}" |]
+                [| $"{IdpConfigurationParser.webAppInternalUri}{callBackPath}"
+                   $"{IdpConfigurationParser.webAppHttpsExternalUri}{callBackPath}" |]
             SignOutCallBackPath = signOutCallBackPath
             SignedOutCallbackPaths =
-                [| $"{webAppHttpsUri}{signOutCallBackPath}"
-                   $"{webAppHttpsExternalUri}{signOutCallBackPath}" |] }
+                [| $"{IdpConfigurationParser.webAppInternalUri}{signOutCallBackPath}"
+                   $"{IdpConfigurationParser.webAppHttpsExternalUri}{signOutCallBackPath}" |] }

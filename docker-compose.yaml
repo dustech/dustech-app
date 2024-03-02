@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  nginx:
+    image: dustech-nginx
+    ports:
+      - "443:443"
+    volumes:
+      - /etc/nginx/ssl:/etc/nginx/ssl:ro    
+      - /etc/nginx/ssl/private:/etc/nginx/ssl/private:ro    
+    networks: 
+      - dustech-network    
+    depends_on:
+      - webapp
+  
+  
+  webapp:
+    image: dustech-app-web
+    expose:
+      - "5002" 
+    ports:
+      - "5002:5002"
+    environment:
+      # ASPNETCORE_URLS: "https://+;"
+      # ASPNETCORE_URLS: "http://+;"
+      # ASPNETCORE_HTTPS_PORT: "5002" # Assicurati che corrisponda alla porta esposta
+      ASPNETCORE_HTTP_PORTS: "5002" # Assicurati che corrisponda alla porta esposta
+      ASPNETCORE_ENVIRONMENT: "Development"
+      IdpConfiguration__Proxied : "True"
+      # ASPNETCORE_Kestrel__Certificates__Default__Password: ""
+      # ASPNETCORE_Kestrel__Certificates__Default__Path: "/https/joy.pfx"
+      #    volumes:
+      #      - /etc/nginx/ssl/private/:/https/ # Mappa la directory dei certificati al container
+    networks:
+      - dustech-network
+
+
+  idp:
+    image: dustech-idp
+    expose:
+      - "5001"
+    ports:
+      - "5001:5001"
+    environment:
+      ASPNETCORE_HTTP_PORTS: "5001"
+      ASPNETCORE_FORWARDEDHEADERS_ENABLED: true
+    networks:
+      - dustech-network
+
+
+networks:
+  dustech-network:
+    driver: bridge
