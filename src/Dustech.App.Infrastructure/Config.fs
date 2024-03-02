@@ -48,19 +48,31 @@ module Hijacker =
                 Option.ofObj context.ProtocolMessage.PostLogoutRedirectUri
 
             match maybePostLogoutRedirectUri with
-            | Some (uri) ->
+            | Some uri ->
                 context.ProtocolMessage.PostLogoutRedirectUri <-
-                    uri.Replace("https://joy:5002", "https://app.dustech.io")
-                        .Replace("https://joy:5001","https://auth.dustech.io")
+                    uri
+                        .Replace("https://joy:5002", "https://app.dustech.io")
+                        .Replace("https://joy:5001", "https://auth.dustech.io")
             | _ -> ()
 
             let maybeIssuerAddress = Option.ofObj context.ProtocolMessage.IssuerAddress
 
             match maybeIssuerAddress with
-            | Some (address) ->
+            | Some address ->
                 context.ProtocolMessage.IssuerAddress <-
-                    address.Replace("https://joy:5002", "https://app.dustech.io")
-                            .Replace("https://joy:5001","https://auth.dustech.io")
+                    address
+                        .Replace("https://joy:5002", "https://app.dustech.io")
+                        .Replace("https://joy:5001", "https://auth.dustech.io")
+            | _ -> ()
+
+            let maybeRedirectUri = Option.ofObj context.ProtocolMessage.RedirectUri
+
+            match maybeRedirectUri with
+            | Some redirectUri ->
+                context.ProtocolMessage.RedirectUri <-
+                    redirectUri
+                        .Replace("https://joy:5002", "https://app.dustech.io")
+                        .Replace("https://joy:5001", "https://auth.dustech.io")
             | _ -> ()
 
             return ()
