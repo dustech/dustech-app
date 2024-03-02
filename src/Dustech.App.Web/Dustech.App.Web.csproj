@@ -19,7 +19,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Dustech.App.Model\Dustech.App.Model.fsproj"/>
         <ProjectReference Include="..\Dustech.App.Infrastructure\Dustech.App.Infrastructure.fsproj" />
     </ItemGroup>
 

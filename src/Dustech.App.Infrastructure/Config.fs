@@ -1,6 +1,7 @@
 ﻿namespace Dustech.App.Infrastructure
 
-open System.Runtime.Serialization
+open Microsoft.Extensions.Configuration
+open Microsoft.VisualBasic.CompilerServices
 
 
 module StandardScopes =
@@ -23,6 +24,48 @@ module StandardScopes =
     /// <summary>This scope value MUST NOT be used with the OpenID Connect Implicit Client Implementer's Guide 1.0. See the OpenID Connect Basic Client Implementer's Guide 1.0 (http://openid.net/specs/openid-connect-implicit-1_0.html#OpenID.Basic) for its usage in that subset of OpenID Connect.</summary>
     let OfflineAccess = "offline_access"
 
+module IdpConfigurationParser =
+    type IdpConfiguration = { Proxied: bool }
+
+    let toBool (value: string) =
+        match value with
+        | null -> raise (IncompleteInitialization())
+        | _ ->
+            match value.ToLower() with
+            | "true" -> true
+            | "false" -> false
+            | _ -> raise (IncompleteInitialization())
+
+    let parseIdpConfiguration (configSection: IConfigurationSection) =
+        { Proxied = configSection["Proxied"] |> toBool }
+
+module Hijacker =
+    open Microsoft.AspNetCore.Authentication.OpenIdConnect
+
+    let Hijack (context: RedirectContext) =
+        async {
+            let maybePostLogoutRedirectUri =
+                Option.ofObj context.ProtocolMessage.PostLogoutRedirectUri
+
+            match maybePostLogoutRedirectUri with
+            | Some (uri) ->
+                context.ProtocolMessage.PostLogoutRedirectUri <-
+                    uri.Replace("https://joy:5002", "https://app.dustech.io")
+                        .Replace("https://joy:5001","https://auth.dustech.io")
+            | _ -> ()
+
+            let maybeIssuerAddress = Option.ofObj context.ProtocolMessage.IssuerAddress
+
+            match maybeIssuerAddress with
+            | Some (address) ->
+                context.ProtocolMessage.IssuerAddress <-
+                    address.Replace("https://joy:5002", "https://app.dustech.io")
+                            .Replace("https://joy:5001","https://auth.dustech.io")
+            | _ -> ()
+
+            return ()
+        }
+        |> Async.StartAsTask
 
 module Config =
     let private empty = ""
@@ -60,8 +103,8 @@ module Config =
 
     let private callBackPath = "/signin-oidc"
     let private signOutCallBackPath = "/signout-callback-oidc"
-    let webAppHttpsUri = "https://localhost:5002"
-    let authHttpsUri = "https://localhost:5001/"
+    let webAppHttpsUri = "https://joy:5002"
+    let authHttpsUri = "https://joy:5001/"
     let webAppHttpsExternalUri = "https://app.dustech.io"
 
     let razorPagesWebClient =

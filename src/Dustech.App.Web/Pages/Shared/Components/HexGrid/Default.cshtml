@@ -1,9 +1,9 @@
-﻿@using Dustech.App.Model
+﻿@using Dustech.App.Infrastructure
 @model HexGridViewComponentModel
 
 @{
-    var containerHeight = Infrastructure.toInvariant(Model.ContainerHeight);
-    var containerWidth = Infrastructure.toInvariant(Model.ContainerWidth);
+    var containerHeight = Utils.DeLocalizer.toInvariant(Model.ContainerHeight);
+    var containerWidth = Utils.DeLocalizer.toInvariant(Model.ContainerWidth);
 }
 
 <div class="container px-0 @Model.ContainerClass" style="height: @(containerHeight)px; width:@(containerWidth)px ">

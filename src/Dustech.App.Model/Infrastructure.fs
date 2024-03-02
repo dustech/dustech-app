@@ -2,7 +2,7 @@
 
 open System.Globalization
 
-module Infrastructure =        
+module DeLocalizer =        
     let toInvariant<'T> (value:'T) =
         match box value with
         | :? double as doubleValue ->

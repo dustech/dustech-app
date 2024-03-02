@@ -1,12 +1,13 @@
-﻿@using Dustech.App.Model
+﻿@using Dustech.App.Infrastructure
+@using Microsoft.AspNetCore.Mvc.TagHelpers
 @model HexViewComponentModel
 
 
 @{
-    var width = Infrastructure.toInvariant(Model.Width);
-    var height = Infrastructure.toInvariant(Model.Height);
-    var topOffSet = Infrastructure.toInvariant(Model.TopOffSet);
-    var leftOffSet = Infrastructure.toInvariant(Model.LeftOffSet);
+    var width = Utils.DeLocalizer.toInvariant(Model.Width);
+    var height = Utils.DeLocalizer.toInvariant(Model.Height);
+    var topOffSet = Utils.DeLocalizer.toInvariant(Model.TopOffSet);
+    var leftOffSet = Utils.DeLocalizer.toInvariant(Model.LeftOffSet);
 }
 
 <div class="hexagon-card hexagon-card-btn px-0 btn btn-@(Model.ColorContext) 

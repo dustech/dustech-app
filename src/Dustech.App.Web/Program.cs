@@ -1,3 +1,4 @@
+using Dustech.App.Infrastructure;
 using Dustech.App.Web;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
@@ -33,7 +34,11 @@ else
     builder.Services.AddWebOptimizer();
 }
 
-builder.Services.AddOpenIdConnectServices();
+var idpSection = builder.Configuration.GetSection(nameof(IdpConfigurationParser.IdpConfiguration));
+var idpConfiguration = IdpConfigurationParser.parseIdpConfiguration(idpSection);
+
+
+builder.Services.AddOpenIdConnectServices(idpConfiguration);
 
 var app = builder.Build();
 
@@ -45,7 +50,7 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
 app.UseWebOptimizer();
 app.UseStaticFiles();
