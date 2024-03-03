@@ -1,7 +1,11 @@
 ﻿using System;
+using System.IO;
+using System.Security.Cryptography.X509Certificates;
 using Dustech.App.Infrastructure;
+using static Dustech.App.Infrastructure.ConfigurationParser.WebAppConfigurationParser;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using NUglify.Helpers;
@@ -11,7 +15,7 @@ namespace Dustech.App.Web;
 public static class OpenIdConnectServicesExtensions
 {
     public static IServiceCollection AddOpenIdConnectServices(this IServiceCollection services,
-        IdpConfigurationParser.IdpConfiguration idpConfiguration)
+        WebAppConfiguration webAppConfiguration, X509Certificate2 x509)
     {
         ArgumentNullException.ThrowIfNull(services);
         services.AddAuthentication(options =>
@@ -26,7 +30,7 @@ public static class OpenIdConnectServicesExtensions
             .AddOpenIdConnect(OpenIdConnectDefaults.AuthenticationScheme,
                 options =>
                 {
-                    var proxied = idpConfiguration.Proxied;
+                    var proxied = webAppConfiguration.Proxied;
 
                     if (proxied)
                     {
@@ -52,7 +56,14 @@ public static class OpenIdConnectServicesExtensions
                     options.SaveTokens = true;
                     options.RequireHttpsMetadata = false;
                 });
-        
+
+            
+        services.AddDataProtection()
+                    .PersistKeysToFileSystem(new DirectoryInfo("/data-protection"))
+                    .ProtectKeysWithCertificate(x509)
+                    .SetApplicationName(Config.razorPagesWebClient.ClientId);
+            
+            
         return services;
     }
 }

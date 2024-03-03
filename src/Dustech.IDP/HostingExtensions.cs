@@ -1,31 +1,46 @@
+using System.Security.Cryptography;
+using System.Security.Cryptography.X509Certificates;
+using Dustech.App.Infrastructure;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.IdentityModel.Tokens;
 using Serilog;
-
+using static Dustech.App.Infrastructure.ConfigurationParser.DataProtectionConfigurationParser;
+using static Dustech.App.Infrastructure.ConfigurationParser.WebAppConfigurationParser;
 namespace Dustech.IDP;
 
 internal static class HostingExtensions
 {
-    public static WebApplication ConfigureServices(
-        this WebApplicationBuilder builder)
+    public static WebApplication ConfigureServices(this WebApplicationBuilder builder, X509Certificate2 x509,
+        DataProtectionConfiguration dataProtectionConfiguration)
     {
         // uncomment if you want to add a UI
         builder.Services.AddRazorPages();
 
         builder.Services.AddIdentityServer(options =>
             {
-                // https://docs.duendesoftware.com/identityserver/v6/fundamentals/resources/api_scopes#authorization-based-on-scopes
                 options.EmitStaticAudienceClaim = true;
-                //options.IssuerUri = "https://auth.dustech.io/";
-
+                options.KeyManagement.Enabled = false;
+                options.IssuerUri = authInternalUri;
             })
+            .AddSigningCredential(x509)
             .AddInMemoryIdentityResources(Config.IdentityResources)
             .AddInMemoryApiScopes(Config.ApiScopes)
             .AddInMemoryClients(Config.Clients)
             .AddTestUsers(TestUsers.Users);
+
         builder.Services.Configure<ForwardedHeadersOptions>(options =>
         {
             options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
         });
+
+
+        builder.Services.AddDataProtection()
+            .PersistKeysToFileSystem(new DirectoryInfo(dataProtectionConfiguration.DataProtectionPath))
+            .ProtectKeysWithCertificate(x509)
+            .SetApplicationName(App.Infrastructure.Config.razorPagesWebClient.ClientId);
+
+
         return builder.Build();
     }
 

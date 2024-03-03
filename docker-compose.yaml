@@ -10,27 +10,26 @@ services:
       - /etc/nginx/ssl/private:/etc/nginx/ssl/private:ro    
     networks: 
       - dustech-network    
-    depends_on:
-      - webapp
   
   
   webapp:
     image: dustech-app-web
     expose:
       - "5002" 
-    ports:
-      - "5002:5002"
+#    ports:
+#      - "5002:5002"
     environment:
-      # ASPNETCORE_URLS: "https://+;"
-      # ASPNETCORE_URLS: "http://+;"
-      # ASPNETCORE_HTTPS_PORT: "5002" # Assicurati che corrisponda alla porta esposta
-      ASPNETCORE_HTTP_PORTS: "5002" # Assicurati che corrisponda alla porta esposta
+      ASPNETCORE_HTTP_PORTS: "5002" 
       ASPNETCORE_ENVIRONMENT: "Development"
       IdpConfiguration__Proxied : "True"
-      # ASPNETCORE_Kestrel__Certificates__Default__Password: ""
-      # ASPNETCORE_Kestrel__Certificates__Default__Path: "/https/joy.pfx"
-      #    volumes:
-      #      - /etc/nginx/ssl/private/:/https/ # Mappa la directory dei certificati al container
+      x509__key: ${x509__key}
+      DataProtectionConfiguration__x509__FileName: ${WebApp_DataProtectionConfiguration__X509__FileName}
+      DataProtectionConfiguration__x509__Key: ${WebApp_DataProtectionConfiguration__X509__Key}
+      DataProtectionConfiguration__X509__Path: ${WebApp_DataProtectionConfiguration__X509__Path}
+      DataProtectionConfiguration__DataProtectionPath: ${WebApp_DataProtectionConfiguration__DataProtectionPath}   
+    volumes:
+      - ${HOME}/data-protection:/data-protection
+      - /etc/nginx/ssl/x509:/certs:ro
     networks:
       - dustech-network
 
@@ -39,11 +38,18 @@ services:
     image: dustech-idp
     expose:
       - "5001"
-    ports:
-      - "5001:5001"
+#    ports:
+#      - "5001:5001"
     environment:
       ASPNETCORE_HTTP_PORTS: "5001"
       ASPNETCORE_FORWARDEDHEADERS_ENABLED: true
+      DataProtectionConfiguration__x509__FileName: ${Idp_DataProtectionConfiguration__X509__FileName}
+      DataProtectionConfiguration__x509__Key: ${Idp_DataProtectionConfiguration__X509__Key}
+      DataProtectionConfiguration__X509__Path: ${Idp_DataProtectionConfiguration__X509__Path}
+      DataProtectionConfiguration__DataProtectionPath: ${Idp_DataProtectionConfiguration__DataProtectionPath}
+    volumes:
+      - ${Idp_DataProtectionConfiguration__DataProtectionPath}:${Idp_DataProtectionConfiguration__DataProtectionPath}
+      - ${Idp_DataProtectionConfiguration__X509__Path}:${Idp_DataProtectionConfiguration__X509__Path}:ro
     networks:
       - dustech-network
 

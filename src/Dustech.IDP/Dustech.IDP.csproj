@@ -15,4 +15,8 @@
     <ItemGroup>
       <ProjectReference Include="..\Dustech.App.Infrastructure\Dustech.App.Infrastructure.fsproj" />
     </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="keys\is-signing-key-B98E3AF175A0C9E079EBA132CEF1DD10.json" />
+    </ItemGroup>
 </Project>

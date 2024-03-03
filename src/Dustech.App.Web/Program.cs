@@ -1,4 +1,8 @@
+using System;
+using System.Security.Cryptography.X509Certificates;
 using Dustech.App.Infrastructure;
+using static Dustech.App.Infrastructure.ConfigurationParser;
+using static Dustech.App.Infrastructure.ConfigurationParser.WebAppConfigurationParser;
 using Dustech.App.Web;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
@@ -6,6 +10,13 @@ using Microsoft.Extensions.Hosting;
 
 var supportedCultures = new[] { "en", "it" };
 var builder = WebApplication.CreateBuilder(args);
+
+var x509Key = builder.Configuration.GetSection("x509:key").Value;
+var x509 = new X509Certificate2("/certs/dustech-io.pfx",x509Key);
+using (x509)
+{
+    
+
 
 // Add services to the container.
 builder.Services.AddRazorPages(options =>
@@ -34,11 +45,11 @@ else
     builder.Services.AddWebOptimizer();
 }
 
-var idpSection = builder.Configuration.GetSection(nameof(IdpConfigurationParser.IdpConfiguration));
-var idpConfiguration = IdpConfigurationParser.parseIdpConfiguration(idpSection);
+var idpSection = builder.Configuration.GetSection(nameof(WebAppConfiguration));
+var idpConfiguration = parseWebAppConfiguration(idpSection);
 
 
-builder.Services.AddOpenIdConnectServices(idpConfiguration);
+builder.Services.AddOpenIdConnectServices(idpConfiguration,x509);
 
 var app = builder.Build();
 
@@ -65,3 +76,5 @@ app.UseRequestLocalization();
 app.MapRazorPages();
 
 app.Run();
+
+}
