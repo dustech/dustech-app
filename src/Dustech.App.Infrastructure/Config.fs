@@ -67,16 +67,24 @@ module ConfigurationParser =
                 configSection["DataProtectionPath"]
                 |> toString }
 
-    module WebAppConfigurationParser =
+    module RuntimeConfigurationParser =
 
-        let internal webAppInternalUri = "http://webapp:5002"
-        let authInternalUri = "http://idp:5001"
+        // let internal webAppInternalUri = "http://webapp:5002"
+        // let authInternalUri = "http://idp:5001"
+        
+        let internal webAppInternalUri = "http://localhost:5002"
+        let authInternalUri = "http://localhost:5001"
+        
         let internal webAppHttpsExternalUri = "https://app.dustech.io"
         let internal authHttpsExternalUri = "https://auth.dustech.io"
         type WebAppConfiguration = { Proxied: bool }
-
+        type IdpConfiguration = { Proxied: bool }
         let parseWebAppConfiguration (configSection: IConfigurationSection) =
-            { Proxied =
+            { WebAppConfiguration.Proxied =
+                configSection["Proxied"]
+                |> toBool }
+        let parseIdpConfiguration (configSection: IConfigurationSection) =
+            { IdpConfiguration.Proxied =
                 configSection["Proxied"]
                 |> toBool }
 
@@ -92,8 +100,8 @@ module Hijacker =
 
         let newUri =
             uri
-                .Replace(WebAppConfigurationParser.webAppInternalUri, WebAppConfigurationParser.webAppHttpsExternalUri)
-                .Replace(WebAppConfigurationParser.authInternalUri, WebAppConfigurationParser.authHttpsExternalUri)
+                .Replace(RuntimeConfigurationParser.webAppInternalUri, RuntimeConfigurationParser.webAppHttpsExternalUri)
+                .Replace(RuntimeConfigurationParser.authInternalUri, RuntimeConfigurationParser.authHttpsExternalUri)
                 .Replace("http://", "https://")
 
         log $"URI result: {newUri}"
@@ -170,16 +178,16 @@ module Config =
 
     let razorPagesWebClient =
         { defaultClient with
-            Authority = WebAppConfigurationParser.authInternalUri
+            Authority = RuntimeConfigurationParser.authInternalUri
             CallBackPath = callBackPath
             ClientName = "Dustech.Io"
             ClientId = "dustechappwebclient"
             ClientSecret = "secret"
             HashedClientSecret = Hashing.sha256 <| Some "secret"
             RedirectUris =
-                [| $"{WebAppConfigurationParser.webAppInternalUri}{callBackPath}"
-                   $"{WebAppConfigurationParser.webAppHttpsExternalUri}{callBackPath}" |]
+                [| $"{RuntimeConfigurationParser.webAppInternalUri}{callBackPath}"
+                   $"{RuntimeConfigurationParser.webAppHttpsExternalUri}{callBackPath}" |]
             SignOutCallBackPath = signOutCallBackPath
             SignedOutCallbackPaths =
-                [| $"{WebAppConfigurationParser.webAppInternalUri}{signOutCallBackPath}"
-                   $"{WebAppConfigurationParser.webAppHttpsExternalUri}{signOutCallBackPath}" |] }
+                [| $"{RuntimeConfigurationParser.webAppInternalUri}{signOutCallBackPath}"
+                   $"{RuntimeConfigurationParser.webAppHttpsExternalUri}{signOutCallBackPath}" |] }

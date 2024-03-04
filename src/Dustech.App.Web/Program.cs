@@ -2,17 +2,26 @@ using System;
 using System.Security.Cryptography.X509Certificates;
 using Dustech.App.Infrastructure;
 using static Dustech.App.Infrastructure.ConfigurationParser;
-using static Dustech.App.Infrastructure.ConfigurationParser.WebAppConfigurationParser;
+using static Dustech.App.Infrastructure.ConfigurationParser.RuntimeConfigurationParser;
 using Dustech.App.Web;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-
+using static Dustech.App.Infrastructure.ConfigurationParser.DataProtectionConfigurationParser;
 var supportedCultures = new[] { "en", "it" };
 var builder = WebApplication.CreateBuilder(args);
 
-var x509Key = builder.Configuration.GetSection("x509:key").Value;
-var x509 = new X509Certificate2("/certs/dustech-io.pfx",x509Key);
+
+var dataProtectionConfiguration = parseDataProtectionConfiguration(builder.Configuration.GetSection(nameof(DataProtectionConfiguration)));
+var webAppConfiguration = parseWebAppConfiguration(builder.Configuration.GetSection(nameof(WebAppConfiguration)));
+
+Console.WriteLine($"X509__Key {dataProtectionConfiguration.X509__Key}");
+Console.WriteLine($"X509__FileName {dataProtectionConfiguration.X509__FileName}");
+Console.WriteLine($"X509__Path {dataProtectionConfiguration.X509__Path}");
+Console.WriteLine($"X509Location {dataProtectionConfiguration.X509Location}");
+Console.WriteLine($"DataProtectionPath {dataProtectionConfiguration.DataProtectionPath}");
+
+var x509 = new X509Certificate2(dataProtectionConfiguration.X509Location,dataProtectionConfiguration.X509__Key);
 using (x509)
 {
     
@@ -45,11 +54,9 @@ else
     builder.Services.AddWebOptimizer();
 }
 
-var idpSection = builder.Configuration.GetSection(nameof(WebAppConfiguration));
-var idpConfiguration = parseWebAppConfiguration(idpSection);
 
 
-builder.Services.AddOpenIdConnectServices(idpConfiguration,x509);
+builder.Services.AddOpenIdConnectServices(webAppConfiguration,dataProtectionConfiguration,x509);
 
 var app = builder.Build();
 

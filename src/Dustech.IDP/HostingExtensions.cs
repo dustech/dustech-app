@@ -6,13 +6,16 @@ using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.IdentityModel.Tokens;
 using Serilog;
 using static Dustech.App.Infrastructure.ConfigurationParser.DataProtectionConfigurationParser;
-using static Dustech.App.Infrastructure.ConfigurationParser.WebAppConfigurationParser;
+using static Dustech.App.Infrastructure.ConfigurationParser.RuntimeConfigurationParser;
+
 namespace Dustech.IDP;
 
 internal static class HostingExtensions
 {
-    public static WebApplication ConfigureServices(this WebApplicationBuilder builder, X509Certificate2 x509,
-        DataProtectionConfiguration dataProtectionConfiguration)
+    public static WebApplication ConfigureServices(this WebApplicationBuilder builder,
+        IdpConfiguration idpConfiguration,
+        DataProtectionConfiguration dataProtectionConfiguration,
+        X509Certificate2 x509)
     {
         // uncomment if you want to add a UI
         builder.Services.AddRazorPages();
@@ -21,7 +24,10 @@ internal static class HostingExtensions
             {
                 options.EmitStaticAudienceClaim = true;
                 options.KeyManagement.Enabled = false;
-                options.IssuerUri = authInternalUri;
+                if (idpConfiguration.Proxied)
+                {
+                    options.IssuerUri = authInternalUri;
+                }
             })
             .AddSigningCredential(x509)
             .AddInMemoryIdentityResources(Config.IdentityResources)

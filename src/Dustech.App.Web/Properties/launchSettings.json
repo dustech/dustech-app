@@ -9,11 +9,11 @@
     }
   },
   "profiles": {
-    "https": {
+    "local": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": false,
-      "applicationUrl": "https://joy:5002;",
+      "applicationUrl": "http://localhost:5002;",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

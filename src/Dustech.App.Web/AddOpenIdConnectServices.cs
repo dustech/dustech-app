@@ -2,22 +2,26 @@
 using System.IO;
 using System.Security.Cryptography.X509Certificates;
 using Dustech.App.Infrastructure;
-using static Dustech.App.Infrastructure.ConfigurationParser.WebAppConfigurationParser;
+using static Dustech.App.Infrastructure.ConfigurationParser.RuntimeConfigurationParser;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using NUglify.Helpers;
-
+using static Dustech.App.Infrastructure.ConfigurationParser.DataProtectionConfigurationParser;
 namespace Dustech.App.Web;
 
 public static class OpenIdConnectServicesExtensions
 {
     public static IServiceCollection AddOpenIdConnectServices(this IServiceCollection services,
-        WebAppConfiguration webAppConfiguration, X509Certificate2 x509)
+        WebAppConfiguration webAppConfiguration,
+        DataProtectionConfiguration dataProtectionConfiguration,
+        X509Certificate2 x509)
     {
-        ArgumentNullException.ThrowIfNull(services);
+        ArgumentNullException.ThrowIfNull(webAppConfiguration);
+        ArgumentNullException.ThrowIfNull(dataProtectionConfiguration);
+        ArgumentNullException.ThrowIfNull(x509);
         services.AddAuthentication(options =>
             {
                 options.DefaultScheme =
@@ -59,7 +63,7 @@ public static class OpenIdConnectServicesExtensions
 
             
         services.AddDataProtection()
-                    .PersistKeysToFileSystem(new DirectoryInfo("/data-protection"))
+                    .PersistKeysToFileSystem(new DirectoryInfo(dataProtectionConfiguration.DataProtectionPath))
                     .ProtectKeysWithCertificate(x509)
                     .SetApplicationName(Config.razorPagesWebClient.ClientId);
             
