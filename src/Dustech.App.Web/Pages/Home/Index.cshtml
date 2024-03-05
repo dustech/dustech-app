@@ -7,10 +7,6 @@
 @inject IStringLocalizer<IndexModel> Localizer
 @inject IHtmlLocalizer<IndexModel> HtmlLocalizer
 
-@inject IConfiguration Conf
-
-Proxied:
-@Conf.GetSection("IdpConfiguration:Proxied").Value
 
 @section BeforeMain
 {

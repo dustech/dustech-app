@@ -48,73 +48,73 @@ module ConfigurationParser =
               DataProtectionPath: string }
 
             member this.X509Location =
-                String.concat
-                    (Path.DirectorySeparatorChar.ToString())
-                    (seq [ this.X509__Path
-                           this.X509__FileName ])
-        
+                String.concat (Path.DirectorySeparatorChar.ToString()) (seq [ this.X509__Path; this.X509__FileName ])
+
         let parseDataProtectionConfiguration (configSection: IConfigurationSection) =
-            { X509__FileName =
-                configSection["X509:FileName"]
-                |> toString
-              X509__Key =
-                configSection["X509:Key"]
-                |> toString
-              X509__Path =
-                configSection["X509:Path"]
-                |> toString
-              DataProtectionPath =
-                configSection["DataProtectionPath"]
-                |> toString }
+            { X509__FileName = configSection["X509:FileName"] |> toString
+              X509__Key = configSection["X509:Key"] |> toString
+              X509__Path = configSection["X509:Path"] |> toString
+              DataProtectionPath = configSection["DataProtectionPath"] |> toString }
 
     module RuntimeConfigurationParser =
 
         // let internal webAppInternalUri = "http://webapp:5002"
         // let authInternalUri = "http://idp:5001"
-        
-        let internal webAppInternalUri = "http://localhost:5002"
-        let authInternalUri = "http://localhost:5001"
-        
+
+        //let internal webAppInternalUri = "http://localhost:5002"
+        //let authInternalUri = "http://localhost:5001"
+
         let internal webAppHttpsExternalUri = "https://app.dustech.io"
         let internal authHttpsExternalUri = "https://auth.dustech.io"
-        type WebAppConfiguration = { Proxied: bool }
-        type IdpConfiguration = { Proxied: bool }
+
+        type WebAppConfiguration =
+            { Proxied: bool
+              Authority: string
+              WebAppInternalUri: string }
+
+        type IdpConfiguration =
+            { Proxied: bool
+              Authority: string
+              WebAppInternalUri: string }
+
         let parseWebAppConfiguration (configSection: IConfigurationSection) =
-            { WebAppConfiguration.Proxied =
-                configSection["Proxied"]
-                |> toBool }
+            { WebAppConfiguration.Proxied = configSection["Proxied"] |> toBool
+              Authority = configSection["Authority"] |> toString
+              WebAppInternalUri = configSection["WebAppInternalUri"] |> toString }
+
         let parseIdpConfiguration (configSection: IConfigurationSection) =
-            { IdpConfiguration.Proxied =
-                configSection["Proxied"]
-                |> toBool }
+            { IdpConfiguration.Proxied = configSection["Proxied"] |> toBool
+              Authority = configSection["Authority"] |> toString
+              WebAppInternalUri = configSection["WebAppInternalUri"] |> toString }
+
+open ConfigurationParser.RuntimeConfigurationParser
 
 module Hijacker =
     open Microsoft.AspNetCore.Authentication.OpenIdConnect
     open Microsoft.AspNetCore.Http.Extensions
-    open ConfigurationParser
 
     let log message = printfn $"%s{message}"
 
-    let replaceUri (uri: string) =
+    let replaceUri (webAppConfiguration: WebAppConfiguration) (uri: string) =
         log $"Try to substitute: {uri}"
 
         let newUri =
             uri
-                .Replace(RuntimeConfigurationParser.webAppInternalUri, RuntimeConfigurationParser.webAppHttpsExternalUri)
-                .Replace(RuntimeConfigurationParser.authInternalUri, RuntimeConfigurationParser.authHttpsExternalUri)
+                .Replace(webAppConfiguration.WebAppInternalUri, webAppHttpsExternalUri)
+                .Replace(webAppConfiguration.Authority, authHttpsExternalUri)
                 .Replace("http://", "https://")
 
         log $"URI result: {newUri}"
         newUri
 
-    let Hijack (context: RedirectContext) =
+    let Hijack (webAppConfiguration: WebAppConfiguration) (context: RedirectContext) =
         async {
-            
+
             let maybePostLogoutRedirectUri =
                 Option.ofObj context.ProtocolMessage.PostLogoutRedirectUri
 
             match maybePostLogoutRedirectUri with
-            | Some uri -> context.ProtocolMessage.PostLogoutRedirectUri <- replaceUri uri
+            | Some uri -> context.ProtocolMessage.PostLogoutRedirectUri <- replaceUri webAppConfiguration uri
             | _ -> ()
 
             let maybeIssuerAddress = Option.ofObj context.ProtocolMessage.IssuerAddress
@@ -124,13 +124,14 @@ module Hijacker =
                 let fullUrl = context.Request.GetDisplayUrl()
                 log "Issuer Address Logging DisplayUri"
                 log fullUrl
-                context.ProtocolMessage.IssuerAddress <- replaceUri address
+                context.ProtocolMessage.IssuerAddress <- replaceUri webAppConfiguration address
             | _ -> ()
 
             let maybeRedirectUri = Option.ofObj context.ProtocolMessage.RedirectUri
 
             match maybeRedirectUri with
-            | Some redirectUri -> context.ProtocolMessage.RedirectUri <- replaceUri redirectUri
+            | Some redirectUri ->
+                context.ProtocolMessage.RedirectUri <- replaceUri webAppConfiguration redirectUri
             | _ -> ()
 
             return ()
@@ -148,10 +149,10 @@ module Config =
           ClientId: string
           ClientSecret: string
           HashedClientSecret: string
-          RedirectUris: string []
+          RedirectUris: string[]
           ResponseType: string
           SignOutCallBackPath: string
-          SignedOutCallbackPaths: string []
+          SignedOutCallbackPaths: string[]
           Scopes: string seq }
 
     let private authorizationCode = "code"
@@ -168,15 +169,13 @@ module Config =
           ResponseType = authorizationCode
           SignOutCallBackPath = empty
           SignedOutCallbackPaths = Array.empty
-          Scopes =
-            [ StandardScopes.Profile
-              StandardScopes.OpenId ] }
+          Scopes = [ StandardScopes.Profile; StandardScopes.OpenId ] }
 
     let private callBackPath = "/signin-oidc"
     let private signOutCallBackPath = "/signout-callback-oidc"
 
 
-    let razorPagesWebClient authInternalUri =
+    let razorPagesWebClient authInternalUri webAppInternalUri =
         { defaultClient with
             Authority = authInternalUri
             CallBackPath = callBackPath
@@ -185,9 +184,9 @@ module Config =
             ClientSecret = "secret"
             HashedClientSecret = Hashing.sha256 <| Some "secret"
             RedirectUris =
-                [| $"{RuntimeConfigurationParser.webAppInternalUri}{callBackPath}"
-                   $"{RuntimeConfigurationParser.webAppHttpsExternalUri}{callBackPath}" |]
+                [| $"{webAppInternalUri}{callBackPath}"
+                   $"{webAppHttpsExternalUri}{callBackPath}" |]
             SignOutCallBackPath = signOutCallBackPath
             SignedOutCallbackPaths =
-                [| $"{RuntimeConfigurationParser.webAppInternalUri}{signOutCallBackPath}"
-                   $"{RuntimeConfigurationParser.webAppHttpsExternalUri}{signOutCallBackPath}" |] }
+                [| $"{webAppInternalUri}{signOutCallBackPath}"
+                   $"{webAppHttpsExternalUri}{signOutCallBackPath}" |] }

@@ -14,12 +14,15 @@ var builder = WebApplication.CreateBuilder(args);
 
 var dataProtectionConfiguration = parseDataProtectionConfiguration(builder.Configuration.GetSection(nameof(DataProtectionConfiguration)));
 var webAppConfiguration = parseWebAppConfiguration(builder.Configuration.GetSection(nameof(WebAppConfiguration)));
-var razorPagesWebClient = Config.razorPagesWebClient("http://localhost:5001"); //"http://idp:5001" proxed
+var razorPagesWebClient = Config.razorPagesWebClient(webAppConfiguration.Authority, webAppConfiguration.WebAppInternalUri); 
 Console.WriteLine($"X509__Key {dataProtectionConfiguration.X509__Key}");
 Console.WriteLine($"X509__FileName {dataProtectionConfiguration.X509__FileName}");
 Console.WriteLine($"X509__Path {dataProtectionConfiguration.X509__Path}");
 Console.WriteLine($"X509Location {dataProtectionConfiguration.X509Location}");
 Console.WriteLine($"DataProtectionPath {dataProtectionConfiguration.DataProtectionPath}");
+Console.WriteLine($"Proxied {webAppConfiguration.Proxied}");
+Console.WriteLine($"WebAppInternalUri {webAppConfiguration.WebAppInternalUri}");
+Console.WriteLine($"Authority {webAppConfiguration.Authority}");
 
 var x509 = new X509Certificate2(dataProtectionConfiguration.X509Location,dataProtectionConfiguration.X509__Key);
 using (x509)

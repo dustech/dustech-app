@@ -40,8 +40,8 @@ public static class OpenIdConnectServicesExtensions
 
                     if (proxied)
                     {
-                        options.Events.OnRedirectToIdentityProvider = Hijacker.Hijack;
-                        options.Events.OnRedirectToIdentityProviderForSignOut = Hijacker.Hijack;
+                        options.Events.OnRedirectToIdentityProvider = context => Hijacker.Hijack(webAppConfiguration, context);
+                        options.Events.OnRedirectToIdentityProviderForSignOut = context => Hijacker.Hijack(webAppConfiguration, context);;
                     }
 
                     options.SignInScheme = CookieAuthenticationDefaults

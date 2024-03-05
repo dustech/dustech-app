@@ -31,7 +31,7 @@ internal static class HostingExtensions
                 options.KeyManagement.Enabled = false;
                 if (idpConfiguration.Proxied)
                 {
-                    options.IssuerUri = authInternalUri;
+                    options.IssuerUri = idpConfiguration.Authority;
                 }
             })
             .AddSigningCredential(x509)
