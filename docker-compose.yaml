@@ -6,8 +6,7 @@ services:
     ports:
       - "443:443"
     volumes:
-      - /etc/nginx/ssl:/etc/nginx/ssl:ro    
-      - /etc/nginx/ssl/private:/etc/nginx/ssl/private:ro    
+      - /home/dustech/.certs:/etc/nginx/ssl:ro     
     networks: 
       - dustech-network    
   
@@ -22,14 +21,13 @@ services:
       ASPNETCORE_HTTP_PORTS: "5002" 
       ASPNETCORE_ENVIRONMENT: "Development"
       IdpConfiguration__Proxied : "True"
-      x509__key: ${x509__key}
       DataProtectionConfiguration__x509__FileName: ${WebApp_DataProtectionConfiguration__X509__FileName}
       DataProtectionConfiguration__x509__Key: ${WebApp_DataProtectionConfiguration__X509__Key}
       DataProtectionConfiguration__X509__Path: ${WebApp_DataProtectionConfiguration__X509__Path}
       DataProtectionConfiguration__DataProtectionPath: ${WebApp_DataProtectionConfiguration__DataProtectionPath}   
     volumes:
-      - ${HOME}/data-protection:/data-protection
-      - /etc/nginx/ssl/x509:/certs:ro
+      - ${WebApp_DataProtectionConfiguration__DataProtectionPath}:${WebApp_DataProtectionConfiguration__DataProtectionPath}
+      - ${WebApp_DataProtectionConfiguration__X509__Path}:${WebApp_DataProtectionConfiguration__X509__Path}:ro
     networks:
       - dustech-network
 
