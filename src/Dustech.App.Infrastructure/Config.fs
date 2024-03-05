@@ -114,7 +114,11 @@ module Hijacker =
                 Option.ofObj context.ProtocolMessage.PostLogoutRedirectUri
 
             match maybePostLogoutRedirectUri with
-            | Some uri -> context.ProtocolMessage.PostLogoutRedirectUri <- replaceUri webAppConfiguration uri
+            | Some uri ->
+                let fullUrl = context.Request.GetDisplayUrl()
+                log "PostLogoutRedirectUri Logging DisplayUri"
+                log fullUrl
+                context.ProtocolMessage.PostLogoutRedirectUri <- replaceUri webAppConfiguration uri
             | _ -> ()
 
             let maybeIssuerAddress = Option.ofObj context.ProtocolMessage.IssuerAddress
@@ -131,6 +135,9 @@ module Hijacker =
 
             match maybeRedirectUri with
             | Some redirectUri ->
+                let fullUrl = context.Request.GetDisplayUrl()
+                log "RedirectUri Logging DisplayUri"
+                log fullUrl
                 context.ProtocolMessage.RedirectUri <- replaceUri webAppConfiguration redirectUri
             | _ -> ()
 

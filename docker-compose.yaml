@@ -19,8 +19,8 @@ services:
 #      - "5002:5002"
     environment:
       ASPNETCORE_HTTP_PORTS: "5002" 
-      ASPNETCORE_ENVIRONMENT: "Development"
-      IdpConfiguration__Proxied : "True"
+      # ASPNETCORE_ENVIRONMENT: "Development"
+      ASPNETCORE_FORWARDEDHEADERS_ENABLED: true
       DataProtectionConfiguration__x509__FileName: ${WebApp_DataProtectionConfiguration__X509__FileName}
       DataProtectionConfiguration__x509__Key: ${WebApp_DataProtectionConfiguration__X509__Key}
       DataProtectionConfiguration__X509__Path: ${WebApp_DataProtectionConfiguration__X509__Path}
