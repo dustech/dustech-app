@@ -15,8 +15,13 @@ internal static class HostingExtensions
     public static WebApplication ConfigureServices(this WebApplicationBuilder builder,
         IdpConfiguration idpConfiguration,
         DataProtectionConfiguration dataProtectionConfiguration,
+        App.Infrastructure.Config.Client razorPagesWebClient,
         X509Certificate2 x509)
     {
+        ArgumentNullException.ThrowIfNull(idpConfiguration);
+        ArgumentNullException.ThrowIfNull(dataProtectionConfiguration);
+        ArgumentNullException.ThrowIfNull(razorPagesWebClient);
+        ArgumentNullException.ThrowIfNull(x509);
         // uncomment if you want to add a UI
         builder.Services.AddRazorPages();
 
@@ -32,7 +37,7 @@ internal static class HostingExtensions
             .AddSigningCredential(x509)
             .AddInMemoryIdentityResources(Config.IdentityResources)
             .AddInMemoryApiScopes(Config.ApiScopes)
-            .AddInMemoryClients(Config.Clients)
+            .AddInMemoryClients(Config.Clients(razorPagesWebClient))
             .AddTestUsers(TestUsers.Users);
 
         builder.Services.Configure<ForwardedHeadersOptions>(options =>
@@ -44,7 +49,7 @@ internal static class HostingExtensions
         builder.Services.AddDataProtection()
             .PersistKeysToFileSystem(new DirectoryInfo(dataProtectionConfiguration.DataProtectionPath))
             .ProtectKeysWithCertificate(x509)
-            .SetApplicationName(App.Infrastructure.Config.razorPagesWebClient.ClientId);
+            .SetApplicationName(razorPagesWebClient.ClientId);
 
 
         return builder.Build();

@@ -176,9 +176,9 @@ module Config =
     let private signOutCallBackPath = "/signout-callback-oidc"
 
 
-    let razorPagesWebClient =
+    let razorPagesWebClient authInternalUri =
         { defaultClient with
-            Authority = RuntimeConfigurationParser.authInternalUri
+            Authority = authInternalUri
             CallBackPath = callBackPath
             ClientName = "Dustech.Io"
             ClientId = "dustechappwebclient"

@@ -16,17 +16,17 @@ public static class Config
         new ApiScope[]
             { };
 
-    public static IEnumerable<Client> Clients =>
+    public static IEnumerable<Client> Clients(App.Infrastructure.Config.Client razorPagesWebClient) =>
         new []
         {
             new Client()
             {
-                ClientName = App.Infrastructure.Config.razorPagesWebClient.ClientName,
-                ClientId = App.Infrastructure.Config.razorPagesWebClient.ClientId,
+                ClientName = razorPagesWebClient.ClientName,
+                ClientId = razorPagesWebClient.ClientId,
                 AllowedGrantTypes = GrantTypes.Code,
-                RedirectUris = App.Infrastructure.Config.razorPagesWebClient.RedirectUris,
+                RedirectUris = razorPagesWebClient.RedirectUris,
                 PostLogoutRedirectUris =
-                    App.Infrastructure.Config.razorPagesWebClient.SignedOutCallbackPaths,
+                    razorPagesWebClient.SignedOutCallbackPaths,
                 AllowedScopes =
                 {
                     IdentityServerConstants.StandardScopes.OpenId,
@@ -34,7 +34,7 @@ public static class Config
                 },
                 ClientSecrets =
                 {
-                    new Secret(App.Infrastructure.Config.razorPagesWebClient.HashedClientSecret)
+                    new Secret(razorPagesWebClient.HashedClientSecret)
                 },
                 RequireConsent = true
             }

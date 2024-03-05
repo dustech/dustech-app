@@ -17,10 +17,12 @@ public static class OpenIdConnectServicesExtensions
     public static IServiceCollection AddOpenIdConnectServices(this IServiceCollection services,
         WebAppConfiguration webAppConfiguration,
         DataProtectionConfiguration dataProtectionConfiguration,
+        Config.Client razorPagesWebClient,
         X509Certificate2 x509)
     {
         ArgumentNullException.ThrowIfNull(webAppConfiguration);
         ArgumentNullException.ThrowIfNull(dataProtectionConfiguration);
+        ArgumentNullException.ThrowIfNull(razorPagesWebClient);
         ArgumentNullException.ThrowIfNull(x509);
         services.AddAuthentication(options =>
             {
@@ -44,18 +46,17 @@ public static class OpenIdConnectServicesExtensions
 
                     options.SignInScheme = CookieAuthenticationDefaults
                         .AuthenticationScheme;
-                    options.SignedOutCallbackPath = new PathString(Config.razorPagesWebClient.SignOutCallBackPath);
-                    options.Authority = Config.razorPagesWebClient.Authority;
-                    options.ClientId = Config.razorPagesWebClient.ClientId;
+                    options.SignedOutCallbackPath = new PathString(razorPagesWebClient.SignOutCallBackPath);
+                    options.Authority = razorPagesWebClient.Authority;
+                    options.ClientId = razorPagesWebClient.ClientId;
                     options.ClientSecret =
-                        Config.razorPagesWebClient.ClientSecret;
+                        razorPagesWebClient.ClientSecret;
                     options.ResponseType =
-                        Config.razorPagesWebClient.ResponseType;
-                    Config.razorPagesWebClient.Scopes
+                        razorPagesWebClient.ResponseType;
+                    razorPagesWebClient.Scopes
                         .ForEach(options.Scope.Add);
                     options.CallbackPath =
-                        new PathString(Config.razorPagesWebClient
-                            .CallBackPath);
+                        new PathString(razorPagesWebClient.CallBackPath);
                     options.AccessDeniedPath = "/AccessDenied";
                     options.SaveTokens = true;
                     options.RequireHttpsMetadata = false;
@@ -65,7 +66,7 @@ public static class OpenIdConnectServicesExtensions
         services.AddDataProtection()
                     .PersistKeysToFileSystem(new DirectoryInfo(dataProtectionConfiguration.DataProtectionPath))
                     .ProtectKeysWithCertificate(x509)
-                    .SetApplicationName(Config.razorPagesWebClient.ClientId);
+                    .SetApplicationName(razorPagesWebClient.ClientId);
             
             
         return services;

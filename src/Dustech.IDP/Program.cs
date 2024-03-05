@@ -15,6 +15,8 @@ try
     var dataProtectionConfiguration =
         parseDataProtectionConfiguration(builder.Configuration.GetSection(nameof(DataProtectionConfiguration)));
     var idpConfiguration = parseIdpConfiguration(builder.Configuration.GetSection(nameof(IdpConfiguration)));
+    var razorPagesWebClient = Dustech.App.Infrastructure.Config.razorPagesWebClient("http://localhost:5001"); //"http://idp:5001" proxed
+
     Console.WriteLine($"X509__Key {dataProtectionConfiguration.X509__Key}");
     Console.WriteLine($"X509__FileName {dataProtectionConfiguration.X509__FileName}");
     Console.WriteLine($"X509__Path {dataProtectionConfiguration.X509__Path}");
@@ -33,7 +35,7 @@ try
             .ReadFrom.Configuration(ctx.Configuration));
 
         var app = builder
-            .ConfigureServices(idpConfiguration,dataProtectionConfiguration,x509)
+            .ConfigureServices(idpConfiguration,dataProtectionConfiguration,razorPagesWebClient,x509)
             .ConfigurePipeline();
 
         app.Run();

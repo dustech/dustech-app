@@ -14,7 +14,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 var dataProtectionConfiguration = parseDataProtectionConfiguration(builder.Configuration.GetSection(nameof(DataProtectionConfiguration)));
 var webAppConfiguration = parseWebAppConfiguration(builder.Configuration.GetSection(nameof(WebAppConfiguration)));
-
+var razorPagesWebClient = Config.razorPagesWebClient("http://localhost:5001"); //"http://idp:5001" proxed
 Console.WriteLine($"X509__Key {dataProtectionConfiguration.X509__Key}");
 Console.WriteLine($"X509__FileName {dataProtectionConfiguration.X509__FileName}");
 Console.WriteLine($"X509__Path {dataProtectionConfiguration.X509__Path}");
@@ -56,7 +56,7 @@ else
 
 
 
-builder.Services.AddOpenIdConnectServices(webAppConfiguration,dataProtectionConfiguration,x509);
+builder.Services.AddOpenIdConnectServices(webAppConfiguration,dataProtectionConfiguration,razorPagesWebClient,x509);
 
 var app = builder.Build();
 
