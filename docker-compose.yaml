@@ -12,7 +12,7 @@ services:
   
   
   webapp:
-    image: dustech-app-web
+    image: dustech-webapp
     expose:
       - "5002" 
 #    ports:
