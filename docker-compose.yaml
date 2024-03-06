@@ -1,12 +1,25 @@
 version: '3.8'
 
 services:
+  
+  certbot:
+    image: certbot/certbot:latest
+    volumes:
+      - ${HOME}/certbot/www/:/var/www/certbot/:rw
+      - ${HOME}/certbot/conf/:/etc/letsencrypt/:rw
+    networks:
+      - dustech-network
+  
   nginx:
     image: dustech-nginx
     ports:
+      - "80:80"
       - "443:443"
+    #restart: always
     volumes:
-      - /home/dustech/.certs:/etc/nginx/ssl:ro     
+      #- ${HOME}/.certs:/etc/nginx/ssl:ro     
+      - ${HOME}/certbot/www/:/var/www/certbot/:ro
+      - ${HOME}/certbot/conf/:/etc/nginx/ssl/:ro
     networks: 
       - dustech-network    
   
