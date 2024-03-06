@@ -11,13 +11,14 @@ services:
       - dustech-network
   
   nginx:
-    image: dustech-nginx
+    image: nginx:latest
     ports:
       - 80:80
       - 443:443
     #restart: always
     volumes:
       #- ${HOME}/.certs:/etc/nginx/ssl:ro     
+      - ./nginx/conf/:/etc/nginx/conf.d/:ro
       - ${HOME}/certbot/www/:/var/www/certbot/:ro
       - ${HOME}/certbot/conf/:/etc/nginx/ssl/:ro
     networks: 
