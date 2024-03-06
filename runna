@@ -1,5 +1,5 @@
 #!/bin/bash
 
 ./compose-down && \
-./docker-build-nginx && \
+#./docker-build-nginx && \
 ./compose-up
