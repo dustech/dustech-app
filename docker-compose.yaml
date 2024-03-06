@@ -13,8 +13,8 @@ services:
   nginx:
     image: dustech-nginx
     ports:
-      - "80:80"
-      - "443:443"
+      - 80:80
+      - 443:443
     #restart: always
     volumes:
       #- ${HOME}/.certs:/etc/nginx/ssl:ro     
@@ -27,7 +27,7 @@ services:
   webapp:
     image: dustech-webapp
     expose:
-      - "5002" 
+      - 5002 
 #    ports:
 #      - "5002:5002"
     environment:
@@ -48,7 +48,7 @@ services:
   idp:
     image: dustech-idp
     expose:
-      - "5001"
+      - 5001
 #    ports:
 #      - "5001:5001"
     environment:
