@@ -1,11 +1,9 @@
-@{
-    var randomy = Random.Shared.Next(0, 99);
-}
+@model PersonImage 
 
 <div class="user-img">
     <div class="glow-effect">
         <img
-            src="https://randomuser.me/api/portraits/men/@(randomy).jpg"
+            src="@Model.Src"
             alt=""
             class="img-fluid rounded-circle glow-border "/>
     </div>
