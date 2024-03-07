@@ -15,7 +15,21 @@ d-flex justify-content-center align-items-center "
      style="width:@(width)px;height:@(height)px;position: absolute; margin-top:@(topOffSet)px ;margin-left:@(leftOffSet)px;">
     
     <div class="container m-0 p-0">
-        <div class="row mt-3 w-100 m-auto">
+        @* smallest size *@
+        <div class="row mt-3 w-100 m-auto d-block d-sm-none">
+            <div class="col-12">
+                <p class=" mb-0">
+                    <i class="bi-@(Model.Icon)"></i>
+                </p>
+            </div>
+            <div class="col-12 m-0 p-0">
+                <p class="text-truncate small">
+                    @(Model.Content)
+                </p>
+            </div>
+        </div>
+        @* normal size *@
+        <div class="row mt-3 w-100 m-auto d-none d-sm-block">
             <div class="col-12">
                 <p class="h3 mb-0">
                     <i class="bi-@(Model.Icon)"></i>
