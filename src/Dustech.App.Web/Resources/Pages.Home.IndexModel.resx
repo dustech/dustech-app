@@ -53,4 +53,7 @@ and
     <data name="WelcomeToMyWebSpace" xml:space="preserve">
         <value>Welcome to my web space, feel free to explore as you please.</value>
     </data>
+    <data name="MyNameIs" xml:space="preserve">
+        <value>My name is</value>
+    </data>
 </root>
