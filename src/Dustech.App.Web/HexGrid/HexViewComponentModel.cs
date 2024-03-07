@@ -17,4 +17,5 @@ public record HexViewComponentModel
     public string Content { get; init; } = "";
     public string Icon { get; init; } = "";
     public string Href { get; init; } = "/index";
+    public bool IsButton { get; init; } 
 }

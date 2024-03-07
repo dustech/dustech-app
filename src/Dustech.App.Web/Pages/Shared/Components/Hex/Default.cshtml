@@ -8,9 +8,11 @@
     var height = Utils.DeLocalizer.toInvariant(Model.Height);
     var topOffSet = Utils.DeLocalizer.toInvariant(Model.TopOffSet);
     var leftOffSet = Utils.DeLocalizer.toInvariant(Model.LeftOffSet);
+    var localClasses = "";
+    localClasses = Model.IsButton ? $"hexagon-card-btn btn btn-{Model.ColorContext} " : "alert alert-dark border-0";
 }
 
-<div class="hexagon-card hexagon-card-btn px-0 btn btn-@(Model.ColorContext) 
+<div class="hexagon-card px-0 @localClasses
 d-flex justify-content-center align-items-center "
      style="width:@(width)px;height:@(height)px;position: absolute; margin-top:@(topOffSet)px ;margin-left:@(leftOffSet)px;">
     
@@ -41,7 +43,10 @@ d-flex justify-content-center align-items-center "
                 </p>
             </div>
         </div>
-        <a asp-page="@Model.Href" class="text-decoration-none stretched-link"></a>
+        @if (Model.IsButton)
+        {
+            <a asp-page="@Model.Href" class="text-decoration-none stretched-link"></a>
+        }
     </div>
     
 </div>
