@@ -5,24 +5,34 @@
 <partial name="_Head" model="@Model.HeadModel"/>
 <body>
 <div id="flex-container">
-<partial name="_Header" model="@Model.RequestCultureFeature"/>
+    <div class="spinner-mask" id="site-mask">
+        <div class="spinner-content vh-100 d-flex flex-column  justify-content-center align-items-center">
+            <div class="spinner-border text-primary" role="status">
+                <span class="sr-only">.</span>
+            </div>
+            <div class="mt-4">
+                Loading...
+            </div> 
+        </div>
+    </div>
+    <partial name="_Header" model="@Model.RequestCultureFeature"/>
 
-@await RenderSectionAsync("BeforeMain", required: false)
+    @await RenderSectionAsync("BeforeMain", required: false)
 
-<main class="main" role="main">
-    @RenderBody()
-</main>
+    <main class="main" role="main">
+        @RenderBody()
+    </main>
 
 
-<partial name="_Footer"/>
+    <partial name="_Footer"/>
 
-<script src="~/js/bootstrap.bundle.min.js"></script>
-<script src="~/js/brand-bar-events.js" asp-append-version="true"></script>
-<script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/brand-bar-events.js" asp-append-version="true"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
 
-<partial name="_Ruler"/>
+    <partial name="_Ruler"/>
 
-@await RenderSectionAsync("Scripts", required: false)
+    @await RenderSectionAsync("Scripts", required: false)
 </div>
 </body>
 </html>
