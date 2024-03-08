@@ -10,13 +10,16 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using static Dustech.App.Infrastructure.ConfigurationParser.DataProtectionConfigurationParser;
+
 var supportedCultures = new[] { "en", "it" };
 var builder = WebApplication.CreateBuilder(args);
 
 
-var dataProtectionConfiguration = parseDataProtectionConfiguration(builder.Configuration.GetSection(nameof(DataProtectionConfiguration)));
+var dataProtectionConfiguration =
+    parseDataProtectionConfiguration(builder.Configuration.GetSection(nameof(DataProtectionConfiguration)));
 var webAppConfiguration = parseWebAppConfiguration(builder.Configuration.GetSection(nameof(WebAppConfiguration)));
-var razorPagesWebClient = Config.razorPagesWebClient(webAppConfiguration.Authority, webAppConfiguration.WebAppInternalUri); 
+var razorPagesWebClient =
+    Config.razorPagesWebClient(webAppConfiguration.Authority, webAppConfiguration.WebAppInternalUri);
 Console.WriteLine($"X509__Key {dataProtectionConfiguration.X509__Key}");
 Console.WriteLine($"X509__FileName {dataProtectionConfiguration.X509__FileName}");
 Console.WriteLine($"X509__Path {dataProtectionConfiguration.X509__Path}");
@@ -25,12 +28,6 @@ Console.WriteLine($"DataProtectionPath {dataProtectionConfiguration.DataProtecti
 Console.WriteLine($"Proxied {webAppConfiguration.Proxied}");
 Console.WriteLine($"WebAppInternalUri {webAppConfiguration.WebAppInternalUri}");
 Console.WriteLine($"Authority {webAppConfiguration.Authority}");
-
-var x509 = new X509Certificate2(dataProtectionConfiguration.X509Location,dataProtectionConfiguration.X509__Key);
-using (x509)
-{
-    
-
 
 // Add services to the container.
 builder.Services.AddRazorPages(options =>
@@ -60,21 +57,21 @@ else
 }
 
 
+builder.Services.AddOpenIdConnectServices(webAppConfiguration, razorPagesWebClient);
 
-builder.Services.AddOpenIdConnectServices(webAppConfiguration,dataProtectionConfiguration,razorPagesWebClient,x509);
-
-var myUsers = new List<Users.User>
+X509Certificate2 x509 = null!; 
+if (builder.Environment.IsProduction())
 {
-    new ("Cannolo","male"),
-    new ("Marygold","female"),
-    new ("Lilly","female")
-};
+    x509 = new X509Certificate2(dataProtectionConfiguration.X509Location, dataProtectionConfiguration.X509__Key);
 
-var usersInMemory = UsersInMemory.toUsers(myUsers);
+    builder.Services.AddWebappDataProtection(dataProtectionConfiguration, razorPagesWebClient,
+        x509);
+}
+
+
+var usersInMemory = UsersInMemory.toUsers(ExampleUsers.exampleUsers);
 
 builder.Services.TryAddSingleton<Users.IUser>(usersInMemory);
-
-
 
 
 var app = builder.Build();
@@ -103,4 +100,4 @@ app.MapRazorPages();
 
 app.Run();
 
-}
+x509?.Dispose();

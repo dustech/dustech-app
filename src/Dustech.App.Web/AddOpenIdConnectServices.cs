@@ -10,20 +10,18 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using NUglify.Helpers;
 using static Dustech.App.Infrastructure.ConfigurationParser.DataProtectionConfigurationParser;
+
 namespace Dustech.App.Web;
 
 public static class OpenIdConnectServicesExtensions
 {
     public static IServiceCollection AddOpenIdConnectServices(this IServiceCollection services,
         WebAppConfiguration webAppConfiguration,
-        DataProtectionConfiguration dataProtectionConfiguration,
-        Config.Client razorPagesWebClient,
-        X509Certificate2 x509)
+        Config.Client razorPagesWebClient
+        )
     {
         ArgumentNullException.ThrowIfNull(webAppConfiguration);
-        ArgumentNullException.ThrowIfNull(dataProtectionConfiguration);
         ArgumentNullException.ThrowIfNull(razorPagesWebClient);
-        ArgumentNullException.ThrowIfNull(x509);
         services.AddAuthentication(options =>
             {
                 options.DefaultScheme =
@@ -40,8 +38,11 @@ public static class OpenIdConnectServicesExtensions
 
                     if (proxied)
                     {
-                        options.Events.OnRedirectToIdentityProvider = context => Hijacker.Hijack(webAppConfiguration, context);
-                        options.Events.OnRedirectToIdentityProviderForSignOut = context => Hijacker.Hijack(webAppConfiguration, context);;
+                        options.Events.OnRedirectToIdentityProvider =
+                            context => Hijacker.Hijack(webAppConfiguration, context);
+                        options.Events.OnRedirectToIdentityProviderForSignOut =
+                            context => Hijacker.Hijack(webAppConfiguration, context);
+                        ;
                     }
 
                     options.SignInScheme = CookieAuthenticationDefaults
@@ -61,14 +62,24 @@ public static class OpenIdConnectServicesExtensions
                     options.SaveTokens = true;
                     options.RequireHttpsMetadata = false;
                 });
+        return services;
+    }
 
-            
+
+    public static IServiceCollection AddWebappDataProtection(this IServiceCollection services,
+        DataProtectionConfiguration dataProtectionConfiguration,
+        Config.Client razorPagesWebClient,
+        X509Certificate2 x509)
+    {
+        ArgumentNullException.ThrowIfNull(dataProtectionConfiguration);
+        ArgumentNullException.ThrowIfNull(razorPagesWebClient);
+        ArgumentNullException.ThrowIfNull(x509);
+       
         services.AddDataProtection()
-                    .PersistKeysToFileSystem(new DirectoryInfo(dataProtectionConfiguration.DataProtectionPath))
-                    .ProtectKeysWithCertificate(x509)
-                    .SetApplicationName(razorPagesWebClient.ClientId);
-            
-            
+            .PersistKeysToFileSystem(new DirectoryInfo(dataProtectionConfiguration.DataProtectionPath))
+            .ProtectKeysWithCertificate(x509)
+            .SetApplicationName(razorPagesWebClient.ClientId);
+
         return services;
     }
 }
