@@ -1,9 +1,6 @@
-using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
-using Dustech.App.Infrastructure;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.HttpOverrides;
-using Microsoft.IdentityModel.Tokens;
 using Serilog;
 using static Dustech.App.Infrastructure.ConfigurationParser.DataProtectionConfigurationParser;
 using static Dustech.App.Infrastructure.ConfigurationParser.RuntimeConfigurationParser;
