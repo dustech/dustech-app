@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Net.Http.Headers;
 using static Dustech.App.Infrastructure.ConfigurationParser.DataProtectionConfigurationParser;
 
 var supportedCultures = new[] { "en", "it" };
@@ -87,7 +88,16 @@ if (!app.Environment.IsDevelopment())
 //app.UseHttpsRedirection();
 
 app.UseWebOptimizer();
-app.UseStaticFiles();
+app.UseStaticFiles(new StaticFileOptions
+{
+    OnPrepareResponse = ctx =>
+    {
+        if (ctx.File.Name == "background.mp4")
+        {
+            ctx.Context.Response.Headers[HeaderNames.CacheControl] = "public,max-age=1800";
+        }
+    }
+});
 
 app.UseRouting();
 
