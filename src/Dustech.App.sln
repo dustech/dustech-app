@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dustech.IDP", "Dustech.IDP\
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Dustech.App.Infrastructure", "Dustech.App.Infrastructure\Dustech.App.Infrastructure.fsproj", "{A039302A-88B7-4D44-983C-2312BD06DDE0}"
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Dustech.App.DAL", "Dustech.App.DAL\Dustech.App.DAL.fsproj", "{806D5620-72DD-4C84-B115-059A4A0E5616}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Dustech.App.Domain", "Dustech.App.Domain\Dustech.App.Domain.fsproj", "{7B615396-C519-4F60-90A0-5E041DE85FAD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +34,13 @@ Global
 		{A039302A-88B7-4D44-983C-2312BD06DDE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A039302A-88B7-4D44-983C-2312BD06DDE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A039302A-88B7-4D44-983C-2312BD06DDE0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{806D5620-72DD-4C84-B115-059A4A0E5616}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{806D5620-72DD-4C84-B115-059A4A0E5616}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{806D5620-72DD-4C84-B115-059A4A0E5616}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{806D5620-72DD-4C84-B115-059A4A0E5616}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B615396-C519-4F60-90A0-5E041DE85FAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B615396-C519-4F60-90A0-5E041DE85FAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B615396-C519-4F60-90A0-5E041DE85FAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B615396-C519-4F60-90A0-5E041DE85FAD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

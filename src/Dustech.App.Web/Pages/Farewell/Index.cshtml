@@ -48,12 +48,12 @@
         </div>
         <div class="container">
             @{
-                for (var i = 0; i < 10; i++)
+                foreach (var u in @Model.FilteredUsers)
                 {
 #pragma warning disable CA5394
                     var randomy = Random.Shared.Next(0, 99);
 #pragma warning restore CA5394
-                    var gender = (i%2==0)?"men":"women";
+                    var gender = (u.Gender =="male")?"men":"women";
                     
                     var imageModel = new PersonImage($"https://randomuser.me/api/portraits/{gender}/{randomy}.jpg");
                     
@@ -63,7 +63,7 @@
                             <div class="d-flex gap-3">
                                 <partial name="Shared/_PersonImage" model="imageModel"/>
                                 <div class="user-info">
-                                    <h4>John Doe</h4>
+                                    <h4>@u.Name</h4>
                                     <h6>Troy, MI</h6>
                                     <span class="badge bg-primary">Nature</span>
                                     <span class="badge bg-primary">Travel</span>

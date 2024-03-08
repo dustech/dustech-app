@@ -1,11 +1,13 @@
 using System;
+using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
+using Dustech.App.Domain;
 using Dustech.App.Infrastructure;
-using static Dustech.App.Infrastructure.ConfigurationParser;
 using static Dustech.App.Infrastructure.ConfigurationParser.RuntimeConfigurationParser;
 using Dustech.App.Web;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using static Dustech.App.Infrastructure.ConfigurationParser.DataProtectionConfigurationParser;
 var supportedCultures = new[] { "en", "it" };
@@ -60,6 +62,20 @@ else
 
 
 builder.Services.AddOpenIdConnectServices(webAppConfiguration,dataProtectionConfiguration,razorPagesWebClient,x509);
+
+var myUsers = new List<Users.User>
+{
+    new ("Cannolo","male"),
+    new ("Marygold","female"),
+    new ("Lilly","female")
+};
+
+var usersInMemory = UsersInMemory.toUsers(myUsers);
+
+builder.Services.TryAddSingleton<Users.IUser>(usersInMemory);
+
+
+
 
 var app = builder.Build();
 
