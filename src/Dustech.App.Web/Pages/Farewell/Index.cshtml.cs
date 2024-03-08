@@ -14,7 +14,7 @@ public class IndexModel(Users.IUser users) : LayoutModel("Farewell")
 
         var query = new Users.UserQuery(null,null);
         
-        FilteredUsers = users.getUsers(query).Select(u => new UserViewModel(u.Name,u.Gender));
+        FilteredUsers = users.getUsers(query).Select(u => new UserViewModel(u.Name,u.Gender.ToString()));
 
     }
 

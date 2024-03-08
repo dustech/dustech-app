@@ -1,10 +1,17 @@
 ﻿namespace Dustech.App.Domain
 
 [<AutoOpen>]
+module Gender =
+    type Gender =
+        | Male
+        | Female
+        | Other   
+
+[<AutoOpen>]
 module Users =
-
-    type User = { Name: string; Gender: string }
-
+    
+    type User = { Name: string; Gender: Gender }
+    
     type UserQuery =
         { Name: string Option
           Gender: string Option }
@@ -17,10 +24,10 @@ module Users =
 
 module ExampleUsers =
     let exampleUsers = seq<User> [
-        { Name = "Cannolo"; Gender = "male" }
-        { Name = "MaryGold"; Gender = "female" }
-        { Name = "Lilly"; Gender = "female" }
-        { Name = "Brondu"; Gender = "male" }
+        { Name = "Cannolo"; Gender = Male }
+        { Name = "MaryGold"; Gender = Female}
+        { Name = "Lilly"; Gender = Female }
+        { Name = "Brondu"; Gender = Male }
     ]
 
 type UsersInMemory(users: seq<User>) =
@@ -41,7 +48,7 @@ type UsersInMemory(users: seq<User>) =
             let filterByGender f (u: User) =
                 match f.Gender with
                 | None -> true
-                | Some n -> u.Gender = n
+                | Some n -> u.Gender.ToString() = n
 
             users
             |> Seq.filter (filterByName query)

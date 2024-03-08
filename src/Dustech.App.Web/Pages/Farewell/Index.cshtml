@@ -51,11 +51,11 @@
                 foreach (var u in @Model.FilteredUsers)
                 {
 #pragma warning disable CA5394
-                    var randomy = Random.Shared.Next(0, 99);
+                    var randomId = Random.Shared.Next(0, 99);
 #pragma warning restore CA5394
-                    var gender = (u.Gender =="male")?"men":"women";
+                    var gender = u.Gender.ToLower() =="male"?"men":"women";
                     
-                    var imageModel = new PersonImage($"https://randomuser.me/api/portraits/{gender}/{randomy}.jpg");
+                    var imageModel = new PersonImage($"https://randomuser.me/api/portraits/{gender}/{randomId}.jpg");
                     
                     <div
                         class="card mb-3">

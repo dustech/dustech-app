@@ -3,7 +3,7 @@
         function hideMask(mask) {
             setTimeout(() => {
                 mask.classList.add("hidden");
-            }, 300);
+            }, 200);
         }
 
         document.addEventListener('DOMContentLoaded', (event) => {
