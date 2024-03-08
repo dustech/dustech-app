@@ -1,11 +1,17 @@
 ﻿namespace Dustech.App.Domain
+open Dustech.App.Infrastructure
 
 [<AutoOpen>]
 module Gender =
     type Gender =
         | Male
         | Female
-        | Other   
+        | Other
+        
+    let equal (gender:Gender) (value:string) =
+        gender.ToString().ToLowerInvariant() = value.ToLowerInvariant()
+        
+        
 
 [<AutoOpen>]
 module Users =
@@ -31,6 +37,7 @@ module ExampleUsers =
     ]
 
 type UsersInMemory(users: seq<User>) =
+    
     interface IUser with
 
         member _.GetEnumerator() = users.GetEnumerator()
@@ -39,7 +46,7 @@ type UsersInMemory(users: seq<User>) =
             (this :> seq<User>).GetEnumerator() :> System.Collections.IEnumerator
 
         member this.getUsers(query) =
-
+            
             let filterByName f (u: User) =
                 match f.Name with
                 | None -> true
@@ -48,7 +55,10 @@ type UsersInMemory(users: seq<User>) =
             let filterByGender f (u: User) =
                 match f.Gender with
                 | None -> true
-                | Some n -> u.Gender.ToString() = n
+                | Some g ->
+                    show g
+                    show (u.Gender.ToString())
+                    equal u.Gender g
 
             users
             |> Seq.filter (filterByName query)

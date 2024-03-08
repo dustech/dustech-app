@@ -4,7 +4,6 @@ open System.IO
 open Microsoft.Extensions.Configuration
 open Microsoft.VisualBasic.CompilerServices
 
-
 module StandardScopes =
 
     /// <summary>REQUIRED. Informs the Authorization Server that the Client is making an OpenID Connect request. If the <c>openid</c> scope value is not present, the behavior is entirely unspecified.</summary>
@@ -91,12 +90,10 @@ open ConfigurationParser.RuntimeConfigurationParser
 
 module Hijacker =
     open Microsoft.AspNetCore.Authentication.OpenIdConnect
-    open Microsoft.AspNetCore.Http.Extensions
-
-    let log message = printfn $"%s{message}"
-
+    open Microsoft.AspNetCore.Http.Extensions    
+    
     let replaceUri (webAppConfiguration: WebAppConfiguration) (uri: string) =
-        log $"Try to substitute: {uri}"
+        show $"Try to substitute: {uri}"
 
         let newUri =
             uri
@@ -104,7 +101,7 @@ module Hijacker =
                 .Replace(webAppConfiguration.Authority, authHttpsExternalUri)
                 .Replace("http://", "https://")
 
-        log $"URI result: {newUri}"
+        show $"URI result: {newUri}"
         newUri
 
     let Hijack (webAppConfiguration: WebAppConfiguration) (context: RedirectContext) =
@@ -116,8 +113,8 @@ module Hijacker =
             match maybePostLogoutRedirectUri with
             | Some uri ->
                 let fullUrl = context.Request.GetDisplayUrl()
-                log "PostLogoutRedirectUri Logging DisplayUri"
-                log fullUrl
+                show "PostLogoutRedirectUri Logging DisplayUri"
+                show fullUrl
                 context.ProtocolMessage.PostLogoutRedirectUri <- replaceUri webAppConfiguration uri
             | _ -> ()
 
@@ -126,8 +123,8 @@ module Hijacker =
             match maybeIssuerAddress with
             | Some address ->
                 let fullUrl = context.Request.GetDisplayUrl()
-                log "Issuer Address Logging DisplayUri"
-                log fullUrl
+                show "Issuer Address Logging DisplayUri"
+                show fullUrl
                 context.ProtocolMessage.IssuerAddress <- replaceUri webAppConfiguration address
             | _ -> ()
 
@@ -136,8 +133,8 @@ module Hijacker =
             match maybeRedirectUri with
             | Some redirectUri ->
                 let fullUrl = context.Request.GetDisplayUrl()
-                log "RedirectUri Logging DisplayUri"
-                log fullUrl
+                show "RedirectUri Logging DisplayUri"
+                show fullUrl
                 context.ProtocolMessage.RedirectUri <- replaceUri webAppConfiguration redirectUri
             | _ -> ()
 

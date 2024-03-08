@@ -14,5 +14,9 @@
         <Compile Include="Users.fs"/>
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Dustech.App.Infrastructure\Dustech.App.Infrastructure.fsproj" />
+    </ItemGroup>
+
 
 </Project>

@@ -11,9 +11,10 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <Compile Include="Utils.fs"/>
         <Compile Include="Hashing.fs"/>
         <Compile Include="Config.fs"/>
-        <Compile Include="Utils.fs"/>
+        
     </ItemGroup>
 
     <ItemGroup>
