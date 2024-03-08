@@ -51,9 +51,9 @@
 
 .glow-effect {
   padding: 0.2rem;
-  border-radius: 50%; /* Rende l'elemento un cerchio */
-  background-color: transparent; /* Rende l'interno del cerchio trasparente */
-  border: solid 4px #FF3A20; /* Imposta il colore e lo spessore del bordo del cerchio */
+  border-radius: 50%; 
+  background-color: transparent; 
+  border: solid 4px #FF3A20; 
 }
 
 .glass-effect {
@@ -85,7 +85,7 @@
   min-height: 100%;
   width: auto;
   height: auto;
-  z-index: -1; /* Assicura che il video rimanga dietro il contenuto */
+  z-index: -1; 
 }
 
 .video-container::after {
