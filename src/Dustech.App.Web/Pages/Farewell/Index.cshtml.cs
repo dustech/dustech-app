@@ -68,8 +68,10 @@ public class IndexModel(Users.IUser users) : LayoutModel("Farewell", showMask: t
             var randomHobby = rand.Next(0, 50);
             randomHobbies.Add(Hobbies.ElementAt(randomHobby));
         }
+
         return randomHobbies.ToHashSet();
     }
+
     [SuppressMessage("Security", "CA5394:Do not use insecure randomness")]
     internal static string GetCity()
     {
@@ -125,7 +127,7 @@ public class IndexModel(Users.IUser users) : LayoutModel("Farewell", showMask: t
             "Archery",
             "Chess",
             "Sudoku",
-            "Playing musical instruments",
+            "Playing",
             "Singing",
             "Acting",
             "Stand-up comedy",
@@ -190,7 +192,23 @@ public class IndexModel(Users.IUser users) : LayoutModel("Farewell", showMask: t
         };
 }
 
-public record UserViewModel(string Name, string Gender);
+public record UserViewModel(string Name, string Gender)
+{
+    [SuppressMessage("Security", "CA5394:Do not use insecure randomness")]
+    public string GetQuote()
+    {
+        List<string> saluti = new List<string>
+        {
+            "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid commodi consectetur deleniti dolorem exercitationem fugit libero nihil numquam, officia quia.",
+            "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero molestiae odio quibusdam recusandae, tenetur vel?",
+            "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur corporis distinctio ea eaque facere fuga illum ipsum laborum minima minus mollitia nemo nostrum officia officiis quam quos similique sit, tempora.",
+            "Lorem ipsum dolor sit amet, consectetur adipisicing elit. A ab accusamus alias aliquam animi aspernatur assumenda doloribus ducimus enim est eum excepturi exercitationem expedita illum in minus natus necessitatibus nihil officia, porro provident quasi qui repudiandae sapiente similique temporibus, ullam vero. Id in placeat quis!"
+        };
+
+        var rand = new Random();
+        return saluti[rand.Next(saluti.Count)];
+    }
+};
 
 internal sealed record CarouselViewModel(
     string Path,
