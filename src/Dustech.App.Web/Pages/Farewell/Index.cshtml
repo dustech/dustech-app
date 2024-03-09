@@ -38,7 +38,9 @@
                             <div class="carousel-item @slide.Active">
                                 <img src="@slide.Path" class="d-block w-100" alt="Farewell">
                                 <div class="carousel-caption  bg-@slide.Context text-dark ">
-                                    <small class="d-block"><strong>@slide.Title</strong></small>
+                                    <small class="d-block">
+                                        <strong>@slide.Title</strong>
+                                    </small>
                                     <small class="d-none d-md-block">@slide.Description</small>
                                 </div>
                             </div>
@@ -59,34 +61,42 @@
                 </button>
             </div>
         </div>
-        <div class="container">
-            @{
-                foreach (var u in @Model.FilteredUsers)
-                {
+        <div class="container mt-4">
+            <div class="display-5 text-center">Un saluto speciale</div>
+        </div>
+        <div class="container mt-4">
+            <div class="row row-cols-1 row-cols-md-2 gy-4">
+                @{
+                    foreach (var u in @Model.FilteredUsers)
+                    {
 #pragma warning disable CA5394
-                    var randomId = Random.Shared.Next(0, 99);
+                        var randomId = Random.Shared.Next(0, 99);
 #pragma warning restore CA5394
-                    var gender = u.Gender.ToLower() == "male" ? "men" : "women";
+                        var gender = u.Gender.ToLower() == "male" ? "men" : "women";
 
-                    var imageModel = new PersonImage($"https://randomuser.me/api/portraits/{gender}/{randomId}.jpg");
+                        var imageModel = new PersonImage($"https://randomuser.me/api/portraits/{gender}/{randomId}.jpg");
 
-                    <div
-                        class="card mb-3">
-                        <div class="card-body">
-                            <div class="d-flex gap-3">
-                                <partial name="Shared/_PersonImage" model="imageModel"/>
-                                <div class="user-info">
-                                    <h4>@u.Name</h4>
-                                    <h6>Troy, MI</h6>
-                                    <span class="badge bg-primary">Nature</span>
-                                    <span class="badge bg-primary">Travel</span>
-                                    <span class="badge bg-primary">Sports</span>
+                        <div class="card px-0 rounded-5">
+                            <div class="card-body">
+                                <div class="row row-cols-2">
+                                    <div>
+                                        <partial name="Shared/_PersonImage" model="imageModel"/>
+                                    </div>
+                                    <div class="user-info">
+                                        <h4 class="card-title">@u.Name</h4>
+                                        <h6>@IndexModel.GetCity()</h6>
+                                        @foreach (var hobby in IndexModel.GetHobbies())
+                                        {
+                                            <span class="badge bg-secondary">@hobby</span>
+                                        }
+                                    </div>
                                 </div>
                             </div>
+                            <div class="container text-center mt-3 bg-info fw-bold p-4 ">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad dolore ipsa necessitatibus pariatur, recusandae reiciendis vero. At beatae debitis deserunt dignissimos error, exercitationem explicabo facilis id laudantium maiores neque nisi, odio pariatur quidem repellendus, soluta suscipit veritatis? Consectetur deleniti dolorem ipsum libero repellat similique ullam. Dignissimos illo iste laborum quod!</div>
                         </div>
-                    </div>
+                    }
                 }
-            }
+            </div>
         </div>
     </div>
 </section>

@@ -56,8 +56,6 @@ type UsersInMemory(users: seq<User>) =
                 match f.Gender with
                 | None -> true
                 | Some g ->
-                    show g
-                    show (u.Gender.ToString())
                     equal u.Gender g
 
             users
