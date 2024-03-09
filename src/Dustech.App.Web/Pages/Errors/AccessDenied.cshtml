@@ -6,7 +6,11 @@
 @inject IHtmlLocalizer<AccessDeniedModel> HtmlLocalizer
 
 
-<section class="access-denied container my-9">
+@section BeforeMain {
+    <partial name="Shared/_Spacer"/>
+}
+
+<section class="access-denied container ">
     
         <div class="container mt-5">
             <div class="row">
