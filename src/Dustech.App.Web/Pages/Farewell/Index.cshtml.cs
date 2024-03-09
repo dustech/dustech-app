@@ -12,7 +12,7 @@ public class IndexModel(Users.IUser users) : LayoutModel("Farewell", showMask: t
     {
         base.OnGet();
 
-        var query = new Users.UserQuery(null, "male");
+        var query = new Users.UserQuery(null, null);
 
         FilteredUsers = users.getUsers(query).Select(u => new UserViewModel(u.Name, u.Gender.ToString()));
     }
@@ -44,6 +44,10 @@ public class IndexModel(Users.IUser users) : LayoutModel("Farewell", showMask: t
                 new ("/media/carousel/rafting.jpg",
                     "Estate 2023",
                     "Ci siamo anche divertiti ogni tanto."
+                ),
+                new ("/media/carousel/futuro.jpg",
+                    "Il futuro",
+                    "W il DEI."
                 ),
                 
             };
