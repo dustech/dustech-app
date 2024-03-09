@@ -1,4 +1,7 @@
 using System;
+using System.Net;
+using System.Net.Security;
+using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using Dustech.App.Domain;
 using Dustech.App.Infrastructure;
@@ -11,6 +14,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Net.Http.Headers;
 using static Dustech.App.Infrastructure.ConfigurationParser.DataProtectionConfigurationParser;
 
+
 var supportedCultures = new[] { "en", "it" };
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,14 +24,15 @@ var dataProtectionConfiguration =
 var webAppConfiguration = parseWebAppConfiguration(builder.Configuration.GetSection(nameof(WebAppConfiguration)));
 var razorPagesWebClient =
     Config.razorPagesWebClient(webAppConfiguration.Authority, webAppConfiguration.WebAppInternalUri);
-Console.WriteLine($"X509__Key {dataProtectionConfiguration.X509__Key}");
-Console.WriteLine($"X509__FileName {dataProtectionConfiguration.X509__FileName}");
-Console.WriteLine($"X509__Path {dataProtectionConfiguration.X509__Path}");
-Console.WriteLine($"X509Location {dataProtectionConfiguration.X509Location}");
-Console.WriteLine($"DataProtectionPath {dataProtectionConfiguration.DataProtectionPath}");
-Console.WriteLine($"Proxied {webAppConfiguration.Proxied}");
-Console.WriteLine($"WebAppInternalUri {webAppConfiguration.WebAppInternalUri}");
-Console.WriteLine($"Authority {webAppConfiguration.Authority}");
+
+// Console.WriteLine($"X509__Key {dataProtectionConfiguration.X509__Key}");
+// Console.WriteLine($"X509__FileName {dataProtectionConfiguration.X509__FileName}");
+// Console.WriteLine($"X509__Path {dataProtectionConfiguration.X509__Path}");
+// Console.WriteLine($"X509Location {dataProtectionConfiguration.X509Location}");
+// Console.WriteLine($"DataProtectionPath {dataProtectionConfiguration.DataProtectionPath}");
+// Console.WriteLine($"Proxied {webAppConfiguration.Proxied}");
+// Console.WriteLine($"WebAppInternalUri {webAppConfiguration.WebAppInternalUri}");
+// Console.WriteLine($"Authority {webAppConfiguration.Authority}");
 
 // Add services to the container.
 builder.Services.AddRazorPages(options =>
@@ -59,15 +64,11 @@ else
 
 builder.Services.AddOpenIdConnectServices(webAppConfiguration, razorPagesWebClient);
 
-X509Certificate2 x509 = null!; 
-if (builder.Environment.IsProduction())
-{
-    x509 = new X509Certificate2(dataProtectionConfiguration.X509Location, dataProtectionConfiguration.X509__Key);
+var x509 = new X509Certificate2(dataProtectionConfiguration.X509Location, dataProtectionConfiguration.X509__Key);
 
-    builder.Services.AddWebappDataProtection(dataProtectionConfiguration, razorPagesWebClient,
-        x509);
-}
 
+builder.Services.AddWebappDataProtection(dataProtectionConfiguration, razorPagesWebClient,
+    x509);
 
 var usersInMemory = UsersInMemory.toUsers(ExampleUsers.exampleUsers);
 
@@ -77,7 +78,7 @@ builder.Services.TryAddSingleton<Users.IUser>(usersInMemory);
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
+if (app.Environment.IsProduction())
 {
     app.UseExceptionHandler("/Error");
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
@@ -109,4 +110,4 @@ app.MapRazorPages();
 
 app.Run();
 
-x509?.Dispose();
+x509.Dispose();
