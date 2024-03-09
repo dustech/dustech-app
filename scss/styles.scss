@@ -66,9 +66,7 @@
   width: 200px;
 }
 
-.glow-border {
-  border: 0.4rem solid rgba(0, 0, 0, 1);
-}
+
 
 .glow-effect {
   padding: 0.2rem;
@@ -88,9 +86,6 @@
   background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iNTAwIiBoZWlnaHQ9IjUwMCI+CjxmaWx0ZXIgaWQ9Im4iPgo8ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iLjciIG51bU9jdGF2ZXM9IjEwIiBzdGl0Y2hUaWxlcz0ic3RpdGNoIj48L2ZlVHVyYnVsZW5jZT4KPC9maWx0ZXI+CjxyZWN0IHdpZHRoPSI1MDAiIGhlaWdodD0iNTAwIiBmaWxsPSIjMDAwIj48L3JlY3Q+CjxyZWN0IHdpZHRoPSI1MDAiIGhlaWdodD0iNTAwIiBmaWx0ZXI9InVybCgjbikiIG9wYWNpdHk9IjAuNCI+PC9yZWN0Pgo8L3N2Zz4=");
 }
 
-.min-height-card {
-  height: 250px;
-}
 
 .card-background {
   position: relative;
@@ -224,8 +219,8 @@
 //Extra extra large 	xxl 	≥1400px
 
 @media (max-width: 576px) {
-  .about-img {
-    width: 100px;
+  .about-img, .user-img {
+    width: 120px;
   }
   
 }
@@ -245,7 +240,7 @@
 @media (min-width: 768px) {
 
   .about-img {
-    width: 200px;
+    width: 155px;
   }
 
   .about-content {
@@ -255,6 +250,15 @@
   .social {
     font-size: 2rem;
   }
+}
+
+
+@media (min-width: 992px) {
+
+  .about-img {
+    width: 170px;
+  }
+
 }
 
 .ruler {

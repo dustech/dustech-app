@@ -48,6 +48,14 @@
           <Generator>ResXFileCodeGenerator</Generator>
           <LastGenOutput>Pages.Errors.AccessDeniedModel.it.Designer.cs</LastGenOutput>
         </EmbeddedResource>
+        <EmbeddedResource Update="Resources\Pages.Farewell.IndexModel.resx">
+          <Generator>ResXFileCodeGenerator</Generator>
+          <LastGenOutput>Pages.Farewell.Designer.cs</LastGenOutput>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Resources\Pages.Farewell.IndexModel.it.resx">
+          <Generator>ResXFileCodeGenerator</Generator>
+          <LastGenOutput>Pages.Farewell.it.Designer.cs</LastGenOutput>
+        </EmbeddedResource>
     </ItemGroup>
 
     <ItemGroup>
@@ -80,6 +88,16 @@
           <DesignTime>True</DesignTime>
           <AutoGen>True</AutoGen>
           <DependentUpon>Pages.Errors.AccessDeniedModel.it.resx</DependentUpon>
+        </Compile>
+        <Compile Update="Resources\Pages.Farewell.IndexModel.Designer.cs">
+          <DesignTime>True</DesignTime>
+          <AutoGen>True</AutoGen>
+          <DependentUpon>Pages.Farewell.IndexModel.resx</DependentUpon>
+        </Compile>
+        <Compile Update="Resources\Pages.Farewell.IndexModel.it.Designer.cs">
+          <DesignTime>True</DesignTime>
+          <AutoGen>True</AutoGen>
+          <DependentUpon>Pages.Farewell.IndexModel.it.resx</DependentUpon>
         </Compile>
     </ItemGroup>
 
