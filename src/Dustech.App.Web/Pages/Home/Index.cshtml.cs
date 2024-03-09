@@ -1,3 +1,3 @@
 namespace Dustech.App.Web.Pages.Home;
 
-public class IndexModel() : LayoutModel("Home page");
+public class IndexModel() : LayoutModel("Home page",showMask:true);
