@@ -2,4 +2,4 @@
 
 #./docker-build-nginx && ./docker-build-webapp && ./docker-build-idp
 
-./docker-build-webapp && ./docker-build-idp
+npm run sass:build-prod && ./docker-build-webapp && ./docker-build-idp
