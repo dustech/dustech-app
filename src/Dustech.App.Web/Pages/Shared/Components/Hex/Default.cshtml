@@ -10,7 +10,7 @@
     var leftOffSet = DeLocalizer.toInvariant(Model.LeftOffSet);
     var isContentHtml = Model.IsContentHtml;
     var localClasses = "";
-    localClasses = Model.IsButton ? $"hexagon-card-btn btn btn-{Model.ColorContext} " : "alert alert-dark border-0";
+    localClasses = Model.IsButton ? $"hexagon-card-btn btn btn-{Model.ColorContext} " : $" bg-{Model.ColorContext} border-0";
 }
 
 <div class="hexagon-card px-0 @localClasses
