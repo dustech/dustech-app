@@ -23,12 +23,21 @@
         Href = "/farewell/index",
         IsButton = true
     };
+    var logoHex = new HexViewComponentModel
+    {
+        Content = "<img src='/media/dustech-logo.png' class='dustech-logo' />",
+        Icon = "",
+        ColorContext = "primary",
+        Href = "/farewell/index",
+        IsButton = false,
+        IsContentHtml = true
+    };
     var elements = new List<HexViewComponentModel>
     {
         topSecret,
         farewell,
         hexy,
-        hexy,
+        logoHex,
         hexy,
         hexy,
         hexy

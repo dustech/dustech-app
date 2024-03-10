@@ -8,6 +8,7 @@
     var height = DeLocalizer.toInvariant(Model.Height);
     var topOffSet = DeLocalizer.toInvariant(Model.TopOffSet);
     var leftOffSet = DeLocalizer.toInvariant(Model.LeftOffSet);
+    var isContentHtml = Model.IsContentHtml;
     var localClasses = "";
     localClasses = Model.IsButton ? $"hexagon-card-btn btn btn-{Model.ColorContext} " : "alert alert-dark border-0";
 }
@@ -26,7 +27,14 @@ d-flex justify-content-center align-items-center "
             </div>
             <div class="col-12 m-0 p-0">
                 <p class="text-truncate small">
-                    @(Model.Content)
+                    @if (isContentHtml)
+                    {
+                        @Html.Raw(Model.Content)
+                    }
+                    else
+                    {
+                        @(Model.Content)
+                    }
                 </p>
             </div>
         </div>
@@ -39,7 +47,14 @@ d-flex justify-content-center align-items-center "
             </div>
             <div class="col-12 m-0 p-0">
                 <p class="text-truncate">
-                    @(Model.Content)
+                    @if (isContentHtml)
+                    {
+                        @Html.Raw(Model.Content)
+                    }
+                    else
+                    {
+                        @(Model.Content)
+                    }
                 </p>
             </div>
         </div>

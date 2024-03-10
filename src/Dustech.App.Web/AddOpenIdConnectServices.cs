@@ -70,6 +70,7 @@ public static class OpenIdConnectServicesExtensions
                     options.ClaimActions.DeleteClaim("sid");
                     options.ClaimActions.DeleteClaim("idp");
                     options.ClaimActions.MapJsonKey("role","role");
+                    options.ClaimActions.MapUniqueJsonKey("preferred_username","preferred_username");
                     // options.ClaimActions.MapUniqueJsonKey("nickname","nickname");
                     options.TokenValidationParameters = new TokenValidationParameters
                     {

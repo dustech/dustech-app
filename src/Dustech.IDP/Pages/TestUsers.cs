@@ -25,7 +25,8 @@ public class TestUsers
                     {
                         new("role", "Administrator"),
                         new(JwtClaimTypes.GivenName, "Stefano"),
-                        new(JwtClaimTypes.FamilyName, "Cerruti")
+                        new(JwtClaimTypes.FamilyName, "Cerruti"),
+                        new(JwtClaimTypes.PreferredUserName, "Dustech")
                     }
                 },
                 new TestUser
