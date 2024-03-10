@@ -211,7 +211,7 @@
 }
 
 .dustech-logo {
-  width: 100px;
+  width: 50px;
 }
 
 
@@ -243,6 +243,10 @@
 
 @media (min-width: 768px) {
 
+  .dustech-logo {
+    width: 100px;
+  }
+  
   .about-img {
     width: 155px;
   }
