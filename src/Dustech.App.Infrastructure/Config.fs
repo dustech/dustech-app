@@ -3,7 +3,20 @@
 open System.IO
 open Microsoft.Extensions.Configuration
 open Microsoft.VisualBasic.CompilerServices
-
+module CustomScopes =
+    
+    type IdentityResource = {
+        Name : string
+        DisplayName : string
+        UserClaims : string array
+    }
+    
+    let Roles = {
+        Name = "roles"
+        DisplayName = "Your role(s)"
+        UserClaims = [|"role"|] 
+    }
+        
 module StandardScopes =
 
     /// <summary>REQUIRED. Informs the Authorization Server that the Client is making an OpenID Connect request. If the <c>openid</c> scope value is not present, the behavior is entirely unspecified.</summary>
@@ -173,7 +186,7 @@ module Config =
           ResponseType = authorizationCode
           SignOutCallBackPath = empty
           SignedOutCallbackPaths = Array.empty
-          Scopes = [ StandardScopes.Profile; StandardScopes.OpenId ] }
+          Scopes = [ StandardScopes.Profile; StandardScopes.OpenId; CustomScopes.Roles.Name ] }
 
     let private callBackPath = "/signin-oidc"
     let private signOutCallBackPath = "/signout-callback-oidc"

@@ -1,5 +1,6 @@
 ﻿using Duende.IdentityServer;
 using Duende.IdentityServer.Models;
+using Dustech.App.Infrastructure;
 
 namespace Dustech.IDP;
 
@@ -9,7 +10,8 @@ public static class Config
         new IdentityResource[]
         {
             new IdentityResources.OpenId(),
-            new IdentityResources.Profile()
+            new IdentityResources.Profile(),
+            new(CustomScopes.Roles.Name, CustomScopes.Roles.DisplayName, CustomScopes.Roles.UserClaims)
         };
 
     public static IEnumerable<ApiScope> ApiScopes =>
@@ -17,7 +19,7 @@ public static class Config
             { };
 
     public static IEnumerable<Client> Clients(App.Infrastructure.Config.Client razorPagesWebClient) =>
-        new []
+        new[]
         {
             new Client()
             {
@@ -30,7 +32,8 @@ public static class Config
                 AllowedScopes =
                 {
                     IdentityServerConstants.StandardScopes.OpenId,
-                    IdentityServerConstants.StandardScopes.Profile
+                    IdentityServerConstants.StandardScopes.Profile,
+                    CustomScopes.Roles.Name
                 },
                 ClientSecrets =
                 {

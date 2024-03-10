@@ -23,8 +23,9 @@ public class TestUsers
 
                     Claims = new List<Claim>
                     {
-                        new Claim(JwtClaimTypes.GivenName, "Stefano"),
-                        new Claim(JwtClaimTypes.FamilyName, "Cerruti")
+                        new("role", "Administrator"),
+                        new(JwtClaimTypes.GivenName, "Stefano"),
+                        new(JwtClaimTypes.FamilyName, "Cerruti")
                     }
                 },
                 new TestUser
@@ -35,8 +36,9 @@ public class TestUsers
 
                     Claims = new List<Claim>
                     {
-                        new Claim(JwtClaimTypes.GivenName, "David"),
-                        new Claim(JwtClaimTypes.FamilyName, "Flagg")
+                        new("role", "Normal"),
+                        new(JwtClaimTypes.GivenName, "David"),
+                        new(JwtClaimTypes.FamilyName, "Flagg")
                     }
                 },
                 new TestUser
@@ -47,8 +49,9 @@ public class TestUsers
 
                     Claims = new List<Claim>
                     {
-                        new Claim(JwtClaimTypes.GivenName, "Emma"),
-                        new Claim(JwtClaimTypes.FamilyName, "Flagg")
+                        new("role", "Normal"),
+                        new(JwtClaimTypes.GivenName, "Emma"),
+                        new(JwtClaimTypes.FamilyName, "Flagg")
                     }
                 }
             };

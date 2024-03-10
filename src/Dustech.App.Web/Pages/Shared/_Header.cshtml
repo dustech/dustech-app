@@ -1,12 +1,28 @@
 @using Microsoft.AspNetCore.Mvc.TagHelpers
 @using Microsoft.AspNetCore.Localization
 @model IRequestCultureFeature
+@{
+    var name = User.Identity?.Name;
+}
+
 <header class="header">
     <nav class="bg-transparent navbar navbar-expand-sm navbar-toggleable-sm pt-3 fixed-top brand-bar">
         <div class="container">
             <a class="navbar-brand" asp-area="" asp-page="/Home/Index">
                 <strong class="lead text-primary">Dustech</strong>
             </a>
+            @{
+                if (name != null)
+                {
+                    <div class="h5 mt-2 me-2">@name</div>
+                }
+            }
+            @{
+                if (User.IsInRole("Administrator"))
+                {
+                    <a asp-page="/Home/Index">Destroy the world! <i class="bi bi-rocket-takeoff"></i></a>
+                }
+            }
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#brand-bar-collapsible" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>

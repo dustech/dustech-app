@@ -28,6 +28,7 @@ public class LayoutModel(string title, bool redirectToHome = false, bool showMas
     public IRequestCultureFeature? RequestCultureFeature { get; set; }
 
     public HeadModel HeadModel { get; init; } = new(title, redirectToHome);
+    
 }
 
 public record HeadModel(string Title, bool RedirectToHome);

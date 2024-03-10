@@ -2,12 +2,14 @@
 using System.IO;
 using System.Security.Cryptography.X509Certificates;
 using Dustech.App.Infrastructure;
+using Microsoft.AspNetCore.Authentication;
 using static Dustech.App.Infrastructure.ConfigurationParser.RuntimeConfigurationParser;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
 using NUglify.Helpers;
 using static Dustech.App.Infrastructure.ConfigurationParser.DataProtectionConfigurationParser;
 
@@ -61,6 +63,20 @@ public static class OpenIdConnectServicesExtensions
                     options.AccessDeniedPath = "/AccessDenied";
                     options.SaveTokens = true;
                     options.RequireHttpsMetadata = false;
+                    options.GetClaimsFromUserInfoEndpoint = true;
+                    
+                    //this REMOVE the filter so it ADDS the aud claim
+                    options.ClaimActions.Remove("aud");
+                    options.ClaimActions.DeleteClaim("sid");
+                    options.ClaimActions.DeleteClaim("idp");
+                    options.ClaimActions.MapJsonKey("role","role");
+                    // options.ClaimActions.MapUniqueJsonKey("nickname","nickname");
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        NameClaimType = "given_name",
+                        // NameClaimType = "nickname",
+                        RoleClaimType = CustomScopes.Roles.UserClaims[0]
+                    };
                 });
         return services;
     }

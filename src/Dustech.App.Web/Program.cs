@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.JsonWebTokens;
 using Microsoft.Net.Http.Headers;
 using static Dustech.App.Infrastructure.ConfigurationParser.DataProtectionConfigurationParser;
 
@@ -60,6 +61,8 @@ else
 {
     builder.Services.AddWebOptimizer();
 }
+
+JsonWebTokenHandler.DefaultInboundClaimTypeMap.Clear();
 
 
 builder.Services.AddOpenIdConnectServices(webAppConfiguration, razorPagesWebClient);
