@@ -13,6 +13,8 @@ Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Dustech.App.DAL", "Dustech.
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Dustech.App.Domain", "Dustech.App.Domain\Dustech.App.Domain.fsproj", "{7B615396-C519-4F60-90A0-5E041DE85FAD}"
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Dustech.App.DAL.Tests", "Dustech.App.DAL.Tests\Dustech.App.DAL.Tests.fsproj", "{88CE25A5-E712-4AA6-BA26-F798795BACEF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,5 +44,9 @@ Global
 		{7B615396-C519-4F60-90A0-5E041DE85FAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7B615396-C519-4F60-90A0-5E041DE85FAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B615396-C519-4F60-90A0-5E041DE85FAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88CE25A5-E712-4AA6-BA26-F798795BACEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88CE25A5-E712-4AA6-BA26-F798795BACEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88CE25A5-E712-4AA6-BA26-F798795BACEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88CE25A5-E712-4AA6-BA26-F798795BACEF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
