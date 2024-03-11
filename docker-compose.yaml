@@ -38,7 +38,11 @@ services:
       DataProtectionConfiguration__x509__FileName: ${WebApp_DataProtectionConfiguration__X509__FileName}
       DataProtectionConfiguration__x509__Key: ${WebApp_DataProtectionConfiguration__X509__Key}
       DataProtectionConfiguration__X509__Path: ${WebApp_DataProtectionConfiguration__X509__Path}
-      DataProtectionConfiguration__DataProtectionPath: ${WebApp_DataProtectionConfiguration__DataProtectionPath}   
+      DataProtectionConfiguration__DataProtectionPath: ${WebApp_DataProtectionConfiguration__DataProtectionPath}
+      PSLpwd: ${PSLpwd}
+      PSLusr: ${PSLusr}
+      PSLhost: ${PSLhost}
+      PSLdatabase: ${PSLdatabase}
     volumes:
       - ${WebApp_DataProtectionConfiguration__DataProtectionPath}:${WebApp_DataProtectionConfiguration__DataProtectionPath}
       - ${WebApp_DataProtectionConfiguration__X509__Path}:${WebApp_DataProtectionConfiguration__X509__Path}:ro

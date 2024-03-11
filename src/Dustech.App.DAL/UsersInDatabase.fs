@@ -20,7 +20,7 @@ module UsersInDatabase =
           Host: string
           Database: string }
 
-    let internal openCon (cd: ConnectionData) =
+    let internal getAllUsers (cd: ConnectionData) =
 
         let (builder: NpgsqlConnectionStringBuilder) = NpgsqlConnectionStringBuilder()
         builder.Database <- cd.Database
@@ -128,7 +128,7 @@ module UsersInDatabase =
                     | Some g -> equal u.Gender g
 
                 users <-
-                    openCon (conData)
+                    getAllUsers (conData)
                     |> Seq.filter (filterByName query)
                     |> Seq.filter (filterByGender query)
 
