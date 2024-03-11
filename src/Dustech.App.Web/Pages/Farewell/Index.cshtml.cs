@@ -16,11 +16,17 @@ public class IndexModel(Users.IUser users) : LayoutModel("Farewell", showMask: t
     public override void OnGet()
     {
         base.OnGet();
-
-        var query = new Users.UserQuery(null, null);
+        var sub = User.Claims.FirstOrDefault(c => c.Type == "sub")?.Value;
+        var id = Guid.Empty;
+        if (!string.IsNullOrEmpty(sub))
+        {
+            id = Guid.Parse(sub);
+            UserId = id;
+        }
+        var query = new Users.UserQuery(null, null, UserId = id, isAdmin: User.IsInRole("Administrator"));
 
         var viewUsers = users.getUsers(query)
-            .Select(u => new UserViewModel(u.Id, u.Name, u.LastName, u.Quote, u.Gender)).ToList();
+            .Select(u => new UserViewModel(u.Id, u.Name, u.LastName, u.Quote,u.PublicQuote ,u.Gender)).ToList();
         
         FilteredUsers = GetViewUsers(viewUsers);
 
@@ -29,15 +35,8 @@ public class IndexModel(Users.IUser users) : LayoutModel("Farewell", showMask: t
 
     private List<UserViewModel> GetViewUsers(List<UserViewModel> viewUsers)
     {
-        var sub = User.Claims.FirstOrDefault(c => c.Type == "sub")?.Value;
-        var id = Guid.Empty;
-        if (!string.IsNullOrEmpty(sub))
-        {
-            id = Guid.Parse(sub);
-            UserId = id;
-        }
         viewUsers = viewUsers.OrderBy(u => u.LastName).ToList();
-        var userToMove = viewUsers.FirstOrDefault(u => u.Id == id);
+        var userToMove = viewUsers.FirstOrDefault(u => u.Id == UserId);
         if (userToMove != null) 
         {
             viewUsers.Remove(userToMove);
@@ -236,7 +235,7 @@ public class IndexModel(Users.IUser users) : LayoutModel("Farewell", showMask: t
         };
 }
 
-public record UserViewModel(Guid Id, string Name, string LastName, FSharpOption<string> Quote, Gender.Gender Gender)
+public record UserViewModel(Guid Id, string Name, string LastName, FSharpOption<string> Quote, FSharpOption<string> PublicQuote, Gender.Gender Gender)
 {
     public string GenderString =>  Dustech.App.Domain.Gender.equal(Gender, "male")?"men":"women";
 

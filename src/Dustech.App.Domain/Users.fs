@@ -39,6 +39,7 @@ module Users =
           Name: string
           LastName: string
           Quote: string Option
+          PublicQuote: string Option
           Gender: Gender }
 
         static member instance =
@@ -47,12 +48,15 @@ module Users =
               Name = ""
               LastName = ""
               Quote = Some ""
+              PublicQuote = Some ""
               Gender = Other }
 
 
     type UserQuery =
         { Name: string Option
-          Gender: string Option }
+          Gender: string Option
+          QueryUserId : Guid
+          IsAdmin : bool }
 
     type IUser =
         inherit seq<User>

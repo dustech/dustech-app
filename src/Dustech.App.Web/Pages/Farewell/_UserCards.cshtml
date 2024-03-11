@@ -17,7 +17,7 @@
                 <div class="col-sm-12 col-md-6 col-xl-4">
                     <div class="d-flex flex-column" style="height: 100%">
                         <div class=" m-0 p-0 ">
-                            <div class="card-background rounded-top-5 @(u.Id == Model.UserId?"glow-effect":"") " >
+                            <div class="card-background rounded-top-5 @(u.Id == Model.UserId ? "glow-effect" : "") ">
                                 <div class="row row-cols-2 move-upward mb-4">
                                     <div class="p-3 ">
                                         <div class="float-end ">
@@ -40,9 +40,18 @@
                             <div class="card-body-background p-4 m-0">
                                 <div class="move-upward text-white">
                                     <blockquote class="blockquote">
+                                        @if (u.Quote != null || User.IsInRole("Administrator"))
+                                        {
+                                            <h5 class="text-warning text-center">- Solo per te -</h5>
+                                            <p class="small">
+                                                @(u.Quote?.Value ?? "[NO QUOTE]")
+                                            </p>
+                                            <hr/>
+                                        }
                                         <p class="small">
-                                            @(u.Quote?.Value ?? "[NO QUOTE]")
+                                            @(u.PublicQuote?.Value ?? "[NO PUBLIC QUOTE]")
                                         </p>
+
                                     </blockquote>
                                 </div>
                             </div>

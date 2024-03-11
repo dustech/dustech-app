@@ -46,15 +46,16 @@ public class TestUsers
                 },
                 new TestUser
                 {
-                    SubjectId = "b7539694-97e7-4dfe-84da-b4256e1ff5c7",
-                    Username = "Emma",
+                    SubjectId = "405a6c07-de57-4690-b145-60add9f745de",
+                    Username = "SPhiredd",
                     Password = "password",
 
                     Claims = new List<Claim>
                     {
                         new("role", "Normal"),
-                        new(JwtClaimTypes.GivenName, "Emma"),
-                        new(JwtClaimTypes.FamilyName, "Flagg")
+                        new(JwtClaimTypes.GivenName, "Sam"),
+                        new(JwtClaimTypes.FamilyName, "Phiredd"),
+                        new(JwtClaimTypes.PreferredUserName, "SPhiredd")
                     }
                 }
             };

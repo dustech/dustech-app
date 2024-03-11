@@ -47,7 +47,7 @@ module UsersInDatabase =
 
                     command.CommandText <-
                         """
-                                            SELECT t.user_id, t.name, t.last_name, t.quote, t.gender
+                                            SELECT t.user_id, t.name, t.last_name, t.quote, t.gender, t.public_quote 
                                             FROM usr."user" t
                                             LIMIT 501
                                         """
@@ -84,12 +84,28 @@ module UsersInDatabase =
                                 let! gender =
                                     reader.GetFieldValueAsync<string>(reader.GetOrdinal("gender"))
                                     |> Async.AwaitTask
+                                    
+                                let publicQuoteOrdinal = reader.GetOrdinal("public_quote")
+                                let! publicQuoteNull = reader.IsDBNullAsync(publicQuoteOrdinal) |> Async.AwaitTask
+                                
+                                let! publicQuoteOption =
+                                    match not publicQuoteNull with 
+                                    | true ->  async {
+                                                let! publicQuote = reader.GetFieldValueAsync<string>(publicQuoteOrdinal) |> Async.AwaitTask
+                                                return Some publicQuote
+                                                }                                                 
+                                    | false -> async { return None }
+                                    
+                                let! gender =
+                                    reader.GetFieldValueAsync<string>(reader.GetOrdinal("gender"))
+                                    |> Async.AwaitTask
 
                                 let myUser =
                                     {   Id = user_id
                                         Name = name
                                         LastName = last_name
                                         Quote = quoteOption
+                                        PublicQuote = publicQuoteOption 
                                         Gender  = stringToGender gender }
 
                                 storage <- storage.Add(myUser)
@@ -117,20 +133,27 @@ module UsersInDatabase =
                 (this :> seq<User>).GetEnumerator() :> System.Collections.IEnumerator
 
             member this.getUsers(query) =
-                let filterByName f (u: User) =
-                    match f.Name with
+                let filterByName query (u: User) =
+                    match query.Name with
                     | None -> true
                     | Some n -> u.Name = n
 
-                let filterByGender f (u: User) =
-                    match f.Gender with
+                let filterByGender query (u: User) =
+                    match query.Gender with
                     | None -> true
                     | Some g -> equal u.Gender g
+                    
+                let maskPrivateQuote query (u: User) =
+                    if query.QueryUserId.Equals u.Id || query.IsAdmin
+                    then u
+                    else {u with Quote = None }
+                    
 
                 users <-
                     getAllUsers (conData)
                     |> Seq.filter (filterByName query)
                     |> Seq.filter (filterByGender query)
+                    |> Seq.map (maskPrivateQuote query)
 
                 users
 
