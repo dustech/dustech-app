@@ -68,12 +68,23 @@
 
 
 
-.glow-effect {
+.glow-effect-round {
   padding: 0.2rem;
   border-radius: 50%;
   background-color: transparent;
   border: solid 4px #FF3A20;
 }
+
+.glow-effect {
+  background-color: transparent;
+  //border-top: solid 4px #FF3A2050;
+  //border-left: solid 4px #FF3A2050;
+  //border-right: solid 4px #FF3A2050;
+  border-inline-start:solid 4px #FF3A2050 ;
+  border-inline-end:solid 4px #FF3A2050 ;
+}
+
+
 
 .glass-effect {
   background: radial-gradient(89.59% 89.59% at 50.00% 100.00%, rgba(255, 224, 255, 0.15) 0%, rgba(37, 124, 255, 0.01) 47.40%, rgba(13, 16, 23, 0.00) 100%), #0D1017;

@@ -35,10 +35,10 @@
                             <div class="carousel-item @slide.Active">
                                 <img src="@slide.Path" class="d-block w-100" alt="Farewell">
                                 <div class="carousel-caption  bg-@slide.Context text-dark p-2 p-sm-3 p-md-4 ">
-                                    <small class="d-block">
+                                    <h4 class="d-block mb-1">
                                         <strong>@slide.Title</strong>
-                                    </small>
-                                    <small class="d-none d-sm-block">@slide.Description</small>
+                                    </h4>
+                                    <h6 class="d-none d-sm-block">@slide.Description</h6>
                                 </div>
                             </div>
                         }
@@ -59,13 +59,16 @@
             </div>
         </div>
         <div class="container mt-4">
-            <div class="display-5 text-center">Un saluto speciale</div>
+            <div class="display-5 text-center">
+                Un saluto speciale
+                <p class="text-info h6">( In ordine alfabetico )</p>
+            </div>
         </div>
 
         <!-- User cards -->
 
-        <partial name="_UserCards" model="Model.FilteredUsers"/>
+        <partial name="_UserCards" model="Model"/>
     </div>
-    
-    
+
+
 </section>

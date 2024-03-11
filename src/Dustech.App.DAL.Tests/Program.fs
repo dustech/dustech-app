@@ -18,5 +18,3 @@ let database = Environment.GetEnvironmentVariable("PSLdatabase")
 //
 // storage.ForEach(fun u -> printfn $"{u.Name}")
 
-
-6A946644-6089-4D36-B539-F39D0BB59060

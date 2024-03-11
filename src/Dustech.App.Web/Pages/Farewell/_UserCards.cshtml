@@ -1,10 +1,12 @@
 @using Dustech.App.Domain
-@model IEnumerable<UserViewModel> 
+@using Microsoft.IdentityModel.Tokens
+@model IndexModel 
+
 
 <div class="container my-4">
     <div class="row gy-3 gx-4">
         @{
-            foreach (var u in @Model)
+            foreach (var u in @Model.FilteredUsers)
             {
 #pragma warning disable CA5394
                 var randomId = Random.Shared.Next(0, 99);
@@ -15,7 +17,7 @@
                 <div class="col-sm-12 col-md-6 col-xl-4">
                     <div class="d-flex flex-column" style="height: 100%">
                         <div class=" m-0 p-0 ">
-                            <div class="card-background rounded-top-5">
+                            <div class="card-background rounded-top-5 @(u.Id == Model.UserId?"glow-effect":"") " >
                                 <div class="row row-cols-2 move-upward mb-4">
                                     <div class="p-3 ">
                                         <div class="float-end ">

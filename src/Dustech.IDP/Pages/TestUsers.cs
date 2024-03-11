@@ -31,15 +31,17 @@ public class TestUsers
                 },
                 new TestUser
                 {
-                    SubjectId = "d860efca-22d9-47fd-8249-791ba61b07c7",
-                    Username = "David",
+                    SubjectId = "fc8fe991-f341-44e8-a0dc-e22c9d60a26e",
+                    Username = "STesla",
                     Password = "password",
 
                     Claims = new List<Claim>
                     {
                         new("role", "Normal"),
-                        new(JwtClaimTypes.GivenName, "David"),
-                        new(JwtClaimTypes.FamilyName, "Flagg")
+                        new(JwtClaimTypes.GivenName, "Silvia"),
+                        new(JwtClaimTypes.FamilyName, "Tesla"),
+                        new(JwtClaimTypes.PreferredUserName, "STesla")
+
                     }
                 },
                 new TestUser
