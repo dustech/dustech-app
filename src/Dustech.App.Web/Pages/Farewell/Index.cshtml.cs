@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Dustech.App.Domain;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.FSharp.Core;
 
 namespace Dustech.App.Web.Pages.Farewell;
 
+[Authorize]
 public class IndexModel(Users.IUser users) : LayoutModel("Farewell", showMask: true)
 {
     public IEnumerable<UserViewModel> FilteredUsers { get; private set; } = [];
@@ -16,7 +19,7 @@ public class IndexModel(Users.IUser users) : LayoutModel("Farewell", showMask: t
 
         var query = new Users.UserQuery(null, null);
 
-        FilteredUsers = users.getUsers(query).Select(u => new UserViewModel(u.Name, u.Gender.ToString()));
+        FilteredUsers = users.getUsers(query).Select(u => new UserViewModel(u.Name, u.LastName,u.Quote,u.Gender));
     }
 
     internal static IEnumerable<CarouselViewModel> GetCarouselViewModels
@@ -192,23 +195,12 @@ public class IndexModel(Users.IUser users) : LayoutModel("Farewell", showMask: t
         };
 }
 
-public record UserViewModel(string Name, string Gender)
+public record UserViewModel(string Name, string LastName, FSharpOption<string> Quote, Gender.Gender Gender)
 {
-    [SuppressMessage("Security", "CA5394:Do not use insecure randomness")]
-    public string GetQuote()
-    {
-        List<string> saluti = new List<string>
-        {
-            "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid commodi consectetur deleniti dolorem exercitationem fugit libero nihil numquam, officia quia.",
-            "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero molestiae odio quibusdam recusandae, tenetur vel?",
-            "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur corporis distinctio ea eaque facere fuga illum ipsum laborum minima minus mollitia nemo nostrum officia officiis quam quos similique sit, tempora.",
-            "Lorem ipsum dolor sit amet, consectetur adipisicing elit. A ab accusamus alias aliquam animi aspernatur assumenda doloribus ducimus enim est eum excepturi exercitationem expedita illum in minus natus necessitatibus nihil officia, porro provident quasi qui repudiandae sapiente similique temporibus, ullam vero. Id in placeat quis!"
-        };
+    public string GenderString =>  Dustech.App.Domain.Gender.equal(Gender, "male")?"men":"women";
 
-        var rand = new Random();
-        return saluti[rand.Next(saluti.Count)];
-    }
-};
+    public string FullName => $"{Name} {LastName}";
+}
 
 internal sealed record CarouselViewModel(
     string Path,

@@ -3,6 +3,7 @@ using System.Net;
 using System.Net.Security;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
+using Dustech.App.DAL;
 using Dustech.App.Domain;
 using Dustech.App.Infrastructure;
 using static Dustech.App.Infrastructure.ConfigurationParser.RuntimeConfigurationParser;
@@ -73,9 +74,18 @@ var x509 = new X509Certificate2(dataProtectionConfiguration.X509Location, dataPr
 builder.Services.AddWebappDataProtection(dataProtectionConfiguration, razorPagesWebClient,
     x509);
 
-var usersInMemory = UsersInMemory.toUsers(ExampleUsers.exampleUsers);
 
-builder.Services.TryAddSingleton<Users.IUser>(usersInMemory);
+var pwd = Environment.GetEnvironmentVariable("PSLpwd");
+var usr = Environment.GetEnvironmentVariable("PSLusr");
+var host = Environment.GetEnvironmentVariable("PSLhost");
+var database = Environment.GetEnvironmentVariable("PSLdatabase");
+
+
+// var usersInMemory = UsersInMemory.toUsers(ExampleUsers.exampleUsers);
+var conData = new UsersInDatabase.ConnectionData(password: pwd, username: usr, host: host, database: database);
+var usersInPostgres = UsersInDatabase.toUsersInPostgres(conData);
+
+builder.Services.TryAddSingleton<Users.IUser>(usersInPostgres);
 
 
 var app = builder.Build();

@@ -17,3 +17,8 @@ module DeLocalizer =
             stringValue 
         | _ ->
             failwith "Not supported type"
+            
+[<AutoOpen>]
+module FunctionOperations =
+    let curry f = fun x -> fun y -> f (x, y)
+    let uncurry f = fun (x, y) -> (f x) y

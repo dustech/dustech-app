@@ -1,4 +1,6 @@
 ﻿namespace Dustech.App.Domain
+
+open System
 open Dustech.App.Infrastructure
 
 [<AutoOpen>]
@@ -7,17 +9,47 @@ module Gender =
         | Male
         | Female
         | Other
-        
-    let equal (gender:Gender) (value:string) =
-        gender.ToString().ToLowerInvariant() = value.ToLowerInvariant()
-        
-        
+    
+    let genderToString = function
+    | Male -> "Male"
+    | Female -> "Female"
+    | Other -> "Other"
+
+    let stringToGender = function
+    | "Male" -> Male
+    | "Female" -> Female
+    | "Other" -> Other
+    | _ -> failwith "Invalid gender"
+    
+    let toLowerInvariant (s:string) = s.ToLowerInvariant()
+    let equal (gender: Gender) (value: string) =
+        gender
+        |> genderToString
+        |> toLowerInvariant
+        |> curry String.Equals (value.ToLowerInvariant())
+
+
 
 [<AutoOpen>]
 module Users =
-    
-    type User = { Name: string; Gender: Gender }
-    
+
+    type User =
+        {
+          Id : Guid
+          Name: string
+          LastName: string
+          Quote: string Option
+          Gender: Gender }
+
+        static member instance =
+            {
+              Id = Guid.Empty
+              Name = ""
+              LastName = ""
+              Quote = Some ""
+              Gender = Other }
+
+
     type UserQuery =
         { Name: string Option
           Gender: string Option }
@@ -29,15 +61,23 @@ module Users =
 
 
 module ExampleUsers =
-    let exampleUsers = seq<User> [
-        { Name = "Cannolo"; Gender = Male }
-        { Name = "MaryGold"; Gender = Female}
-        { Name = "Lilly"; Gender = Female }
-        { Name = "Brondu"; Gender = Male }
-    ]
+    let exampleUsers =
+        seq<User>
+            [ { User.instance with
+                  Name = "Cannolo"
+                  Gender = Male }
+              { User.instance with
+                  Name = "MaryGold"
+                  Gender = Female }
+              { User.instance with
+                  Name = "Lilly"
+                  Gender = Female }
+              { User.instance with
+                  Name = "Brondu"
+                  Gender = Male } ]
 
 type UsersInMemory(users: seq<User>) =
-    
+
     interface IUser with
 
         member _.GetEnumerator() = users.GetEnumerator()
@@ -46,7 +86,7 @@ type UsersInMemory(users: seq<User>) =
             (this :> seq<User>).GetEnumerator() :> System.Collections.IEnumerator
 
         member this.getUsers(query) =
-            
+
             let filterByName f (u: User) =
                 match f.Name with
                 | None -> true
@@ -55,12 +95,9 @@ type UsersInMemory(users: seq<User>) =
             let filterByGender f (u: User) =
                 match f.Gender with
                 | None -> true
-                | Some g ->
-                    equal u.Gender g
+                | Some g -> equal u.Gender g
 
-            users
-            |> Seq.filter (filterByName query)
-            |> Seq.filter (filterByGender query)
+            users |> Seq.filter (filterByName query) |> Seq.filter (filterByGender query)
 
 
 
