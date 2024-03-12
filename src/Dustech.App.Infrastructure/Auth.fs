@@ -37,6 +37,9 @@ module Auth =
 
     type IdentityQuery = {
         Id: Guid Option
+        Username : string Option
+        Password : string Option
+        Sub : string Option
     }
     
     type Identity = {

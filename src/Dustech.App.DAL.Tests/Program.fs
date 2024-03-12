@@ -25,11 +25,15 @@ let conData: Common.ConnectionData =
       Password = pwd
       Host = host
       Database = database }
+
 let authInPostgres = toAuthInPostgres conData
-let query = {IdentityQuery.Id = Some Guid.Empty}
+// let query = {IdentityQuery.Id = Some Guid.Empty; Username =  None; Password = None}
+let query =
+    { IdentityQuery.Id = None
+      Username = Some "stesla"
+      Password = Some "password"
+      Sub = None }
+
 let identities = (authInPostgres :> IIdentity).getIdentities query
 
 let veryfyme = true
-
-
-

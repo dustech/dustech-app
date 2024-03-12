@@ -1,4 +1,5 @@
 using System.Security.Cryptography.X509Certificates;
+using Dustech.IDP.Services;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.HttpOverrides;
 using Serilog;
@@ -32,10 +33,11 @@ internal static class HostingExtensions
                 }
             })
             .AddSigningCredential(x509)
+            .AddProfileService<LocalUserProfileService>()
             .AddInMemoryIdentityResources(Config.IdentityResources)
             .AddInMemoryApiScopes(Config.ApiScopes)
-            .AddInMemoryClients(Config.Clients(razorPagesWebClient))
-            .AddTestUsers(TestUsers.Users);
+            .AddInMemoryClients(Config.Clients(razorPagesWebClient));
+            //.AddTestUsers(TestUsers.Users);
 
         builder.Services.Configure<ForwardedHeadersOptions>(options =>
         {

@@ -144,7 +144,31 @@ module AuthInDatabase =
                 (this :> seq<Identity>).GetEnumerator() :> System.Collections.IEnumerator
 
             member this.getIdentities(query) =
+                let filterByUsernameAndPassword query (i: Identity) =
+                    match query.Password with
+                    | None -> true
+                    | Some p ->
+                        match  query.Username with
+                        | None -> false
+                        | Some u ->
+                            u.ToLower() = i.User.Username.ToLower() && p = i.User.Password
+
+                let filterByUsername query (i: Identity) =                    
+                    match  query.Username with
+                    | None -> true
+                    | Some u ->
+                        u.ToLower() = i.User.Username.ToLower()
+                
+                let filterByUsername query (i: Identity) =                    
+                    match  query.Sub with
+                    | None -> true
+                    | Some s ->
+                        s.ToLower() = i.User.Sub.ToString().ToLower()
+                
                 identities <- getAllIdentities conData
+                |> Seq.filter (filterByUsernameAndPassword query)
+                |> Seq.filter (filterByUsername query)
+                            
                 identities
 
     let toAuthInPostgres conData = AuthInPostgres conData

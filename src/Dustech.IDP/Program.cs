@@ -2,6 +2,7 @@
 using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
 using Dustech.IDP;
+using Dustech.IDP.Services;
 using Serilog;
 using static Dustech.App.Infrastructure.ConfigurationParser.DataProtectionConfigurationParser;
 using static Dustech.App.Infrastructure.ConfigurationParser.RuntimeConfigurationParser;
@@ -30,6 +31,9 @@ try
     // Console.WriteLine($"Proxied {idpConfiguration.Proxied}");
     // Console.WriteLine($"WebAppInternalUri {idpConfiguration.WebAppInternalUri}");
     // Console.WriteLine($"Authority {idpConfiguration.Authority}");
+    
+    builder.Services.AddScoped<ILocalUserService, LocalUserService>();
+    
     var x509 = new X509Certificate2(dataProtectionConfiguration.X509Location, dataProtectionConfiguration.X509__Key);
    
     
