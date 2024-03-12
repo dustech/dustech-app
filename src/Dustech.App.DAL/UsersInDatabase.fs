@@ -14,25 +14,12 @@ open Npgsql
 //     let connectionInfoMessage sender (e: NpgsqlNoticeEventArgs) = printfn $"Info: {e.Notice}."
 
 module UsersInDatabase =
-    type ConnectionData =
-        { Username: string
-          Password: string
-          Host: string
-          Database: string }
 
-    let internal getAllUsers (cd: ConnectionData) =
+    let private getAllUsers (cd: ConnectionData) =
 
-        let (builder: NpgsqlConnectionStringBuilder) = NpgsqlConnectionStringBuilder()
-        builder.Database <- cd.Database
-        builder.Timeout <- 10
-        //builder.SslMode <- SslMode.Require
-        builder.Host <- cd.Host
-        builder.Username <- cd.Username
-        builder.Password <- cd.Password
-        builder.PersistSecurityInfo <- false
+        let builder = getPostgresConnectionStringBuilder cd
 
-
-        let asyncConnectAndDisconnect () =
+        let getAllUsersAsync () =
             async {
                 let connection = new NpgsqlConnection(builder.ConnectionString)
                 // connection.StateChange.AddHandler connectionStateChange
@@ -121,7 +108,7 @@ module UsersInDatabase =
                     return storage
             }
 
-        asyncConnectAndDisconnect () |> Async.RunSynchronously
+        getAllUsersAsync () |> Async.RunSynchronously
 
     type UsersInPostgres(conData: ConnectionData) =
         let mutable users: seq<Users.User> = Seq.empty

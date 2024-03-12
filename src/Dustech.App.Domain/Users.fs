@@ -60,7 +60,6 @@ module Users =
 
     type IUser =
         inherit seq<User>
-
         abstract getUsers: UserQuery -> seq<User>
 
 

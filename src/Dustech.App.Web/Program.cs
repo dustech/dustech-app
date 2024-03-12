@@ -82,7 +82,7 @@ var database = Environment.GetEnvironmentVariable("PSLdatabase");
 
 
 // var usersInMemory = UsersInMemory.toUsers(ExampleUsers.exampleUsers);
-var conData = new UsersInDatabase.ConnectionData(password: pwd, username: usr, host: host, database: database);
+var conData = new Common.ConnectionData(password: pwd, username: usr, host: host, database: database);
 var usersInPostgres = UsersInDatabase.toUsersInPostgres(conData);
 
 builder.Services.TryAddSingleton<Users.IUser>(usersInPostgres);
