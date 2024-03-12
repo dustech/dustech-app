@@ -26,9 +26,9 @@
                                     </div>
                                     <div class="user-info pt-3" style="height: 180px">
                                         <h4 class="card-title text-primary anta h4">@u.FullName</h4>
-                                        <h6>@IndexModel.GetCity()</h6>
+                                        <h6>@IndexModel.GetCity(@Model.RequestCultureFeature)</h6>
                                         <small class="d-block mb-3">Hobbies</small>
-                                        @foreach (var hobby in IndexModel.GetHobbies())
+                                        @foreach (var hobby in IndexModel.GetHobbies(@Model.RequestCultureFeature))
                                         {
                                             <span class="badge bg-secondary">@hobby</span>
                                         }
