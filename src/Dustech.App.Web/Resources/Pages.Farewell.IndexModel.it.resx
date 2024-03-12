@@ -21,4 +21,10 @@
     <data name="Farewell" xml:space="preserve">
         <value>Arrivederci</value>
     </data>
+    <data name="ThankYou" xml:space="preserve">
+        <value>Un ringraziamento speciale a tutti voi!</value>
+    </data>
+    <data name="AlphabeticalOrder" xml:space="preserve">
+        <value>( In ordine alfabetico )</value>
+    </data>
 </root>
