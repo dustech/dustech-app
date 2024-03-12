@@ -159,7 +159,7 @@ module AuthInDatabase =
                     | Some u ->
                         u.ToLower() = i.User.Username.ToLower()
                 
-                let filterByUsername query (i: Identity) =                    
+                let filterBySub query (i: Identity) =                    
                     match  query.Sub with
                     | None -> true
                     | Some s ->
@@ -168,6 +168,7 @@ module AuthInDatabase =
                 identities <- getAllIdentities conData
                 |> Seq.filter (filterByUsernameAndPassword query)
                 |> Seq.filter (filterByUsername query)
+                |> Seq.filter (filterBySub query)
                             
                 identities
 
