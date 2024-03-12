@@ -63,6 +63,10 @@ services:
       DataProtectionConfiguration__x509__Key: ${Idp_DataProtectionConfiguration__X509__Key}
       DataProtectionConfiguration__X509__Path: ${Idp_DataProtectionConfiguration__X509__Path}
       DataProtectionConfiguration__DataProtectionPath: ${Idp_DataProtectionConfiguration__DataProtectionPath}
+      PSLpwd: ${PSLpwd}
+      PSLusr: ${PSLusr}
+      PSLhost: ${PSLhost}
+      PSLdatabase: ${PSLdatabase}
     volumes:
       - ${Idp_DataProtectionConfiguration__DataProtectionPath}:${Idp_DataProtectionConfiguration__DataProtectionPath}
       - ${Idp_DataProtectionConfiguration__X509__Path}:${Idp_DataProtectionConfiguration__X509__Path}:ro
