@@ -8,7 +8,7 @@ using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 
 namespace Dustech.App.Web.Pages.Classified;
 
-[Authorize]
+[Authorize(Roles = "Administrator")]
 public class IndexModel(ILogger<IndexModel> logger) : LayoutModel("Classified")
 {
     public override void OnGet()
