@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   
   certbot:
@@ -72,6 +70,20 @@ services:
       - ${Idp_DataProtectionConfiguration__X509__Path}:${Idp_DataProtectionConfiguration__X509__Path}:ro
     networks:
       - dustech-network
+  
+  mssql-db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: ${MSSQL_SA_PASSWORD}
+      DOTNET_SYSTEM_GLOBALIZATION_INVARIANT: "0"
+    ports:
+      - "1433:1433"
+    volumes:
+      - /data/docker-data/mssql/data:/var/opt/mssql/data:Z
+    networks:
+      - dustech-network
+
 
 
 networks:
