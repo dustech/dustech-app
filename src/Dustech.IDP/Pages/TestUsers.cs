@@ -1,8 +1,8 @@
 // Copyright (c) Duende Software. All rights reserved.
 // See LICENSE in the project root for license information.
 
-using IdentityModel;
 using System.Security.Claims;
+using Duende.IdentityModel;
 using Duende.IdentityServer.Test;
 
 namespace Dustech.IDP;

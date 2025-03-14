@@ -38,7 +38,9 @@ public class HexGridViewComponent : ViewComponent
 
 
     private static IEnumerable<IEnumerable<HexViewComponentModel>>
+#pragma warning disable CA1859
         CutRowsTailRecursive(IReadOnlyCollection<HexViewComponentModel> hexes,
+#pragma warning restore CA1859
             int i,
             int rowLength,
             ICollection<IEnumerable<HexViewComponentModel>> accumulator,
